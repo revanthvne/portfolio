@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revanth Kondaveti — Engineer. Builder. Founder.</title>
+<style>
+:root{--navy:#0a1628;--dark:#060d1b;--card:#0f1d32;--accent:#38bdf8;--accent2:#818cf8;--gold:#facc15;--text:#c8d6e5;--muted:#6b7c93;--white:#f0f4f8;--grad:linear-gradient(135deg,#1e3a5f,#38bdf8);--glow:0 0 40px rgba(56,189,248,.15)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--dark);color:var(--text);line-height:1.65;overflow-x:hidden}
+
+/* PARTICLE CANVAS */
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(6,13,27,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(56,189,248,.06)}
+nav .inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:16px 28px}
+nav .logo{font-weight:800;font-size:1.3rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;letter-spacing:1px}
+nav .links{display:flex;gap:28px}
+nav .links a{color:var(--muted);text-decoration:none;font-size:.88rem;transition:color .3s;position:relative}
+nav .links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s}
+nav .links a:hover{color:var(--accent)}
+nav .links a:hover::after{width:100%}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;z-index:1}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(56,189,248,.06) 0%,transparent 70%);pointer-events:none}
+.hero h1{font-size:4rem;font-weight:900;letter-spacing:-1px;margin-bottom:12px;opacity:0;animation:fadeUp .8s ease forwards}
+.hero h1 .line1{display:block;background:linear-gradient(90deg,#38bdf8,#818cf8,#facc15);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;animation:shimmer 4s linear infinite}
+.hero h1 .line2{display:block;color:var(--white);font-size:1.6rem;font-weight:400;margin-top:8px;letter-spacing:0}
+@keyframes shimmer{0%{background-position:0% center}100%{background-position:200% center}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 20px rgba(56,189,248,.1)}50%{box-shadow:0 0 40px rgba(56,189,248,.25)}}
+
+.hero .subtitle{font-size:1.15rem;color:var(--muted);max-width:680px;margin:0 auto 32px;opacity:0;animation:fadeUp .8s ease .2s forwards}
+.hero .tags{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:40px;opacity:0;animation:fadeUp .8s ease .4s forwards}
+.hero .tags span{background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.15);color:var(--accent);padding:7px 18px;border-radius:24px;font-size:.82rem;transition:all .3s}
+.hero .tags span:hover{background:rgba(56,189,248,.15);transform:translateY(-2px)}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .8s ease .6s forwards}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:10px;text-decoration:none;font-weight:600;font-size:.92rem;transition:all .3s}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 4px 20px rgba(56,189,248,.2)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(56,189,248,.35)}
+.btn-outline{border:1px solid rgba(56,189,248,.3);color:var(--accent);background:transparent}
+.btn-outline:hover{background:rgba(56,189,248,.08);border-color:var(--accent)}
+
+/* STATS ORBIT */
+.stats-orbit{position:relative;width:500px;height:500px;margin:60px auto 0;opacity:0;animation:fadeIn 1s ease .8s forwards}
+.orbit-ring{position:absolute;inset:0;border:1px solid rgba(56,189,248,.08);border-radius:50%;animation:spin 60s linear infinite}
+.orbit-ring:nth-child(2){inset:60px;animation-duration:45s;animation-direction:reverse}
+.orbit-ring:nth-child(3){inset:120px;animation-duration:30s}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.stat-node{position:absolute;background:var(--card);border:1px solid rgba(56,189,248,.15);border-radius:16px;padding:18px 22px;text-align:center;min-width:110px;animation:pulseGlow 3s ease infinite;transition:all .3s;cursor:default;z-index:2}
+.stat-node:hover{transform:scale(1.1);border-color:var(--accent)}
+.stat-node .num{font-size:2rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-node .label{color:var(--muted);font-size:.75rem;margin-top:2px;text-transform:uppercase;letter-spacing:1px}
+.stat-node:nth-child(4){top:0;left:50%;transform:translateX(-50%)}
+.stat-node:nth-child(5){top:50%;right:-10px;transform:translateY(-50%)}
+.stat-node:nth-child(6){bottom:0;left:50%;transform:translateX(-50%)}
+.stat-node:nth-child(7){top:50%;left:-10px;transform:translateY(-50%)}
+.stat-node:nth-child(8){top:12%;right:8%}
+.center-node{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:3}
+.center-node .avatar{width:100px;height:100px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:900;color:#fff;margin:0 auto 8px;box-shadow:0 0 40px rgba(56,189,248,.2)}
+.center-node .name{color:var(--white);font-weight:700;font-size:.95rem}
+
+/* SECTIONS */
+section{position:relative;z-index:1;padding:100px 24px;max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:60px}
+.section-header h2{font-size:2.4rem;font-weight:800;color:var(--white);margin-bottom:8px}
+.section-header p{color:var(--muted);font-size:1.05rem}
+.section-header .line{width:60px;height:3px;background:var(--grad);border-radius:2px;margin:16px auto 0}
+
+/* EXPERIENCE TIMELINE */
+.timeline{position:relative;max-width:800px;margin:0 auto}
+.timeline::before{content:'';position:absolute;left:24px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent),var(--accent2),transparent)}
+.t-item{position:relative;padding-left:64px;margin-bottom:40px;opacity:0;transform:translateY(20px);transition:all .6s}
+.t-item.visible{opacity:1;transform:translateY(0)}
+.t-item::before{content:'';position:absolute;left:17px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--dark);border:3px solid var(--accent);z-index:2;transition:all .3s}
+.t-item:hover::before{background:var(--accent);box-shadow:0 0 16px rgba(56,189,248,.4)}
+.t-item .t-card{background:var(--card);border-radius:14px;padding:24px 28px;border:1px solid rgba(56,189,248,.06);transition:all .3s}
+.t-item:hover .t-card{border-color:rgba(56,189,248,.2);box-shadow:var(--glow)}
+.t-item .t-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.t-item .t-role{font-weight:700;font-size:1.05rem;color:var(--white)}
+.t-item .t-date{color:var(--accent);font-size:.82rem;white-space:nowrap;background:rgba(56,189,248,.08);padding:3px 12px;border-radius:12px}
+.t-item .t-company{color:var(--muted);font-size:.92rem;margin-bottom:10px}
+.t-item ul{list-style:none}
+.t-item li{position:relative;padding-left:18px;margin-bottom:5px;font-size:.88rem}
+.t-item li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent2)}
+
+/* ARCHITECTURE DIAGRAM */
+.arch-diagram{max-width:900px;margin:0 auto 60px;position:relative}
+.arch-diagram svg{width:100%;height:auto}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:24px}
+.p-card{background:var(--card);border-radius:16px;padding:30px;border:1px solid rgba(56,189,248,.04);transition:all .4s;position:relative;overflow:hidden;opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s,border-color .3s,box-shadow .3s}
+.p-card.visible{opacity:1;transform:translateY(0)}
+.p-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:0;transition:opacity .3s}
+.p-card:hover{border-color:rgba(56,189,248,.2);box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.p-card:hover::before{opacity:1}
+.p-card .p-header{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.p-card .p-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.p-card .p-title-group{flex:1}
+.p-card h3{color:var(--white);font-size:1.1rem;margin-bottom:2px}
+.p-card .p-tagline{color:var(--accent);font-size:.8rem}
+.tier{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;padding:3px 10px;border-radius:4px;flex-shrink:0}
+.tier-1{background:rgba(250,204,21,.12);color:var(--gold)}
+.tier-2{background:rgba(56,189,248,.1);color:var(--accent)}
+.tier-3{background:rgba(129,140,248,.1);color:var(--accent2)}
+.p-card p{color:var(--muted);font-size:.87rem;margin-bottom:16px;line-height:1.6}
+.p-card .p-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.p-card .p-tags span{background:rgba(129,140,248,.08);color:var(--accent2);padding:3px 10px;border-radius:12px;font-size:.72rem}
+.p-card .p-links a{color:var(--accent);font-size:.82rem;text-decoration:none;padding:5px 14px;border:1px solid rgba(56,189,248,.25);border-radius:8px;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.p-card .p-links a:hover{background:rgba(56,189,248,.1);border-color:var(--accent)}
+
+/* SKILLS CONSTELLATION */
+.constellation{position:relative;width:100%;max-width:700px;height:400px;margin:40px auto}
+#skillsCanvas{width:100%;height:100%}
+
+/* PUBLICATIONS */
+.pub-list{display:grid;gap:10px;max-width:900px;margin:0 auto}
+.pub-item{background:var(--card);padding:18px 24px;border-radius:12px;border-left:3px solid transparent;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:all .3s;cursor:default}
+.pub-item:hover{border-left-color:var(--accent);transform:translateX(4px);box-shadow:var(--glow)}
+.pub-item .pub-title{color:var(--text);font-size:.9rem}
+.pub-item .pub-venue{color:var(--accent);font-size:.78rem;white-space:nowrap;background:rgba(56,189,248,.08);padding:3px 12px;border-radius:12px}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;max-width:800px;margin:0 auto}
+.edu-card{background:var(--card);padding:30px;border-radius:16px;border:1px solid rgba(56,189,248,.04);position:relative;overflow:hidden;transition:all .3s}
+.edu-card:hover{border-color:rgba(56,189,248,.15)}
+.edu-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle at top right,rgba(56,189,248,.06),transparent);border-radius:0 16px 0 80px}
+.edu-card h3{color:var(--white);margin-bottom:6px;font-size:1.1rem}
+.edu-card .school{color:var(--accent);font-size:.92rem}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:900px;margin:0 auto}
+.contact-card{background:var(--card);padding:28px;border-radius:14px;text-align:center;text-decoration:none;border:1px solid rgba(56,189,248,.04);transition:all .3s;position:relative;overflow:hidden}
+.contact-card::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .3s}
+.contact-card:hover{transform:translateY(-4px);border-color:transparent}
+.contact-card:hover::before{opacity:.08}
+.contact-card .c-icon{font-size:2rem;margin-bottom:10px;position:relative;z-index:1}
+.contact-card .c-label{color:var(--muted);font-size:.78rem;position:relative;z-index:1;text-transform:uppercase;letter-spacing:1px}
+.contact-card .c-value{color:var(--white);font-size:.92rem;font-weight:600;position:relative;z-index:1;margin-top:4px}
+
+/* FOOTER */
+footer{position:relative;z-index:1;text-align:center;padding:50px 24px;color:var(--muted);font-size:.82rem;border-top:1px solid rgba(56,189,248,.06)}
+footer .heart{display:inline-block;color:#ef4444;animation:heartbeat 1.5s ease infinite}
+@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(25px);transition:all .7s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero h1{font-size:2.6rem}
+  .hero h1 .line2{font-size:1.1rem}
+  .stats-orbit{width:320px;height:320px}
+  .stat-node{padding:12px 14px;min-width:80px}
+  .stat-node .num{font-size:1.4rem}
+  .center-node .avatar{width:70px;height:70px;font-size:1.6rem}
+  .orbit-ring:nth-child(2){inset:40px}
+  .orbit-ring:nth-child(3){inset:80px}
+  .projects-grid{grid-template-columns:1fr}
+  nav .links{gap:14px}
+  nav .links a{font-size:.78rem}
+  .t-item{padding-left:50px}
+  .constellation{height:280px}
+}
+@media(max-width:500px){
+  .stats-orbit{width:280px;height:280px}
+  .stat-node:nth-child(8){display:none}
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="inner">
+    <a href="#" class="logo">RK_</a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/revanthvne" target="_blank">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div>
+    <h1>
+      <span class="line1">Revanth Kondaveti</span>
+      <span class="line2">Engineer. Builder. Founder.</span>
+    </h1>
+    <p class="subtitle">From THz wireless research and 2nm semiconductor metrology to AI-powered trading systems and startup products. I bridge the gap between atoms and algorithms.</p>
+    <div class="tags">
+      <span>RF / Wireless</span>
+      <span>AI / ML</span>
+      <span>Full-Stack</span>
+      <span>Quantum Computing</span>
+      <span>Product</span>
+      <span>Startup Founder</span>
+    </div>
+    <div class="cta-row">
+      <a href="#projects" class="btn btn-primary"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8M8 4v8"/></svg> View Projects</a>
+      <a href="https://www.linkedin.com/in/revanthkondaveti" target="_blank" class="btn btn-outline">LinkedIn</a>
+      <a href="https://www.revanthk.com" target="_blank" class="btn btn-outline">Website</a>
+      <a href="https://github.com/revanthvne" target="_blank" class="btn btn-outline">GitHub</a>
+    </div>
+
+    <!-- ORBIT STATS -->
+    <div class="stats-orbit">
+      <div class="orbit-ring"></div>
+      <div class="orbit-ring"></div>
+      <div class="orbit-ring"></div>
+      <div class="stat-node" style="top:0;left:50%;transform:translateX(-50%)"><div class="num">5+</div><div class="label">Years Exp</div></div>
+      <div class="stat-node" style="top:50%;right:-20px;transform:translateY(-50%)"><div class="num">100+</div><div class="label">Products</div></div>
+      <div class="stat-node" style="bottom:0;left:50%;transform:translateX(-50%)"><div class="num">10</div><div class="label">Papers</div></div>
+      <div class="stat-node" style="top:50%;left:-20px;transform:translateY(-50%)"><div class="num">12+</div><div class="label">AI Projects</div></div>
+      <div class="stat-node" style="top:10%;right:5%"><div class="num">2</div><div class="label">Startups</div></div>
+      <div class="center-node">
+        <div class="avatar">RK</div>
+        <div class="name">Building the Future</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <h2>Experience</h2>
+    <p>From lab benches to product launches</p>
+    <div class="line"></div>
+  </div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-card">
+        <div class="t-top"><span class="t-role">Mini-Circuits | Applications Engineer II | New York, NY</span><span class="t-date">Jan 2024 — Present</span></div>
+        <ul>
+          <li>Launched 100+ products in 24 months spanning AI, DOCSIS 4.0, CATV, Core & Wire, and 5G</li>
+          <li>Managed product line of 10,000+ products; sole RF Core & Wire contributor</li>
+          <li>Drove RF product design improving semiconductor manufacturing yield</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-card">
+        <div class="t-top"><span class="t-role">Tap to Party | Founder & Product Lead | California</span><span class="t-date">Nov 2023 — Present</span></div>
+        <ul>
+          <li>Built full-stack event app (Flutter, React, Firebase); managed cross-functional teams</li>
+          <li>Drove strategy through A/B testing, customer interviews; shipped APIs + SDKs in 2 months</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-card">
+        <div class="t-top"><span class="t-role">Ramsoft | Applications Engineer | Texas</span><span class="t-date">Aug 2023 — Jan 2024</span></div>
+        <ul>
+          <li>Delivered full product project in 6 months — design to execution</li>
+          <li>RF and semiconductor device testing including transceiver systems</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-card">
+        <div class="t-top"><span class="t-role">KLA Corporation | Applications Engineer | Milpitas, CA</span><span class="t-date">Sep 2022 — Jul 2023</span></div>
+        <ul>
+          <li>Launched first 2nm and 3nm defect metrology systems (broadband plasma)</li>
+          <li>Demos to Intel, SK Hynix, TSMC, Samsung with 10+ engineers</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-card">
+        <div class="t-top"><span class="t-role">Meta — Reality Labs | Wireless Platform Developer | Sunnyvale, CA</span><span class="t-date">Apr 2022 — Sep 2022</span></div>
+        <ul>
+          <li>Led Quest Pro, Ray-Ban Stories, VR Quest 3 — reduced latency from 140ms to &lt;30ms</li>
+          <li>Impacted $200M+ in sales; demonstrated at Meta Tech Fair</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-card">
+        <div class="t-top"><span class="t-role">WiDeS Lab, USC | Research Associate | Los Angeles, CA</span><span class="t-date">Aug 2020 — Apr 2022</span></div>
+        <ul>
+          <li>Proved THz viability (LOS/NLOS/WiFi) — $1M funding increase</li>
+          <li>Led 10 RF engineers; authored 7 papers; presented to Samsung, Nokia, DRDO</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-card">
+        <div class="t-top"><span class="t-role">Levenson-Falk Lab, USC | Research Associate | Los Angeles, CA</span><span class="t-date">May 2021 — Aug 2021</span></div>
+        <ul>
+          <li>1st engineer in lab; 8x T1 improvement for superconducting qubit in cavity</li>
+          <li>APS conference presentation in 1.5 months; cryogenic cooling to 15mK</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE DIAGRAM -->
+<section>
+  <div class="section-header">
+    <h2>How I Think</h2>
+    <p>Connecting hardware physics to software intelligence</p>
+    <div class="line"></div>
+  </div>
+  <div class="arch-diagram reveal">
+    <svg viewBox="0 0 900 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Connecting lines -->
+      <path d="M155 160 L295 80" stroke="url(#lg1)" stroke-width="2" stroke-dasharray="6 4" opacity=".5">
+        <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <path d="M155 160 L295 160" stroke="url(#lg1)" stroke-width="2" stroke-dasharray="6 4" opacity=".5">
+        <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <path d="M155 160 L295 240" stroke="url(#lg1)" stroke-width="2" stroke-dasharray="6 4" opacity=".5">
+        <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <path d="M505 80 L605 120" stroke="url(#lg2)" stroke-width="2" stroke-dasharray="6 4" opacity=".5">
+        <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.5s" repeatCount="indefinite"/>
+      </path>
+      <path d="M505 160 L605 160" stroke="url(#lg2)" stroke-width="2" stroke-dasharray="6 4" opacity=".5">
+        <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.5s" repeatCount="indefinite"/>
+      </path>
+      <path d="M505 240 L605 200" stroke="url(#lg2)" stroke-width="2" stroke-dasharray="6 4" opacity=".5">
+        <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.5s" repeatCount="indefinite"/>
+      </path>
+      <path d="M795 160 L850 160" stroke="url(#lg2)" stroke-width="3" opacity=".6">
+        <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1s" repeatCount="indefinite"/>
+      </path>
+
+      <defs>
+        <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#818cf8"/></linearGradient>
+        <linearGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#818cf8"/><stop offset="100%" stop-color="#facc15"/></linearGradient>
+      </defs>
+
+      <!-- LEFT: Foundation -->
+      <rect x="30" y="110" width="120" height="100" rx="16" fill="#0f1d32" stroke="#38bdf8" stroke-width="1.5" opacity=".8"/>
+      <text x="90" y="150" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="700">PHYSICS</text>
+      <text x="90" y="168" text-anchor="middle" fill="#6b7c93" font-size="9">RF  THz  Quantum</text>
+      <text x="90" y="182" text-anchor="middle" fill="#6b7c93" font-size="9">Semiconductors</text>
+
+      <!-- MIDDLE: Domains -->
+      <rect x="260" y="40" width="280" height="56" rx="12" fill="#0f1d32" stroke="#818cf8" stroke-width="1" opacity=".7"/>
+      <text x="400" y="65" text-anchor="middle" fill="#818cf8" font-size="11" font-weight="600">AI / ML Engineering</text>
+      <text x="400" y="80" text-anchor="middle" fill="#6b7c93" font-size="9">Multi-Agent  NLP  Trading  Prediction</text>
+
+      <rect x="260" y="120" width="280" height="56" rx="12" fill="#0f1d32" stroke="#38bdf8" stroke-width="1" opacity=".7"/>
+      <text x="400" y="145" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="600">Full-Stack Products</text>
+      <text x="400" y="160" text-anchor="middle" fill="#6b7c93" font-size="9">React  Next.js  FastAPI  Chrome  Mobile</text>
+
+      <rect x="260" y="200" width="280" height="56" rx="12" fill="#0f1d32" stroke="#facc15" stroke-width="1" opacity=".7"/>
+      <text x="400" y="225" text-anchor="middle" fill="#facc15" font-size="11" font-weight="600">Hardware Systems</text>
+      <text x="400" y="240" text-anchor="middle" fill="#6b7c93" font-size="9">Metrology  AR/VR  Satellite  Encryption</text>
+
+      <!-- RIGHT: Output -->
+      <rect x="600" y="100" width="200" height="120" rx="16" fill="#0f1d32" stroke="#facc15" stroke-width="1.5" opacity=".8"/>
+      <text x="700" y="138" text-anchor="middle" fill="#facc15" font-size="12" font-weight="700">IMPACT</text>
+      <text x="700" y="158" text-anchor="middle" fill="#c8d6e5" font-size="10">100+ Products Launched</text>
+      <text x="700" y="174" text-anchor="middle" fill="#c8d6e5" font-size="10">$200M+ Revenue Impact</text>
+      <text x="700" y="190" text-anchor="middle" fill="#c8d6e5" font-size="10">12+ AI Systems Built</text>
+      <text x="700" y="206" text-anchor="middle" fill="#c8d6e5" font-size="10">10 Research Papers</text>
+
+      <!-- Arrow tip -->
+      <polygon points="850,160 838,152 838,168" fill="#facc15" opacity=".6"/>
+    </svg>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <h2>Projects & Portfolio</h2>
+    <p>AI systems, platforms, and products built independently</p>
+    <div class="line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <div class="p-card">
+      <div class="p-header">
+        <div class="p-icon" style="background:rgba(250,204,21,.1)">&#x1F4C8;</div>
+        <div class="p-title-group"><h3>Kalshi AI Trading Bot</h3><div class="p-tagline">Autonomous Prediction Market Trading</div></div>
+        <span class="tier tier-1">Flagship</span>
+      </div>
+      <p>Multi-model AI ensemble (Grok, Claude, GPT-4o, Gemini) with Kelly criterion sizing, portfolio optimization, market making, and dynamic exit strategies for Kalshi event contracts.</p>
+      <div class="p-tags"><span>Python</span><span>Multi-Agent AI</span><span>WebSocket</span><span>Trading</span><span>ML Ensemble</span></div>
+      <div class="p-links"><a href="https://github.com/revanthvne/kalshi-ai-trading-bot" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Code</a></div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-header">
+        <div class="p-icon" style="background:rgba(250,204,21,.1)">&#x26A1;</div>
+        <div class="p-title-group"><h3>NeuralGrid AI</h3><div class="p-tagline">Data Center Energy Management</div></div>
+        <span class="tier tier-1">Flagship</span>
+      </div>
+      <p>Production-grade ML-driven GPU power optimization (R²=0.95+) across 10 architectures. Multi-protocol auto-discovery, multi-tenant RBAC, AES-256-GCM encryption, Prometheus integration.</p>
+      <div class="p-tags"><span>Node.js</span><span>ML</span><span>Prometheus</span><span>Docker</span><span>WebSocket</span></div>
+      <div class="p-links"><a href="https://github.com/revanthvne/neuralgrid-ai" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Code</a></div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-header">
+        <div class="p-icon" style="background:rgba(250,204,21,.1)">&#x1F6F0;</div>
+        <div class="p-title-group"><h3>Satellite Hybrid Internet</h3><div class="p-tagline">MEO Satellite System Design</div></div>
+        <span class="tier tier-1">Flagship</span>
+      </div>
+      <p>Complete MEO satellite architecture with link budget analysis across 11 frequency bands (75-300 GHz). Python simulation suite with 14 analysis plots for modulation, beams, antenna gain.</p>
+      <div class="p-tags"><span>Python</span><span>RF Engineering</span><span>Simulation</span><span>Link Budget</span></div>
+      <div class="p-links"><a href="https://github.com/revanthvne/satellite-hybrid-internet" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Code</a></div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-header">
+        <div class="p-icon" style="background:rgba(250,204,21,.1)">&#x1F510;</div>
+        <div class="p-title-group"><h3>QuantumShield</h3><div class="p-tagline">Quantum-Classical Cryptography</div></div>
+        <span class="tier tier-1">Flagship</span>
+      </div>
+      <p>Modular security platform integrating QKD, Post-Quantum Cryptography, and QRNG with vendor abstraction layer. Business plan, pitch deck, and landing page included.</p>
+      <div class="p-tags"><span>Python</span><span>FastAPI</span><span>Cryptography</span><span>Quantum</span></div>
+      <div class="p-links"><a href="https://github.com/revanthvne/quantumshield" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Code</a></div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-header">
+        <div class="p-icon" style="background:rgba(56,189,248,.1)">&#x1F4BC;</div>
+        <div class="p-title-group"><h3>JobFill.ai</h3><div class="p-tagline">AI Job Application Extension</div></div>
+        <span class="tier tier-2">Strong</span>
+      </div>
+      <p>Chrome extension with React UI, content scripts for auto-fill, AI answer generation, ProfileVault resume management, cover letter generation, and application tracking.</p>
+      <div class="p-tags"><span>React</span><span>Chrome MV3</span><span>AI API</span><span>Service Workers</span></div>
+      <div class="p-links"><a href="https://github.com/revanthvne/jobfill-ai" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Code</a></div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-header">
+        <div class="p-icon" style="background:rgba(56,189,248,.1)">&#x1F504;</div>
+        <div class="p-title-group"><h3>Teach & Repeat</h3><div class="p-tagline">Workflow Automation</div></div>
+        <span class="tier tier-2">Strong</span>
+      </div>
+      <p>RPA-style tool: teach workflows once, replay anywhere. Node/Fastify backend, React web, Chrome Extension DOM recorder, SwiftUI iOS skeleton, AI chat agent.</p>
+      <div class="p-tags"><span>Node.js</span><span>React</span><span>Chrome Ext</span><span>SwiftUI</span><span>RPA</span></div>
+      <div class="p-links"><a href="https://github.com/revanthvne/teach-and-repeat" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Code</a></div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-header">
+        <div class="p-icon" style="background:rgba(56,189,248,.1)">&#x1F4CA;</div>
+        <div class="p-title-group"><h3>MarketPulse</h3><div class="p-tagline">Financial Analytics Platform</div></div>
+        <span class="tier tier-2">Strong</span>
+      </div>
+      <p>Finviz-style platform: real-time quotes, TradingView charts, AI news sentiment, stock screener, technical indicators, competitor and supply chain mapping.</p>
+      <div class="p-tags"><span>React</span><span>FastAPI</span><span>AI Sentiment</span><span>TradingView</span></div>
+      <div class="p-links"><a href="https://github.com/revanthvne/marketpulse" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Code</a></div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-header">
+        <div class="p-icon" style="background:rgba(56,189,248,.1)">&#x1F4F1;</div>
+        <div class="p-title-group"><h3>SocialSurgeGenie</h3><div class="p-tagline">AI Social Media Management</div></div>
+        <span class="tier tier-2">Strong</span>
+      </div>
+      <p>Multi-platform posting (7 platforms) with AI captions, hashtag suggestions, scheduling, media management, team collaboration, and analytics dashboard.</p>
+      <div class="p-tags"><span>Next.js 14</span><span>TypeScript</span><span>Prisma</span><span>OpenAI</span></div>
+      <div class="p-links"><a href="https://github.com/revanthvne/socialsurgegenie" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Code</a></div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-header">
+        <div class="p-icon" style="background:rgba(56,189,248,.1)">&#x1F916;</div>
+        <div class="p-title-group"><h3>Molt Bot</h3><div class="p-tagline">Privacy-First Bot Engine</div></div>
+        <span class="tier tier-2">Strong</span>
+      </div>
+      <p>Local-only bot with plugin architecture, AES-128 encrypted storage, on-device LLM. Discord, Slack, Telegram, WhatsApp integrations. Zero cloud, zero telemetry.</p>
+      <div class="p-tags"><span>Python</span><span>Encryption</span><span>LLM</span><span>Plugin Arch</span></div>
+      <div class="p-links"><a href="https://github.com/revanthvne/molt-bot" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Code</a></div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-header">
+        <div class="p-icon" style="background:rgba(56,189,248,.1)">&#x1F5E3;</div>
+        <div class="p-title-group"><h3>Telugu Salesman</h3><div class="p-tagline">Multilingual AI Sales Agent</div></div>
+        <span class="tier tier-2">Strong</span>
+      </div>
+      <p>Conversational AI agent with negotiation engine, persona engine, dynamic knowledge base in Telugu/English. Sarvam AI for multilingual NLP, n8n workflow automation.</p>
+      <div class="p-tags"><span>FastAPI</span><span>NLP</span><span>Sarvam AI</span><span>n8n</span></div>
+      <div class="p-links"><a href="https://github.com/revanthvne/telugu-salesman" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Code</a></div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-header">
+        <div class="p-icon" style="background:rgba(129,140,248,.1)">&#x1F4DE;</div>
+        <div class="p-title-group"><h3>Quantum Encrypted Call</h3><div class="p-tagline">Quantum-Secured Comms</div></div>
+        <span class="tier tier-3">Notable</span>
+      </div>
+      <p>Real-time voice/video with quantum-grade encryption. QKD protocols combined with WebRTC for end-to-end quantum-secure calling.</p>
+      <div class="p-tags"><span>Quantum</span><span>WebRTC</span><span>Encryption</span></div>
+      <div class="p-links"><a href="https://github.com/revanthvne/quantum-encrypted-call" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Code</a></div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-header">
+        <div class="p-icon" style="background:rgba(129,140,248,.1)">&#x1F3AC;</div>
+        <div class="p-title-group"><h3>Founders Decoded</h3><div class="p-tagline">YouTube & Podcast</div></div>
+        <span class="tier tier-3">Notable</span>
+      </div>
+      <p>YouTube channel and podcast interviewing founders and analyzing startup strategies. Communication, thought leadership, and deep entrepreneurial understanding.</p>
+      <div class="p-tags"><span>YouTube</span><span>Podcast</span><span>Startups</span><span>Content</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS CONSTELLATION -->
+<section id="skills">
+  <div class="section-header">
+    <h2>Skills Universe</h2>
+    <p>A constellation of capabilities — hover to explore</p>
+    <div class="line"></div>
+  </div>
+  <div class="constellation">
+    <canvas id="skillsCanvas"></canvas>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-header">
+    <h2>Publications</h2>
+    <p>10 research papers across THz, quantum, robotics, and IoT</p>
+    <div class="line"></div>
+  </div>
+  <div class="pub-list">
+    <div class="pub-item reveal"><span class="pub-title">Measurement and modeling of THz propagation channels in indoor environments</span><span class="pub-venue">Aug 2022</span></div>
+    <div class="pub-item reveal"><span class="pub-title">On-Demand Cavity Cooling and Reset with a Modular Dissipator</span><span class="pub-venue">APS · Mar 2022</span></div>
+    <div class="pub-item reveal"><span class="pub-title">Double-Directional Channel Measurements for Urban THz Microcellular — Street Canyon</span><span class="pub-venue">ICC · Jul 2022</span></div>
+    <div class="pub-item reveal"><span class="pub-title">Impact of common building materials on THz multipath channels</span><span class="pub-venue">Radio Science · Feb 2022</span></div>
+    <div class="pub-item reveal"><span class="pub-title">THz Band Channel Measurements — Urban Microcellular Environments</span><span class="pub-venue">arXiv · Dec 2021</span></div>
+    <div class="pub-item reveal"><span class="pub-title">THz Band Channel Measurements — Urban D2D Environments</span><span class="pub-venue">arXiv · Sep 2021</span></div>
+    <div class="pub-item reveal"><span class="pub-title">Double-Directional Channel Measurements for Urban THz — Linear Route</span><span class="pub-venue">ICC · Jul 2021</span></div>
+    <div class="pub-item reveal"><span class="pub-title">Ultra-Wideband Double Directional Channel Measurements for THz — Urban</span><span class="pub-venue">ICC · Jul 2021</span></div>
+    <div class="pub-item reveal"><span class="pub-title">Robotic Pick and Place Using Two-Finger Touch Sensing</span><span class="pub-venue">Jul 2019</span></div>
+    <div class="pub-item reveal"><span class="pub-title">Smart Irrigation System Using Machine Learning and IoT</span><span class="pub-venue">IEEE · Mar 2019</span></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <h2>Education</h2>
+    <div class="line"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal"><h3>M.S. Electrical Engineering</h3><div class="school">University of Southern California, USA</div></div>
+    <div class="edu-card reveal"><h3>B.Tech. Electronics & Communication</h3><div class="school">Vellore Institute of Technology, India</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <h2>Let's Connect</h2>
+    <p>Always open to interesting conversations and collaborations</p>
+    <div class="line"></div>
+  </div>
+  <div class="contact-grid">
+    <a href="mailto:k.revanth456@gmail.com" class="contact-card reveal">
+      <div class="c-icon">&#x2709;</div>
+      <div class="c-label">Email</div>
+      <div class="c-value">k.revanth456@gmail.com</div>
+    </a>
+    <a href="tel:+13232037521" class="contact-card reveal">
+      <div class="c-icon">&#x1F4F1;</div>
+      <div class="c-label">Phone</div>
+      <div class="c-value">(323) 203-7521</div>
+    </a>
+    <a href="https://www.linkedin.com/in/revanthkondaveti" target="_blank" class="contact-card reveal">
+      <div class="c-icon">&#x1F517;</div>
+      <div class="c-label">LinkedIn</div>
+      <div class="c-value">revanthkondaveti</div>
+    </a>
+    <a href="https://github.com/revanthvne" target="_blank" class="contact-card reveal">
+      <div class="c-icon">&#x1F4BB;</div>
+      <div class="c-label">GitHub</div>
+      <div class="c-value">revanthvne</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>Built with <span class="heart">&#x2764;</span> by Revanth Kondaveti &copy; 2026</p>
+</footer>
+
+<script>
+// ─── PARTICLE BACKGROUND ───
+(function(){
+  const c=document.getElementById('particles'),x=c.getContext('2d');
+  let w,h,pts=[];
+  function resize(){w=c.width=innerWidth;h=c.height=innerHeight;pts=[];for(let i=0;i<80;i++)pts.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.5+.5,dx:(Math.random()-.5)*.3,dy:(Math.random()-.5)*.3,o:Math.random()*.5+.1})}
+  resize();addEventListener('resize',resize);
+  function draw(){x.clearRect(0,0,w,h);for(let i=0;i<pts.length;i++){const p=pts[i];p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>w)p.dx*=-1;if(p.y<0||p.y>h)p.dy*=-1;x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fillStyle=`rgba(56,189,248,${p.o})`;x.fill();for(let j=i+1;j<pts.length;j++){const q=pts[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<120){x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.strokeStyle=`rgba(56,189,248,${.08*(1-d/120)})`;x.stroke()}}}requestAnimationFrame(draw)}
+  draw();
+})();
+
+// ─── SKILLS CONSTELLATION ───
+(function(){
+  const c=document.getElementById('skillsCanvas'),x=c.getContext('2d');
+  const skills=[
+    {name:'Python',size:28,cat:0},{name:'React',size:24,cat:1},{name:'Node.js',size:22,cat:1},
+    {name:'THz/RF',size:26,cat:2},{name:'AI/ML',size:28,cat:0},{name:'FastAPI',size:20,cat:1},
+    {name:'TypeScript',size:20,cat:1},{name:'Docker',size:18,cat:1},{name:'Quantum',size:24,cat:2},
+    {name:'5G/6G',size:22,cat:2},{name:'Next.js',size:20,cat:1},{name:'HFSS',size:18,cat:2},
+    {name:'NLP',size:20,cat:0},{name:'WebSocket',size:16,cat:1},{name:'Julia',size:16,cat:0},
+    {name:'Flutter',size:18,cat:1},{name:'Scrum',size:16,cat:3},{name:'Figma',size:14,cat:3},
+    {name:'Firebase',size:18,cat:1},{name:'Prometheus',size:16,cat:1},{name:'PostgreSQL',size:18,cat:1},
+    {name:'OpenAI',size:20,cat:0},{name:'Chrome Ext',size:16,cat:1},{name:'mmWave',size:18,cat:2},
+  ];
+  const colors=['#38bdf8','#818cf8','#facc15','#34d399'];
+  let nodes=[],mouse={x:-999,y:-999};
+  function resize(){
+    const r=c.getBoundingClientRect();
+    c.width=r.width*2;c.height=r.height*2;x.scale(2,2);
+    const W=r.width,H=r.height;
+    nodes=skills.map((s,i)=>{
+      const a=(i/skills.length)*Math.PI*2,rad=Math.min(W,H)*.32+Math.random()*40;
+      return{...s,x:W/2+Math.cos(a)*rad,y:H/2+Math.sin(a)*rad,ox:0,oy:0,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15}
+    });
+  }
+  resize();addEventListener('resize',resize);
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});
+  c.addEventListener('mouseleave',()=>{mouse.x=-999;mouse.y=-999});
+
+  function draw(){
+    const r=c.getBoundingClientRect(),W=r.width,H=r.height;
+    x.clearRect(0,0,W,H);
+    // draw connections
+    for(let i=0;i<nodes.length;i++){for(let j=i+1;j<nodes.length;j++){
+      const a=nodes[i],b=nodes[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<140){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.strokeStyle=`rgba(56,189,248,${.12*(1-d/140)})`;x.lineWidth=1;x.stroke()}
+    }}
+    // draw nodes
+    for(const n of nodes){
+      n.x+=n.vx;n.y+=n.vy;
+      const dm=Math.hypot(n.x-mouse.x,n.y-mouse.y);
+      const hover=dm<50;
+      const sz=hover?n.size*1.4:n.size;
+      const col=colors[n.cat];
+      // glow
+      if(hover){x.beginPath();x.arc(n.x,n.y,sz+8,0,Math.PI*2);x.fillStyle=col.replace(')',',0.1)').replace('rgb','rgba');x.fill()}
+      x.beginPath();x.arc(n.x,n.y,sz/2,0,Math.PI*2);x.fillStyle=col.replace(')',',0.15)').replace('rgb','rgba');
+      x.fillStyle=`${col}22`;x.fill();x.strokeStyle=`${col}66`;x.lineWidth=1;x.stroke();
+      x.fillStyle=hover?'#fff':col;x.font=`${hover?'bold ':''} ${Math.max(10,sz*.42)}px Segoe UI, system-ui`;x.textAlign='center';x.textBaseline='middle';
+      x.fillText(n.name,n.x,n.y);
+      // soft boundary
+      if(n.x<40||n.x>W-40)n.vx*=-1;
+      if(n.y<40||n.y>H-40)n.vy*=-1;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ─── SCROLL REVEAL ───
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})
+},{threshold:.15});
+document.querySelectorAll('.reveal,.t-item,.p-card').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
