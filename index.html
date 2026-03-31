@@ -35,6 +35,107 @@ body::before{
 /* ─── CANVAS ─── */
 #particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
+/* ─── FLOATING GRADIENT ORBS ─── */
+.orb{
+  position:fixed;border-radius:50%;pointer-events:none;z-index:0;
+  filter:blur(80px);opacity:.12;mix-blend-mode:screen;
+  animation:orbFloat linear infinite;
+}
+.orb-1{width:500px;height:500px;background:radial-gradient(circle,#6c63ff,transparent 70%);top:-10%;left:-5%;animation-duration:25s}
+.orb-2{width:400px;height:400px;background:radial-gradient(circle,#00d4ff,transparent 70%);top:40%;right:-8%;animation-duration:30s;animation-delay:-5s}
+.orb-3{width:350px;height:350px;background:radial-gradient(circle,#ff6b6b,transparent 70%);bottom:-5%;left:30%;animation-duration:22s;animation-delay:-10s}
+.orb-4{width:300px;height:300px;background:radial-gradient(circle,#ffd93d,transparent 70%);top:20%;left:50%;animation-duration:28s;animation-delay:-15s}
+.orb-5{width:450px;height:450px;background:radial-gradient(circle,#6c63ff,#00d4ff 50%,transparent 70%);bottom:20%;right:20%;animation-duration:35s;animation-delay:-8s}
+@keyframes orbFloat{
+  0%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(80px,-120px) scale(1.15)}
+  50%{transform:translate(-60px,80px) scale(0.9)}
+  75%{transform:translate(100px,40px) scale(1.1)}
+  100%{transform:translate(0,0) scale(1)}
+}
+
+/* ─── AURORA / WAVE EFFECT ─── */
+.aurora{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden;
+}
+.aurora-band{
+  position:absolute;width:200%;height:300px;opacity:.06;
+  filter:blur(60px);
+  animation:auroraShift linear infinite;
+}
+.aurora-band:nth-child(1){
+  top:5%;left:-50%;
+  background:linear-gradient(90deg,transparent,#6c63ff,#00d4ff,#6c63ff,transparent);
+  animation-duration:20s;
+}
+.aurora-band:nth-child(2){
+  top:35%;left:-30%;
+  background:linear-gradient(90deg,transparent,#00d4ff,#ff6b6b,#00d4ff,transparent);
+  animation-duration:25s;animation-delay:-7s;
+}
+.aurora-band:nth-child(3){
+  top:65%;left:-40%;
+  background:linear-gradient(90deg,transparent,#ff6b6b,#ffd93d,#ff6b6b,transparent);
+  animation-duration:18s;animation-delay:-12s;
+}
+@keyframes auroraShift{
+  0%{transform:translateX(0) scaleY(1) rotate(-3deg)}
+  50%{transform:translateX(-25%) scaleY(1.5) rotate(2deg)}
+  100%{transform:translateX(0) scaleY(1) rotate(-3deg)}
+}
+
+/* ─── SHOOTING STARS ─── */
+.shooting-stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
+.star{
+  position:absolute;width:120px;height:1px;
+  background:linear-gradient(90deg,rgba(255,255,255,.7),transparent);
+  border-radius:50%;opacity:0;
+  animation:shootingStar linear infinite;
+}
+.star::before{
+  content:'';position:absolute;right:0;top:-1px;width:3px;height:3px;
+  border-radius:50%;background:#fff;box-shadow:0 0 6px 2px rgba(108,99,255,.6);
+}
+.star:nth-child(1){top:12%;left:15%;animation-duration:4s;animation-delay:1s;transform:rotate(-25deg)}
+.star:nth-child(2){top:25%;left:55%;animation-duration:3.5s;animation-delay:4s;transform:rotate(-30deg)}
+.star:nth-child(3){top:8%;left:75%;animation-duration:5s;animation-delay:7s;transform:rotate(-20deg)}
+.star:nth-child(4){top:45%;left:5%;animation-duration:4.5s;animation-delay:10s;transform:rotate(-35deg)}
+.star:nth-child(5){top:18%;left:40%;animation-duration:3s;animation-delay:13s;transform:rotate(-28deg)}
+.star:nth-child(6){top:55%;left:65%;animation-duration:4s;animation-delay:16s;transform:rotate(-22deg)}
+.star:nth-child(7){top:35%;left:85%;animation-duration:3.8s;animation-delay:2.5s;transform:rotate(-32deg)}
+.star:nth-child(8){top:70%;left:25%;animation-duration:4.2s;animation-delay:8.5s;transform:rotate(-18deg)}
+@keyframes shootingStar{
+  0%{transform:translateX(0) rotate(inherit);opacity:0}
+  5%{opacity:1}
+  60%{opacity:1}
+  100%{transform:translateX(800px) rotate(inherit);opacity:0}
+}
+
+/* ─── MESH GRADIENT PULSE ─── */
+.mesh-bg{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(108,99,255,.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(0,212,255,.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(255,107,107,.04) 0%, transparent 50%);
+  animation:meshPulse 12s ease-in-out infinite;
+}
+@keyframes meshPulse{
+  0%,100%{opacity:.6;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.05)}
+}
+
+/* ─── TWINKLING STARS ─── */
+.twinkle-field{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.twinkle{
+  position:absolute;width:2px;height:2px;border-radius:50%;
+  background:#fff;animation:twinkle ease-in-out infinite;
+}
+@keyframes twinkle{
+  0%,100%{opacity:.1;transform:scale(1)}
+  50%{opacity:.7;transform:scale(1.8)}
+}
+
 /* ─── NAV ─── */
 nav{
   position:fixed;top:0;left:0;width:100%;z-index:100;
@@ -206,6 +307,32 @@ footer{
 
 <!-- PARTICLES -->
 <canvas id="particles"></canvas>
+
+<!-- FLOATING GRADIENT ORBS -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="orb orb-4"></div>
+<div class="orb orb-5"></div>
+
+<!-- AURORA BANDS -->
+<div class="aurora">
+  <div class="aurora-band"></div>
+  <div class="aurora-band"></div>
+  <div class="aurora-band"></div>
+</div>
+
+<!-- SHOOTING STARS -->
+<div class="shooting-stars">
+  <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+  <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+</div>
+
+<!-- MESH GRADIENT PULSE -->
+<div class="mesh-bg"></div>
+
+<!-- TWINKLING STARS -->
+<div class="twinkle-field" id="twinkleField"></div>
 
 <!-- NAV -->
 <nav>
@@ -906,28 +1033,129 @@ footer{
 </footer>
 
 <script>
-// ─── PARTICLE BACKGROUND ───
+// ─── PARTICLE BACKGROUND (Mouse-Interactive) ───
 (function(){
   const c=document.getElementById('particles'),ctx=c.getContext('2d');
-  let w,h,particles=[];
+  let w,h,particles=[],mouse={x:null,y:null,radius:150};
   function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}
   window.addEventListener('resize',resize);resize();
-  for(let i=0;i<60;i++)particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.5+.5,dx:(Math.random()-.5)*.3,dy:(Math.random()-.5)*.3,o:Math.random()*.3+.1});
+  window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+  window.addEventListener('mouseout',()=>{mouse.x=null;mouse.y=null});
+
+  const colors=['108,99,255','0,212,255','255,107,107','255,217,61'];
+  for(let i=0;i<80;i++){
+    const col=colors[Math.floor(Math.random()*colors.length)];
+    particles.push({
+      x:Math.random()*w,y:Math.random()*h,
+      r:Math.random()*2+.5,
+      baseX:0,baseY:0,
+      dx:(Math.random()-.5)*.4,dy:(Math.random()-.5)*.4,
+      o:Math.random()*.35+.1,
+      col:col,
+      pulse:Math.random()*Math.PI*2,
+      pulseSpeed:.01+Math.random()*.02
+    });
+    particles[i].baseX=particles[i].x;
+    particles[i].baseY=particles[i].y;
+  }
+
   function draw(){
     ctx.clearRect(0,0,w,h);
     particles.forEach(p=>{
+      // Pulse opacity
+      p.pulse+=p.pulseSpeed;
+      const pulseO=p.o+Math.sin(p.pulse)*.08;
+
       p.x+=p.dx;p.y+=p.dy;
       if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(108,99,255,${p.o})`;ctx.fill();
+
+      // Mouse repulsion
+      let drawR=p.r;
+      if(mouse.x!==null){
+        const mx=p.x-mouse.x,my=p.y-mouse.y,md=Math.sqrt(mx*mx+my*my);
+        if(md<mouse.radius){
+          const force=(mouse.radius-md)/mouse.radius;
+          p.x+=mx/md*force*3;
+          p.y+=my/md*force*3;
+          drawR=p.r+force*2;
+        }
+      }
+
+      // Glow
+      const grad=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,drawR*3);
+      grad.addColorStop(0,`rgba(${p.col},${pulseO})`);
+      grad.addColorStop(1,`rgba(${p.col},0)`);
+      ctx.beginPath();ctx.arc(p.x,p.y,drawR*3,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();
+
+      ctx.beginPath();ctx.arc(p.x,p.y,drawR,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${p.col},${pulseO})`;ctx.fill();
     });
+
+    // Connection lines
     for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
       const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<120){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);
-      ctx.strokeStyle=`rgba(108,99,255,${.08*(1-d/120)})`;ctx.stroke()}
+      if(d<130){
+        ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle=`rgba(108,99,255,${.06*(1-d/130)})`;ctx.lineWidth=.5;ctx.stroke();
+      }
     }
+
+    // Mouse attraction lines
+    if(mouse.x!==null){
+      particles.forEach(p=>{
+        const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<200){
+          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);
+          ctx.strokeStyle=`rgba(0,212,255,${.04*(1-d/200)})`;ctx.lineWidth=.3;ctx.stroke();
+        }
+      });
+    }
+
     requestAnimationFrame(draw);
   }
   draw();
+})();
+
+// ─── TWINKLING STARS ───
+(function(){
+  const field=document.getElementById('twinkleField');
+  for(let i=0;i<50;i++){
+    const star=document.createElement('div');
+    star.className='twinkle';
+    star.style.left=Math.random()*100+'%';
+    star.style.top=Math.random()*100+'%';
+    star.style.width=star.style.height=(Math.random()*2+1)+'px';
+    star.style.animationDuration=(2+Math.random()*4)+'s';
+    star.style.animationDelay=(Math.random()*5)+'s';
+    field.appendChild(star);
+  }
+})();
+
+// ─── PARALLAX ORBS ON SCROLL ───
+(function(){
+  const orbs=document.querySelectorAll('.orb');
+  const speeds=[0.03,0.02,0.04,0.025,0.015];
+  window.addEventListener('scroll',()=>{
+    const sy=window.scrollY;
+    orbs.forEach((orb,i)=>{
+      const speed=speeds[i]||0.02;
+      orb.style.transform=`translateY(${sy*speed*-60}px)`;
+    });
+  },{passive:true});
+})();
+
+// ─── MOUSE PARALLAX FOR ORBS ───
+(function(){
+  const orbs=document.querySelectorAll('.orb');
+  document.addEventListener('mousemove',e=>{
+    const cx=e.clientX/window.innerWidth-.5;
+    const cy=e.clientY/window.innerHeight-.5;
+    orbs.forEach((orb,i)=>{
+      const depth=(i+1)*8;
+      orb.style.marginLeft=cx*depth+'px';
+      orb.style.marginTop=cy*depth+'px';
+    });
+  },{passive:true});
 })();
 
 // ─── SCROLL REVEAL ───
