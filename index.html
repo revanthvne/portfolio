@@ -288,6 +288,37 @@ section{
 }
 .contact-links a:hover{border-color:var(--accent2);background:rgba(18,18,26,.7);color:var(--accent2)}
 
+/* ─── RESUME BUTTON ─── */
+.btn-resume{
+  display:inline-block;padding:.7rem 2rem;border-radius:12px;font-weight:700;font-size:.95rem;
+  background:var(--grad1);color:#fff;transition:all .3s;margin-top:1.5rem;
+  box-shadow:0 4px 20px rgba(108,99,255,.3);text-shadow:none;
+}
+.btn-resume:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(108,99,255,.5);color:#fff}
+
+/* ─── YOUTUBE SECTION ─── */
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.yt-card{
+  background:rgba(18,18,26,.6);border:1px solid rgba(255,255,255,.08);border-radius:14px;
+  overflow:hidden;transition:all .4s;backdrop-filter:blur(12px);
+}
+.yt-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 15px 40px rgba(108,99,255,.15)}
+.yt-card iframe{width:100%;height:200px;border:none;display:block}
+.yt-card .yt-info{padding:1rem 1.2rem}
+.yt-card .yt-info h4{color:#fff;font-size:.95rem;margin-bottom:.3rem;text-shadow:0 0 10px rgba(0,0,0,.5)}
+.yt-card .yt-info p{color:#aaa;font-size:.8rem}
+
+/* ─── ROLE FILTER ─── */
+.role-filters{display:flex;gap:.6rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
+.role-filter-btn{
+  padding:.45rem 1.2rem;border-radius:99px;font-size:.8rem;font-weight:600;cursor:pointer;
+  border:1px solid rgba(255,255,255,.12);background:rgba(18,18,26,.5);color:#bbb;
+  transition:all .3s;backdrop-filter:blur(8px);
+}
+.role-filter-btn:hover,.role-filter-btn.active{
+  border-color:var(--accent2);color:#fff;background:rgba(0,212,255,.1);
+}
+
 /* ─── FOOTER ─── */
 footer{
   position:relative;z-index:1;text-align:center;padding:3rem 2rem;
@@ -373,6 +404,7 @@ footer{
     <div class="stat"><div class="num" data-target="100">0</div><div class="label">Products Launched</div></div>
     <div class="stat"><div class="num" data-target="10">0</div><div class="label">Research Papers</div></div>
   </div>
+  <a href="Revanth_Kondaveti_Resume.docx" download class="btn-resume">📄 Download Resume</a>
 </section>
 
 <!-- SUMMARY -->
@@ -502,10 +534,18 @@ footer{
     <h2><span class="emoji">🛠️</span> Projects &amp; Technical Portfolio</h2>
     <p>12 AI-powered products spanning trading, energy, security, and automation</p>
   </div>
+  <div class="role-filters">
+    <button class="role-filter-btn active" data-filter="all">All Projects</button>
+    <button class="role-filter-btn" data-filter="ai">🤖 AI / ML</button>
+    <button class="role-filter-btn" data-filter="rf">📡 RF / Hardware</button>
+    <button class="role-filter-btn" data-filter="fullstack">💻 Full-Stack</button>
+    <button class="role-filter-btn" data-filter="quantum">⚛️ Quantum</button>
+    <button class="role-filter-btn" data-filter="fintech">📊 Fintech</button>
+  </div>
   <div class="projects-grid">
 
     <!-- Kalshi AI Trading Bot -->
-    <div class="project-card">
+    <div class="project-card" data-roles="ai,fintech">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c63ff" stop-opacity=".15"/><stop offset="100%" stop-color="#00d4ff" stop-opacity=".08"/></linearGradient></defs>
@@ -536,7 +576,7 @@ footer{
     </div>
 
     <!-- NeuralGrid AI -->
-    <div class="project-card">
+    <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".12"/><stop offset="100%" stop-color="#6c63ff" stop-opacity=".08"/></linearGradient></defs>
@@ -573,7 +613,7 @@ footer{
     </div>
 
     <!-- Satellite Hybrid Internet -->
-    <div class="project-card">
+    <div class="project-card" data-roles="rf">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffd93d" stop-opacity=".1"/><stop offset="100%" stop-color="#00d4ff" stop-opacity=".08"/></linearGradient></defs>
@@ -607,7 +647,7 @@ footer{
     </div>
 
     <!-- QuantumShield -->
-    <div class="project-card">
+    <div class="project-card" data-roles="quantum,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".1"/><stop offset="100%" stop-color="#6c63ff" stop-opacity=".08"/></linearGradient></defs>
@@ -644,7 +684,7 @@ footer{
     </div>
 
     <!-- JobFill.ai -->
-    <div class="project-card">
+    <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c63ff" stop-opacity=".1"/><stop offset="100%" stop-color="#ffd93d" stop-opacity=".08"/></linearGradient></defs>
@@ -683,7 +723,7 @@ footer{
     </div>
 
     <!-- Teach & Repeat -->
-    <div class="project-card">
+    <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".1"/><stop offset="100%" stop-color="#ff6b6b" stop-opacity=".08"/></linearGradient></defs>
@@ -721,7 +761,7 @@ footer{
     </div>
 
     <!-- MarketPulse -->
-    <div class="project-card">
+    <div class="project-card" data-roles="ai,fintech,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="g7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".1"/><stop offset="100%" stop-color="#ffd93d" stop-opacity=".08"/></linearGradient></defs>
@@ -755,7 +795,7 @@ footer{
     </div>
 
     <!-- SocialSurgeGenie -->
-    <div class="project-card">
+    <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".1"/><stop offset="100%" stop-color="#ffd93d" stop-opacity=".08"/></linearGradient></defs>
@@ -794,7 +834,7 @@ footer{
     </div>
 
     <!-- Molt Bot -->
-    <div class="project-card">
+    <div class="project-card" data-roles="fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="g9" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".12"/><stop offset="100%" stop-color="#6c63ff" stop-opacity=".08"/></linearGradient></defs>
@@ -833,7 +873,7 @@ footer{
     </div>
 
     <!-- Telugu Salesman -->
-    <div class="project-card">
+    <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="g10" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffd93d" stop-opacity=".1"/><stop offset="100%" stop-color="#ff6b6b" stop-opacity=".08"/></linearGradient></defs>
@@ -867,7 +907,7 @@ footer{
     </div>
 
     <!-- Quantum Encrypted Call -->
-    <div class="project-card">
+    <div class="project-card" data-roles="quantum,rf">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="g11" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c63ff" stop-opacity=".12"/><stop offset="100%" stop-color="#00d4ff" stop-opacity=".08"/></linearGradient></defs>
@@ -902,7 +942,7 @@ footer{
     </div>
 
     <!-- Founders Decoded -->
-    <div class="project-card">
+    <div class="project-card" data-roles="fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="g12" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".1"/><stop offset="100%" stop-color="#ffd93d" stop-opacity=".08"/></linearGradient></defs>
@@ -1044,6 +1084,39 @@ footer{
     <div class="edu-card reveal"><strong>🏛️ Memberships:</strong> IEEE Member</div>
     <div class="edu-card reveal"><strong>📖 Author:</strong> Beauty and the Curse (2024)</div>
     <div class="edu-card reveal"><strong>⚖️ Judging:</strong> SoLA Robotics Competition Judge</div>
+  </div>
+</section>
+
+<!-- YOUTUBE / FOUNDERS DECODED -->
+<section id="youtube">
+  <div class="section-header reveal">
+    <h2><span class="emoji">🎬</span> Founders Decoded — YouTube</h2>
+    <p>Interviews with founders building real businesses</p>
+  </div>
+  <div class="yt-grid">
+    <div class="yt-card reveal">
+      <iframe src="https://www.youtube.com/embed/_0CiTSULJzM" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="yt-info"><h4>How this guy generated 100M+ Views For Coached | Ft. Arpan Dey</h4></div>
+    </div>
+    <div class="yt-card reveal">
+      <iframe src="https://www.youtube.com/embed/yKR-lpANj1g" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="yt-info"><h4>$150M From India: Brutal Founder Truths You're Not Told</h4></div>
+    </div>
+    <div class="yt-card reveal">
+      <iframe src="https://www.youtube.com/embed/8z4itjIzz7M" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="yt-info"><h4>Why Suddenly People Leaving India? | AI Infrastructure | Ft. Tushar Kansal</h4></div>
+    </div>
+    <div class="yt-card reveal">
+      <iframe src="https://www.youtube.com/embed/goSBNNYtmjs" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="yt-info"><h4>$5K/Month Agency: Why Consistency Alone Isn't Enough</h4></div>
+    </div>
+    <div class="yt-card reveal">
+      <iframe src="https://www.youtube.com/embed/veLLZq_EVbA" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="yt-info"><h4>Don't Start Agency in 2026 | Ft. Arpan Dey | Founders Decoded</h4></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:1.5rem">
+    <a href="https://www.youtube.com/@FoundersDecoded1" target="_blank" class="btn-resume" style="background:linear-gradient(135deg,#ff0000,#cc0000)">▶️ Subscribe on YouTube</a>
   </div>
 </section>
 
@@ -1206,6 +1279,23 @@ const counterObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{
   }
 })},{threshold:.5});
 document.querySelectorAll('.num[data-target]').forEach(el=>counterObs.observe(el));
+
+// ─── ROLE FILTER ───
+document.querySelectorAll('.role-filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.role-filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter=btn.dataset.filter;
+    document.querySelectorAll('.project-card').forEach(card=>{
+      const roles=card.dataset.roles||'';
+      if(filter==='all'||roles.includes(filter)){
+        card.style.display='';card.style.opacity='1';card.style.transform='translateY(0)';
+      } else {
+        card.style.display='none';
+      }
+    });
+  });
+});
 
 // ─── SMOOTH SCROLL ───
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})})});
