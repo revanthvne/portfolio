@@ -333,11 +333,17 @@ footer{
 /* ─── RESPONSIVE ─── */
 @media(max-width:768px){
   .projects-grid{grid-template-columns:1fr}
+  .project-card .card-top{height:260px}
+  .project-card .card-top svg{transform:scale(1.2);transform-origin:center center}
   .hero-stats{gap:1.5rem}
   .timeline{padding-left:2.5rem}
   nav{padding:.6rem 1rem}
   .nav-links{gap:.8rem}
   .nav-links a{font-size:.7rem}
+}
+@media(max-width:480px){
+  .project-card .card-top{height:320px}
+  .project-card .card-top svg{transform:scale(1.45);transform-origin:center center}
 }
 </style>
 </head>
