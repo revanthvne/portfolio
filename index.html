@@ -157,11 +157,13 @@ nav{
 .hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.5)}
 .hero h1 .gradient{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero .tagline{font-size:clamp(1rem,2vw,1.3rem);color:var(--text);max-width:700px;margin:0 auto 2rem;text-shadow:0 1px 8px rgba(0,0,0,.4)}
-.hero-badges{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:2.5rem}
-.hero-badges span{
+.hero-badges{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:2.5rem;align-items:center}
+.hero-badges > span{
+  display:inline-flex;align-items:center;
   padding:.4rem 1rem;border-radius:99px;font-size:.8rem;font-weight:600;
   border:1px solid rgba(255,255,255,.12);background:rgba(10,10,20,.4);backdrop-filter:blur(12px);color:#ddd;
 }
+.hero-badges .si{padding:0;border:none;background:none;backdrop-filter:none;border-radius:0;font-size:inherit;font-weight:inherit;color:inherit;top:0}
 .hero-stats{display:flex;gap:3rem;flex-wrap:wrap;justify-content:center}
 .stat{text-align:center}
 .stat .num{font-size:2.5rem;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -181,9 +183,9 @@ section{
 .si svg{width:100%;height:100%}
 .si-lg{width:30px;height:30px}
 .si-md{width:18px;height:18px}
-.si-sm{width:14px;height:14px;top:-1px;margin-right:.2rem}
-.si-badge{width:16px;height:16px;top:-1px;margin-right:.3rem}
-.si-btn{width:18px;height:18px;top:-2px;margin-right:.35rem}
+.si-sm{width:18px;height:18px;top:0;margin-right:.35rem}
+.si-badge{width:20px;height:20px;top:0;margin-right:.4rem}
+.si-btn{width:20px;height:20px;top:0;margin-right:.4rem}
 .si svg *[stroke]{stroke-linecap:round;stroke-linejoin:round}
 /* draw-on animation */
 .si .draw{stroke-dasharray:80;stroke-dashoffset:80;animation:siDraw 1.2s ease forwards}
@@ -315,18 +317,21 @@ section{
 /* ─── CONTACT ─── */
 .contact-links{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
 .contact-links a{
+  display:inline-flex;align-items:center;
   padding:.6rem 1.5rem;border-radius:12px;font-weight:600;font-size:.9rem;
   border:1px solid rgba(255,255,255,.1);background:rgba(18,18,26,.5);transition:all .3s;color:#ddd;
   backdrop-filter:blur(12px);
 }
+.contact-links .si{top:0}
 .contact-links a:hover{border-color:var(--accent2);background:rgba(18,18,26,.7);color:var(--accent2)}
 
 /* ─── RESUME BUTTON ─── */
 .btn-resume{
-  display:inline-block;padding:.7rem 2rem;border-radius:12px;font-weight:700;font-size:.95rem;
+  display:inline-flex;align-items:center;padding:.7rem 2rem;border-radius:12px;font-weight:700;font-size:.95rem;
   background:var(--grad1);color:#fff;transition:all .3s;margin-top:1.5rem;
   box-shadow:0 4px 20px rgba(108,99,255,.3);text-shadow:none;
 }
+.btn-resume .si{top:0}
 .btn-resume:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(108,99,255,.5);color:#fff}
 
 /* ─── YOUTUBE SECTION ─── */
@@ -1155,7 +1160,7 @@ footer{
     </div>
   </div>
   <div style="text-align:center;margin-top:1.5rem">
-    <a href="https://www.youtube.com/@FoundersDecoded1" target="_blank" class="btn-resume" style="background:linear-gradient(135deg,#ff0000,#cc0000)"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="4" class="draw"/><polygon points="10 8 16 12 10 16" class="draw-d1"/></svg></span> Subscribe on YouTube</a>
+    <a href="https://www.youtube.com/@FoundersDecoded1" target="_blank" class="btn-resume" style="background:linear-gradient(135deg,#ff0000,#cc0000)"><span class="si si-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="4" class="draw"/><polygon points="10 8 16 12 10 16" class="draw-d1"/></svg></span> Subscribe on YouTube</a>
   </div>
 </section>
 
