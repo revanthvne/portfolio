@@ -173,8 +173,39 @@ section{
 }
 .section-header{text-align:center;margin-bottom:3rem}
 .section-header h2{font-size:2rem;font-weight:700;margin-bottom:.5rem;color:#fff;text-shadow:0 0 20px rgba(0,0,0,.8),0 0 40px rgba(0,0,0,.5)}
-.section-header h2 .emoji{font-size:1.8rem;margin-right:.3rem}
+.section-header h2 .emoji{font-size:1.8rem;margin-right:.3rem;display:none}
 .section-header p{color:#ccc;font-size:1rem;text-shadow:0 0 15px rgba(0,0,0,.7)}
+
+/* ─── ANIMATED SVG LINE ICONS ─── */
+.si{display:inline-block;vertical-align:middle;position:relative;top:-2px;margin-right:.4rem}
+.si svg{width:100%;height:100%}
+.si-lg{width:30px;height:30px}
+.si-md{width:18px;height:18px}
+.si-sm{width:14px;height:14px;top:-1px;margin-right:.2rem}
+.si svg *[stroke]{stroke-linecap:round;stroke-linejoin:round}
+/* draw-on animation */
+.si .draw{stroke-dasharray:80;stroke-dashoffset:80;animation:siDraw 1.2s ease forwards}
+.si .draw-d1{stroke-dasharray:80;stroke-dashoffset:80;animation:siDraw 1.2s .15s ease forwards}
+.si .draw-d2{stroke-dasharray:80;stroke-dashoffset:80;animation:siDraw 1.2s .3s ease forwards}
+.si .draw-d3{stroke-dasharray:80;stroke-dashoffset:80;animation:siDraw 1.2s .45s ease forwards}
+@keyframes siDraw{to{stroke-dashoffset:0}}
+/* subtle float */
+.si-float{animation:siFloat 3s ease-in-out infinite}
+@keyframes siFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+/* pulse glow */
+.si-pulse svg{animation:siPulse 2.5s ease-in-out infinite}
+@keyframes siPulse{0%,100%{filter:drop-shadow(0 0 3px rgba(108,99,255,.4))}50%{filter:drop-shadow(0 0 10px rgba(108,99,255,.7))}}
+.si-pulse-cyan svg{animation:siPulseC 2.5s ease-in-out infinite}
+@keyframes siPulseC{0%,100%{filter:drop-shadow(0 0 3px rgba(0,212,255,.4))}50%{filter:drop-shadow(0 0 10px rgba(0,212,255,.7))}}
+.si-pulse-red svg{animation:siPulseR 2.5s ease-in-out infinite}
+@keyframes siPulseR{0%,100%{filter:drop-shadow(0 0 3px rgba(255,107,107,.4))}50%{filter:drop-shadow(0 0 10px rgba(255,107,107,.7))}}
+.si-pulse-gold svg{animation:siPulseG 2.5s ease-in-out infinite}
+@keyframes siPulseG{0%,100%{filter:drop-shadow(0 0 3px rgba(255,217,61,.4))}50%{filter:drop-shadow(0 0 10px rgba(255,217,61,.7))}}
+/* spin icon */
+.si-spin svg{animation:siSpin 8s linear infinite}
+@keyframes siSpin{to{transform:rotate(360deg)}}
+/* dot icon in timeline */
+.timeline-dot .si{width:16px;height:16px;margin:0;top:0}
 
 /* ─── ANIMATED GRADIENT BORDER ─── */
 .glow-card{
@@ -333,13 +364,17 @@ footer{
 /* ─── RESPONSIVE ─── */
 @media(max-width:768px){
   .projects-grid{grid-template-columns:1fr}
-  .project-card .card-top{height:auto;overflow:visible;padding:1rem 0}
+  .project-card .card-top{height:auto;overflow:visible;padding:1.5rem}
   .project-card .card-top svg{width:100%;height:auto}
   .hero-stats{gap:1.5rem}
   .timeline{padding-left:2.5rem}
   nav{padding:.6rem 1rem}
   .nav-links{gap:.8rem}
   .nav-links a{font-size:.7rem}
+}
+@media(max-width:480px){
+  .project-card .card-top{height:auto;overflow:visible;padding:1rem}
+  .project-card .card-top svg{width:100%;height:auto}
 }
 </style>
 </head>
@@ -392,13 +427,13 @@ footer{
   <h1>Hi, I'm <span class="gradient">Revanth Kondaveti</span> 👋</h1>
   <p class="tagline">Applications Engineer · Full-Stack Developer · AI/ML Builder · Startup Founder</p>
   <div class="hero-badges">
-    <span>🔧 RF &amp; Hardware</span>
-    <span>🤖 AI/ML</span>
-    <span>💻 Full-Stack</span>
-    <span>🚀 Startups</span>
-    <span>📡 5G/6G/THz</span>
-    <span>⚛️ Quantum</span>
-    <span>📊 Trading Systems</span>
+    <span><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path class="draw" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span> RF &amp; Hardware</span>
+    <span><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><rect class="draw" x="4" y="4" width="16" height="16" rx="2"/><circle class="draw-d1" cx="9" cy="10" r="1.5"/><circle class="draw-d1" cx="15" cy="10" r="1.5"/><path class="draw-d2" d="M9 15h6"/></svg></span> AI/ML</span>
+    <span><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><polyline class="draw" points="16 18 22 12 16 6"/><polyline class="draw-d1" points="8 6 2 12 8 18"/><line class="draw-d2" x1="14" y1="4" x2="10" y2="20"/></svg></span> Full-Stack</span>
+    <span><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2"><path class="draw" d="M12 2L4 12h4v8h8v-8h4L12 2z"/></svg></span> Startups</span>
+    <span><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd93d" stroke-width="2"><path class="draw" d="M12 20V10"/><path class="draw-d1" d="M18 14c0-3.31-2.69-6-6-6s-6 2.69-6 6"/><path class="draw-d2" d="M21 11c0-4.97-4.03-9-9-9S3 6.03 3 11"/></svg></span> 5G/6G/THz</span>
+    <span><span class="si si-sm si-spin"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="1.5"><circle cx="12" cy="12" r="2" fill="#ff6b6b" stroke="none"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></svg></span> Quantum</span>
+    <span><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><line class="draw" x1="18" y1="20" x2="18" y2="10"/><line class="draw-d1" x1="12" y1="20" x2="12" y2="4"/><line class="draw-d2" x1="6" y1="20" x2="6" y2="14"/><line class="draw-d3" x1="2" y1="20" x2="22" y2="20"/></svg></span> Trading Systems</span>
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="num" data-target="5">0</div><div class="label">Years Experience</div></div>
@@ -412,7 +447,7 @@ footer{
 <!-- SUMMARY -->
 <section>
   <div class="section-header reveal">
-    <h2><span class="emoji">📋</span> Professional Summary</h2>
+    <h2><span class="si si-lg si-float si-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="1.8"><rect class="draw" x="4" y="2" width="16" height="20" rx="2"/><line class="draw-d1" x1="8" y1="8" x2="16" y2="8"/><line class="draw-d2" x1="8" y1="12" x2="14" y2="12"/><line class="draw-d3" x1="8" y1="16" x2="12" y2="16"/></svg></span> Professional Summary</h2>
   </div>
   <div class="glow-card reveal" style="max-width:900px;margin:0 auto">
     <div class="glow-card-inner" style="font-size:.95rem;line-height:1.7;color:var(--text)">
@@ -424,13 +459,13 @@ footer{
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-header reveal">
-    <h2><span class="emoji">💼</span> Work Experience</h2>
+    <h2><span class="si si-lg si-float si-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="1.8"><rect class="draw" x="2" y="7" width="20" height="14" rx="2"/><path class="draw-d1" d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line class="draw-d2" x1="12" y1="11" x2="12" y2="15"/></svg></span> Work Experience</h2>
     <p>7 roles across hardware, research, and startups</p>
   </div>
   <div class="timeline">
 
     <div class="timeline-item">
-      <div class="timeline-dot">🔧</div>
+      <div class="timeline-dot"><span class="si si-md"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path class="draw" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span></div>
       <div class="timeline-content">
         <h3>Mini-Circuits</h3>
         <div class="role">Applications Engineer II</div>
@@ -445,7 +480,7 @@ footer{
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-dot">🚀</div>
+      <div class="timeline-dot"><span class="si si-md"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path class="draw" d="M12 2L4 12h4v8h8v-8h4L12 2z"/></svg></span></div>
       <div class="timeline-content">
         <h3>Tap to Party</h3>
         <div class="role">Founder &amp; Product Lead</div>
@@ -459,7 +494,7 @@ footer{
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-dot">📡</div>
+      <div class="timeline-dot"><span class="si si-md"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd93d" stroke-width="2"><path class="draw" d="M12 20V10"/><path class="draw-d1" d="M18 14c0-3.31-2.69-6-6-6s-6 2.69-6 6"/><path class="draw-d2" d="M21 11c0-4.97-4.03-9-9-9S3 6.03 3 11"/></svg></span></div>
       <div class="timeline-content">
         <h3>Ramsoft</h3>
         <div class="role">Applications Engineer</div>
@@ -472,7 +507,7 @@ footer{
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-dot">🔬</div>
+      <div class="timeline-dot"><span class="si si-md"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2"><circle class="draw" cx="11" cy="11" r="8"/><line class="draw-d1" x1="21" y1="21" x2="16.65" y2="16.65"/><circle class="draw-d2" cx="11" cy="11" r="3"/></svg></span></div>
       <div class="timeline-content">
         <h3>KLA Corporation</h3>
         <div class="role">Applications Engineer</div>
@@ -486,7 +521,7 @@ footer{
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-dot">🥽</div>
+      <div class="timeline-dot"><span class="si si-md"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><rect class="draw" x="2" y="7" width="20" height="10" rx="5"/><circle class="draw-d1" cx="9" cy="12" r="2"/><circle class="draw-d2" cx="15" cy="12" r="2"/></svg></span></div>
       <div class="timeline-content">
         <h3>Meta – Reality Labs</h3>
         <div class="role">Wireless Platform Developer (Contract)</div>
@@ -500,7 +535,7 @@ footer{
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-dot">📶</div>
+      <div class="timeline-dot"><span class="si si-md"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path class="draw" d="M5 12.55a11 11 0 0 1 14.08 0"/><path class="draw-d1" d="M1.42 9a16 16 0 0 1 21.16 0"/><path class="draw-d2" d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle class="draw-d3" cx="12" cy="20" r="1" fill="#6c63ff"/></svg></span></div>
       <div class="timeline-content">
         <h3>WiDeS Lab, USC</h3>
         <div class="role">Research Associate</div>
@@ -514,7 +549,7 @@ footer{
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-dot">⚛️</div>
+      <div class="timeline-dot"><span class="si si-md si-spin"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="1.5"><circle cx="12" cy="12" r="2" fill="#ff6b6b" stroke="none"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></svg></span></div>
       <div class="timeline-content">
         <h3>Levenson-Falk Lab, USC</h3>
         <div class="role">Research Associate</div>
@@ -533,7 +568,7 @@ footer{
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-header reveal">
-    <h2><span class="emoji">🛠️</span> Projects &amp; Technical Portfolio</h2>
+    <h2><span class="si si-lg si-float si-pulse-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.8"><path class="draw" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span> Projects &amp; Technical Portfolio</h2>
     <p>12 AI-powered products spanning trading, energy, security, and automation</p>
   </div>
   <div class="role-filters">
@@ -974,7 +1009,7 @@ footer{
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-header reveal">
-    <h2><span class="emoji">🧰</span> Technical Skills</h2>
+    <h2><span class="si si-lg si-float si-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="1.8"><circle class="draw" cx="12" cy="12" r="3"/><path class="draw-d1" d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> Technical Skills</h2>
   </div>
   <div class="skills-grid">
     <div class="skill-cat reveal">
@@ -1040,7 +1075,7 @@ footer{
 <!-- EDUCATION -->
 <section id="education">
   <div class="section-header reveal">
-    <h2><span class="emoji">🎓</span> Education</h2>
+    <h2><span class="si si-lg si-float si-pulse-gold"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd93d" stroke-width="1.8"><path class="draw" d="M22 10l-10-6L2 10l10 6 10-6z"/><path class="draw-d1" d="M6 12v5c0 0 2.5 3 6 3s6-3 6-3v-5"/><line class="draw-d2" x1="22" y1="10" x2="22" y2="16"/></svg></span> Education</h2>
   </div>
   <div style="max-width:700px;margin:0 auto">
     <div class="edu-card reveal">
@@ -1057,7 +1092,7 @@ footer{
 <!-- PUBLICATIONS -->
 <section>
   <div class="section-header reveal">
-    <h2><span class="emoji">📄</span> Publications</h2>
+    <h2><span class="si si-lg si-float si-pulse-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.8"><path class="draw" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline class="draw-d1" points="14 2 14 8 20 8"/><line class="draw-d2" x1="9" y1="13" x2="15" y2="13"/><line class="draw-d3" x1="9" y1="17" x2="13" y2="17"/></svg></span> Publications</h2>
     <p>10 papers, 2 acknowledgments</p>
   </div>
   <div style="max-width:900px;margin:0 auto">
@@ -1079,7 +1114,7 @@ footer{
 <!-- ADDITIONAL -->
 <section>
   <div class="section-header reveal">
-    <h2><span class="emoji">✨</span> Additional</h2>
+    <h2><span class="si si-lg si-float si-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="1.8"><polygon class="draw" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span> Additional</h2>
   </div>
   <div style="max-width:700px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
     <div class="edu-card reveal"><strong>📜 Certifications:</strong> Certified Scrum Master</div>
@@ -1092,7 +1127,7 @@ footer{
 <!-- YOUTUBE / FOUNDERS DECODED -->
 <section id="youtube">
   <div class="section-header reveal">
-    <h2><span class="emoji">🎬</span> Founders Decoded — YouTube</h2>
+    <h2><span class="si si-lg si-float si-pulse-red"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="1.8"><rect class="draw" x="2" y="4" width="20" height="16" rx="3"/><polygon class="draw-d1" points="10 8 16 12 10 16 10 8"/></svg></span> Founders Decoded — YouTube</h2>
     <p>Interviews with founders building real businesses</p>
   </div>
   <div class="yt-grid">
@@ -1125,7 +1160,7 @@ footer{
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-header reveal">
-    <h2><span class="emoji">📬</span> Get in Touch</h2>
+    <h2><span class="si si-lg si-float si-pulse-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.8"><rect class="draw" x="2" y="4" width="20" height="16" rx="2"/><polyline class="draw-d1" points="22 6 12 13 2 6"/></svg></span> Get in Touch</h2>
   </div>
   <div class="contact-links">
     <a href="mailto:k.revanth456@gmail.com">📧 k.revanth456@gmail.com</a>
