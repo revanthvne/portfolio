@@ -4,368 +4,274 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Revanth Kondaveti — Engineer, Builder, Founder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ─── RESET & BASE ─── */
+/* ─── RESET & BASE (Linear/Vercel Design System) ─── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0a0a0f;--bg2:#12121a;--bg3:#1a1a2e;
-  --text:#e0e0e0;--text-dim:#8888aa;--text-bright:#ffffff;
-  --accent:#6c63ff;--accent2:#00d4ff;--accent3:#ff6b6b;--accent4:#ffd93d;
-  --grad1:linear-gradient(135deg,#6c63ff,#00d4ff);
-  --grad2:linear-gradient(135deg,#ff6b6b,#ffd93d);
-  --grad3:linear-gradient(135deg,#00d4ff,#6c63ff,#ff6b6b);
-  --card-bg:rgba(255,255,255,0.03);
-  --border:rgba(255,255,255,0.06);
+  --bg:#08090a;--bg2:#0e0f11;--bg3:#141517;
+  --surface:rgba(255,255,255,0.02);--surface-hover:rgba(255,255,255,0.05);
+  --text:#f7f8f8;--text-secondary:#d0d6e0;--text-tertiary:#8a8f98;
+  --accent:#5e6ad2;--accent-hover:#7170ff;
+  --accent2:#00d4ff;--accent3:#ff6b6b;--accent4:#ffd93d;
+  --ring:rgba(255,255,255,0.06);--ring-hover:rgba(255,255,255,0.12);
+  --radius:12px;--radius-sm:8px;--radius-pill:9999px;
 }
 html{scroll-behavior:smooth;font-size:16px}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden}
-a{color:var(--accent2);text-decoration:none;transition:color .3s}
-a:hover{color:var(--accent)}
+body{background:var(--bg);color:var(--text-secondary);font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--accent-hover);text-decoration:none;transition:color .2s}
+a:hover{color:var(--accent2)}
 ::selection{background:var(--accent);color:#fff}
 
-/* ─── BACKGROUND GRID ─── */
+/* ─── SUBTLE BACKGROUND ─── */
 body::before{
   content:'';position:fixed;top:0;left:0;width:100%;height:100%;
-  background-image:
-    linear-gradient(rgba(108,99,255,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(108,99,255,.04) 1px,transparent 1px);
-  background-size:60px 60px;z-index:0;pointer-events:none;
-}
-
-/* ─── CANVAS ─── */
-#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
-
-/* ─── FLOATING GRADIENT ORBS ─── */
-.orb{
-  position:fixed;border-radius:50%;pointer-events:none;z-index:0;
-  filter:blur(90px);opacity:.10;mix-blend-mode:screen;
-  animation:orbFloat linear infinite;
-}
-.orb-1{width:500px;height:500px;background:radial-gradient(circle,#6c63ff,transparent 70%);top:-10%;left:-5%;animation-duration:25s}
-.orb-2{width:400px;height:400px;background:radial-gradient(circle,#00d4ff,transparent 70%);top:40%;right:-8%;animation-duration:30s;animation-delay:-5s}
-.orb-3{width:350px;height:350px;background:radial-gradient(circle,#ff6b6b,transparent 70%);bottom:-5%;left:30%;animation-duration:22s;animation-delay:-10s}
-.orb-4{width:300px;height:300px;background:radial-gradient(circle,#ffd93d,transparent 70%);top:20%;left:50%;animation-duration:28s;animation-delay:-15s}
-.orb-5{width:450px;height:450px;background:radial-gradient(circle,#6c63ff,#00d4ff 50%,transparent 70%);bottom:20%;right:20%;animation-duration:35s;animation-delay:-8s}
-@keyframes orbFloat{
-  0%{transform:translate(0,0) scale(1)}
-  25%{transform:translate(80px,-120px) scale(1.15)}
-  50%{transform:translate(-60px,80px) scale(0.9)}
-  75%{transform:translate(100px,40px) scale(1.1)}
-  100%{transform:translate(0,0) scale(1)}
-}
-
-/* ─── AURORA / WAVE EFFECT ─── */
-.aurora{
-  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden;
-}
-.aurora-band{
-  position:absolute;width:200%;height:300px;opacity:.05;
-  filter:blur(60px);
-  animation:auroraShift linear infinite;
-}
-.aurora-band:nth-child(1){
-  top:5%;left:-50%;
-  background:linear-gradient(90deg,transparent,#6c63ff,#00d4ff,#6c63ff,transparent);
-  animation-duration:20s;
-}
-.aurora-band:nth-child(2){
-  top:35%;left:-30%;
-  background:linear-gradient(90deg,transparent,#00d4ff,#ff6b6b,#00d4ff,transparent);
-  animation-duration:25s;animation-delay:-7s;
-}
-.aurora-band:nth-child(3){
-  top:65%;left:-40%;
-  background:linear-gradient(90deg,transparent,#ff6b6b,#ffd93d,#ff6b6b,transparent);
-  animation-duration:18s;animation-delay:-12s;
-}
-@keyframes auroraShift{
-  0%{transform:translateX(0) scaleY(1) rotate(-3deg)}
-  50%{transform:translateX(-25%) scaleY(1.5) rotate(2deg)}
-  100%{transform:translateX(0) scaleY(1) rotate(-3deg)}
-}
-
-/* ─── SHOOTING STARS ─── */
-.shooting-stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
-.star{
-  position:absolute;width:120px;height:1px;
-  background:linear-gradient(90deg,rgba(255,255,255,.7),transparent);
-  border-radius:50%;opacity:0;
-  animation:shootingStar linear infinite;
-}
-.star::before{
-  content:'';position:absolute;right:0;top:-1px;width:3px;height:3px;
-  border-radius:50%;background:#fff;box-shadow:0 0 6px 2px rgba(108,99,255,.6);
-}
-.star:nth-child(1){top:12%;left:15%;animation-duration:4s;animation-delay:1s;transform:rotate(-25deg)}
-.star:nth-child(2){top:25%;left:55%;animation-duration:3.5s;animation-delay:4s;transform:rotate(-30deg)}
-.star:nth-child(3){top:8%;left:75%;animation-duration:5s;animation-delay:7s;transform:rotate(-20deg)}
-.star:nth-child(4){top:45%;left:5%;animation-duration:4.5s;animation-delay:10s;transform:rotate(-35deg)}
-.star:nth-child(5){top:18%;left:40%;animation-duration:3s;animation-delay:13s;transform:rotate(-28deg)}
-.star:nth-child(6){top:55%;left:65%;animation-duration:4s;animation-delay:16s;transform:rotate(-22deg)}
-.star:nth-child(7){top:35%;left:85%;animation-duration:3.8s;animation-delay:2.5s;transform:rotate(-32deg)}
-.star:nth-child(8){top:70%;left:25%;animation-duration:4.2s;animation-delay:8.5s;transform:rotate(-18deg)}
-@keyframes shootingStar{
-  0%{transform:translateX(0) rotate(inherit);opacity:0}
-  5%{opacity:1}
-  60%{opacity:1}
-  100%{transform:translateX(800px) rotate(inherit);opacity:0}
-}
-
-/* ─── MESH GRADIENT PULSE ─── */
-.mesh-bg{
-  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(108,99,255,.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(0,212,255,.05) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(255,107,107,.04) 0%, transparent 50%);
-  animation:meshPulse 12s ease-in-out infinite;
+    radial-gradient(ellipse at 20% 0%, rgba(94,106,210,.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(0,212,255,.04) 0%, transparent 50%);
+  z-index:0;pointer-events:none;
 }
-@keyframes meshPulse{
-  0%,100%{opacity:.6;transform:scale(1)}
-  50%{opacity:1;transform:scale(1.05)}
-}
-
-/* ─── TWINKLING STARS ─── */
-.twinkle-field{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.twinkle{
-  position:absolute;width:2px;height:2px;border-radius:50%;
-  background:#fff;animation:twinkle ease-in-out infinite;
-}
-@keyframes twinkle{
-  0%,100%{opacity:.1;transform:scale(1)}
-  50%{opacity:.7;transform:scale(1.8)}
+body::after{
+  content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background-image:
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:64px 64px;z-index:0;pointer-events:none;
 }
 
-/* ─── NAV ─── */
+/* ─── NAV (Vercel: blur nav, shadow-ring border) ─── */
 nav{
   position:fixed;top:0;left:0;width:100%;z-index:100;
-  background:rgba(10,10,15,.85);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  padding:0.8rem 2rem;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(8,9,10,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:rgba(0,0,0,0.2) 0 0 0 1px, rgba(0,0,0,0.1) 0 1px 2px;
+  padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px;
 }
-.nav-logo{font-size:1.2rem;font-weight:700;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-logo{font-size:1rem;font-weight:600;color:var(--text);letter-spacing:-.02em}
 .nav-links{display:flex;gap:1.5rem;list-style:none}
-.nav-links a{color:var(--text-dim);font-size:.85rem;font-weight:500;text-transform:uppercase;letter-spacing:1px;transition:all .3s}
-.nav-links a:hover{color:var(--accent2)}
+.nav-links a{color:var(--text-tertiary);font-size:.8125rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
 
-/* ─── HERO ─── */
+/* ─── HERO (Linear: large display text, tight letter-spacing) ─── */
 .hero{
   position:relative;z-index:1;
   min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:6rem 2rem 4rem;
 }
-.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.5)}
-.hero h1 .gradient{background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero .tagline{font-size:clamp(1rem,2vw,1.3rem);color:var(--text);max-width:700px;margin:0 auto 2rem;text-shadow:0 1px 8px rgba(0,0,0,.4)}
-.hero-badges{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:2.5rem;align-items:center}
+.hero h1{
+  font-size:clamp(2.8rem,6vw,4.5rem);font-weight:700;line-height:1.05;
+  margin-bottom:1rem;color:var(--text);
+  letter-spacing:-.04em;
+}
+.hero h1 .gradient{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero .tagline{
+  font-size:clamp(.95rem,1.8vw,1.15rem);color:var(--text-tertiary);
+  max-width:600px;margin:0 auto 2rem;font-weight:400;letter-spacing:-.01em;
+}
+.hero-badges{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:2.5rem;align-items:center}
 .hero-badges > span{
   display:inline-flex;align-items:center;
-  padding:.4rem 1rem;border-radius:99px;font-size:.8rem;font-weight:600;
-  border:1px solid rgba(255,255,255,.12);background:rgba(10,10,20,.4);backdrop-filter:blur(12px);color:#ddd;
+  padding:.35rem .85rem;border-radius:var(--radius-pill);font-size:.8rem;font-weight:500;
+  box-shadow:rgba(255,255,255,0.06) 0 0 0 1px;background:rgba(255,255,255,0.03);color:var(--text-secondary);
+  transition:all .2s;
 }
-.hero-badges .si{padding:0;border:none;background:none;backdrop-filter:none;border-radius:0;font-size:inherit;font-weight:inherit;color:inherit;top:0}
+.hero-badges > span:hover{box-shadow:rgba(255,255,255,0.12) 0 0 0 1px;background:rgba(255,255,255,0.05)}
+.hero-badges .si{padding:0;border:none;background:none;backdrop-filter:none;border-radius:0;font-size:inherit;font-weight:inherit;color:inherit;top:0;box-shadow:none}
 .hero-stats{display:flex;gap:3rem;flex-wrap:wrap;justify-content:center}
 .stat{text-align:center}
-.stat .num{font-size:2.5rem;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat .label{font-size:.75rem;color:#bbb;text-transform:uppercase;letter-spacing:1px}
+.stat .num{font-size:2.5rem;font-weight:700;letter-spacing:-.04em;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat .label{font-size:.7rem;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.08em;font-weight:500}
 
 /* ─── SECTIONS ─── */
-section{
-  position:relative;z-index:1;padding:5rem 2rem;max-width:1200px;margin:0 auto;
-}
+section{position:relative;z-index:1;padding:5rem 2rem;max-width:1100px;margin:0 auto}
 .section-header{text-align:center;margin-bottom:3rem}
-.section-header h2{font-size:2rem;font-weight:700;margin-bottom:.5rem;color:#fff;text-shadow:0 0 20px rgba(0,0,0,.8),0 0 40px rgba(0,0,0,.5)}
-.section-header h2 .emoji{font-size:1.8rem;margin-right:.3rem;display:none}
-.section-header p{color:#ccc;font-size:1rem;text-shadow:0 0 15px rgba(0,0,0,.7)}
+.section-header h2{font-size:1.75rem;font-weight:600;margin-bottom:.5rem;color:var(--text);letter-spacing:-.03em}
+.section-header p{color:var(--text-tertiary);font-size:.9rem;font-weight:400}
 
-/* ─── ANIMATED SVG LINE ICONS ─── */
+/* ─── SVG LINE ICONS ─── */
 .si{display:inline-block;vertical-align:middle;position:relative;top:-2px;margin-right:.4rem}
 .si svg{width:100%;height:100%}
-.si-lg{width:30px;height:30px}
+.si-lg{width:28px;height:28px}
 .si-md{width:18px;height:18px}
 .si-sm{width:18px;height:18px;top:0;margin-right:.35rem}
-.si-badge{width:20px;height:20px;top:0;margin-right:.4rem}
+.si-badge{width:20px;height:20px;top:0;margin-right:.35rem}
 .si-btn{width:20px;height:20px;top:0;margin-right:.4rem}
 .si svg *[stroke]{stroke-linecap:round;stroke-linejoin:round}
-/* draw-on animation */
 .si .draw{stroke-dasharray:80;stroke-dashoffset:80;animation:siDraw 1.2s ease forwards}
 .si .draw-d1{stroke-dasharray:80;stroke-dashoffset:80;animation:siDraw 1.2s .15s ease forwards}
 .si .draw-d2{stroke-dasharray:80;stroke-dashoffset:80;animation:siDraw 1.2s .3s ease forwards}
 .si .draw-d3{stroke-dasharray:80;stroke-dashoffset:80;animation:siDraw 1.2s .45s ease forwards}
 @keyframes siDraw{to{stroke-dashoffset:0}}
-/* subtle float */
 .si-float{animation:siFloat 3s ease-in-out infinite}
 @keyframes siFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-/* pulse glow */
 .si-pulse svg{animation:siPulse 2.5s ease-in-out infinite}
-@keyframes siPulse{0%,100%{filter:drop-shadow(0 0 3px rgba(108,99,255,.4))}50%{filter:drop-shadow(0 0 10px rgba(108,99,255,.7))}}
+@keyframes siPulse{0%,100%{filter:drop-shadow(0 0 3px rgba(94,106,210,.4))}50%{filter:drop-shadow(0 0 10px rgba(94,106,210,.6))}}
 .si-pulse-cyan svg{animation:siPulseC 2.5s ease-in-out infinite}
-@keyframes siPulseC{0%,100%{filter:drop-shadow(0 0 3px rgba(0,212,255,.4))}50%{filter:drop-shadow(0 0 10px rgba(0,212,255,.7))}}
+@keyframes siPulseC{0%,100%{filter:drop-shadow(0 0 3px rgba(0,212,255,.4))}50%{filter:drop-shadow(0 0 10px rgba(0,212,255,.6))}}
 .si-pulse-red svg{animation:siPulseR 2.5s ease-in-out infinite}
-@keyframes siPulseR{0%,100%{filter:drop-shadow(0 0 3px rgba(255,107,107,.4))}50%{filter:drop-shadow(0 0 10px rgba(255,107,107,.7))}}
+@keyframes siPulseR{0%,100%{filter:drop-shadow(0 0 3px rgba(255,107,107,.4))}50%{filter:drop-shadow(0 0 10px rgba(255,107,107,.6))}}
 .si-pulse-gold svg{animation:siPulseG 2.5s ease-in-out infinite}
-@keyframes siPulseG{0%,100%{filter:drop-shadow(0 0 3px rgba(255,217,61,.4))}50%{filter:drop-shadow(0 0 10px rgba(255,217,61,.7))}}
-/* spin icon */
+@keyframes siPulseG{0%,100%{filter:drop-shadow(0 0 3px rgba(255,217,61,.4))}50%{filter:drop-shadow(0 0 10px rgba(255,217,61,.6))}}
 .si-spin svg{animation:siSpin 8s linear infinite}
 @keyframes siSpin{to{transform:rotate(360deg)}}
-/* dot icon in timeline */
 .timeline-dot .si{width:16px;height:16px;margin:0;top:0}
 
-/* ─── ANIMATED GRADIENT BORDER ─── */
+/* ─── SUMMARY CARD (Stripe: multi-layer shadow) ─── */
 .glow-card{
-  position:relative;border-radius:16px;overflow:hidden;
+  position:relative;border-radius:var(--radius);overflow:hidden;
   background:var(--bg2);
+  box-shadow:rgba(0,0,0,0.2) 0 0 0 1px, rgba(94,106,210,0.08) 0 8px 30px;
+  transition:all .2s;
 }
-.glow-card::before{
-  content:'';position:absolute;inset:-2px;border-radius:18px;
-  background:conic-gradient(from var(--angle,0deg),var(--accent),var(--accent2),var(--accent3),var(--accent4),var(--accent));
-  animation:rotateBorder 4s linear infinite;z-index:-1;
-}
-@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}
-@keyframes rotateBorder{to{--angle:360deg}}
-.glow-card-inner{background:rgba(18,18,26,.7);border-radius:14px;padding:1.5rem;height:100%;backdrop-filter:blur(12px)}
+.glow-card:hover{box-shadow:rgba(0,0,0,0.2) 0 0 0 1px, rgba(94,106,210,0.15) 0 12px 40px}
+.glow-card-inner{padding:1.5rem;height:100%}
 
 /* ─── EXPERIENCE TIMELINE ─── */
 .timeline{position:relative;padding-left:3rem}
 .timeline::before{
-  content:'';position:absolute;left:14px;top:0;bottom:0;width:2px;
-  background:linear-gradient(to bottom,var(--accent),var(--accent2),var(--accent3));
+  content:'';position:absolute;left:14px;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,var(--accent),rgba(94,106,210,.2));
 }
-.timeline-item{position:relative;margin-bottom:2.5rem;opacity:0;transform:translateY(30px);transition:all .6s ease}
+.timeline-item{position:relative;margin-bottom:2rem;opacity:0;transform:translateY(20px);transition:all .4s ease}
 .timeline-item.visible{opacity:1;transform:translateY(0)}
 .timeline-dot{
   position:absolute;left:-3rem;top:0.3rem;width:28px;height:28px;
-  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;
-  background:var(--bg);border:2px solid var(--accent);z-index:1;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--bg);box-shadow:rgba(94,106,210,0.3) 0 0 0 2px;z-index:1;
 }
 .timeline-content{
-  background:rgba(18,18,26,.65);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.5rem;
-  transition:all .3s;backdrop-filter:blur(12px);
+  background:var(--surface);border-radius:var(--radius);padding:1.5rem;
+  box-shadow:rgba(0,0,0,0.2) 0 0 0 1px;
+  transition:all .2s;
 }
-.timeline-content:hover{border-color:var(--accent);background:rgba(18,18,26,.75)}
-.timeline-content h3{font-size:1.1rem;font-weight:700;color:#fff;text-shadow:0 0 10px rgba(0,0,0,.5)}
-.timeline-content .role{color:var(--accent2);font-weight:600;font-size:.95rem}
-.timeline-content .meta{color:var(--text-dim);font-size:.8rem;margin:.3rem 0 .8rem}
+.timeline-content:hover{box-shadow:rgba(0,0,0,0.2) 0 0 0 1px, rgba(94,106,210,0.1) 0 4px 20px;background:var(--surface-hover)}
+.timeline-content h3{font-size:1.05rem;font-weight:600;color:var(--text);letter-spacing:-.02em}
+.timeline-content .role{color:var(--accent-hover);font-weight:500;font-size:.9rem}
+.timeline-content .meta{color:var(--text-tertiary);font-size:.8rem;margin:.3rem 0 .8rem}
 .timeline-content ul{list-style:none;padding:0}
-.timeline-content li{position:relative;padding-left:1.2rem;margin-bottom:.4rem;font-size:.88rem;color:#ccc}
-.timeline-content li::before{content:'▹';position:absolute;left:0;color:var(--accent2)}
+.timeline-content li{position:relative;padding-left:1.2rem;margin-bottom:.4rem;font-size:.85rem;color:var(--text-secondary)}
+.timeline-content li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:600}
 
-/* ─── PROJECT CARDS ─── */
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:1.5rem}
+/* ─── PROJECT CARDS (Vercel: shadow-ring, subtle hover) ─── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1rem}
 .project-card{
-  position:relative;border-radius:16px;overflow:hidden;
-  background:rgba(18,18,26,.6);border:1px solid rgba(255,255,255,.08);
-  transition:all .4s ease;
-  transform-style:preserve-3d;perspective:800px;
-  opacity:0;transform:translateY(40px);
-  backdrop-filter:blur(12px);
+  border-radius:var(--radius);overflow:hidden;
+  background:var(--surface);
+  box-shadow:rgba(0,0,0,0.2) 0 0 0 1px;
+  transition:all .2s ease;
+  opacity:0;transform:translateY(20px);
 }
 .project-card.visible{opacity:1;transform:translateY(0)}
 .project-card:hover{
-  border-color:var(--accent);
-  transform:translateY(-6px);
-  box-shadow:0 20px 60px rgba(108,99,255,.2);
-  background:rgba(18,18,26,.75);
+  box-shadow:rgba(0,0,0,0.2) 0 0 0 1px, rgba(94,106,210,0.12) 0 8px 30px;
+  transform:translateY(-2px);
+  background:var(--surface-hover);
 }
 .project-card .card-top{
   height:180px;position:relative;overflow:hidden;
   display:flex;align-items:center;justify-content:center;
-  background:rgba(10,10,18,.4);
+  background:rgba(255,255,255,0.01);
 }
 .project-card .card-top svg{width:100%;height:100%}
-.project-card .card-body{padding:1.5rem}
-.project-card h3{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:.2rem;text-shadow:0 0 10px rgba(0,0,0,.5)}
-.project-card .tagline{color:var(--accent2);font-size:.85rem;font-weight:500;margin-bottom:.8rem}
+.project-card .card-body{padding:1.25rem}
+.project-card h3{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.15rem;letter-spacing:-.02em}
+.project-card .tagline{color:var(--accent-hover);font-size:.8rem;font-weight:500;margin-bottom:.75rem}
 .project-card ul{list-style:none;padding:0;margin-bottom:1rem}
-.project-card li{position:relative;padding-left:1.2rem;font-size:.82rem;color:#ccc;margin-bottom:.3rem}
-.project-card li::before{content:'▹';position:absolute;left:0;color:var(--accent2)}
-.project-card .card-footer{display:flex;gap:.6rem;flex-wrap:wrap}
+.project-card li{position:relative;padding-left:1.1rem;font-size:.8rem;color:var(--text-secondary);margin-bottom:.3rem;line-height:1.5}
+.project-card li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:600}
+.project-card .card-footer{display:flex;gap:.5rem;flex-wrap:wrap}
 .project-card .card-footer a{
-  padding:.35rem .8rem;border-radius:8px;font-size:.75rem;font-weight:600;
-  border:1px solid var(--accent);color:var(--accent);transition:all .3s;
+  padding:.3rem .75rem;border-radius:var(--radius-sm);font-size:.75rem;font-weight:500;
+  box-shadow:rgba(94,106,210,0.3) 0 0 0 1px;color:var(--accent-hover);transition:all .2s;
 }
-.project-card .card-footer a:hover{background:var(--accent);color:#fff}
+.project-card .card-footer a:hover{background:var(--accent);color:#fff;box-shadow:none}
 
-/* ─── SKILLS ─── */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
+/* ─── SKILLS (Linear: minimal cards) ─── */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
 .skill-cat{
-  background:rgba(18,18,26,.55);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.3rem;
-  transition:all .3s;backdrop-filter:blur(12px);
+  background:var(--surface);border-radius:var(--radius);padding:1.25rem;
+  box-shadow:rgba(0,0,0,0.2) 0 0 0 1px;transition:all .2s;
 }
-.skill-cat:hover{border-color:var(--accent2);background:rgba(18,18,26,.7)}
-.skill-cat h4{font-size:.9rem;font-weight:700;color:var(--accent2);margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem}
+.skill-cat:hover{box-shadow:rgba(0,0,0,0.2) 0 0 0 1px, rgba(94,106,210,0.1) 0 4px 20px;background:var(--surface-hover)}
+.skill-cat h4{font-size:.85rem;font-weight:600;color:var(--accent-hover);margin-bottom:.6rem;display:flex;align-items:center;gap:.3rem;letter-spacing:-.01em}
 .skill-tag{
-  display:inline-block;padding:.25rem .6rem;margin:.15rem;border-radius:6px;font-size:.72rem;
-  background:rgba(108,99,255,.1);color:#eee;border:1px solid rgba(108,99,255,.25);
+  display:inline-block;padding:.2rem .5rem;margin:.15rem;border-radius:6px;font-size:.7rem;
+  background:rgba(94,106,210,.08);color:var(--text-secondary);
+  box-shadow:rgba(94,106,210,0.15) 0 0 0 1px;font-weight:400;
 }
 
 /* ─── EDUCATION & PUBS ─── */
 .edu-card{
-  background:rgba(18,18,26,.55);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.5rem;
-  margin-bottom:1rem;transition:all .3s;backdrop-filter:blur(12px);
+  background:var(--surface);border-radius:var(--radius);padding:1.5rem;
+  margin-bottom:.75rem;transition:all .2s;
+  box-shadow:rgba(0,0,0,0.2) 0 0 0 1px;
 }
-.edu-card:hover{border-color:var(--accent);background:rgba(18,18,26,.7)}
-.edu-card h3{font-size:1.1rem;font-weight:700;color:#fff;text-shadow:0 0 10px rgba(0,0,0,.5)}
-.edu-card .school{color:var(--accent2);font-size:.9rem}
+.edu-card:hover{box-shadow:rgba(0,0,0,0.2) 0 0 0 1px, rgba(94,106,210,0.1) 0 4px 20px;background:var(--surface-hover)}
+.edu-card h3{font-size:1.05rem;font-weight:600;color:var(--text);letter-spacing:-.02em}
+.edu-card .school{color:var(--text-tertiary);font-size:.85rem;font-weight:400}
 .pub-list{list-style:none;padding:0}
 .pub-list li{
-  position:relative;padding:.6rem 0 .6rem 1.5rem;font-size:.85rem;
-  border-bottom:1px solid rgba(255,255,255,.06);color:#ccc;
+  position:relative;padding:.55rem 0 .55rem 1.4rem;font-size:.83rem;
+  border-bottom:1px solid rgba(255,255,255,.04);color:var(--text-secondary);
 }
-.pub-list li::before{content:'›';position:absolute;left:0;top:.4rem;font-size:1.2rem;color:#00d4ff;font-weight:700}
+.pub-list li::before{content:'›';position:absolute;left:0;top:.4rem;font-size:1.1rem;color:var(--accent);font-weight:600}
 
 /* ─── CONTACT ─── */
-.contact-links{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+.contact-links{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
 .contact-links a{
   display:inline-flex;align-items:center;
-  padding:.6rem 1.5rem;border-radius:12px;font-weight:600;font-size:.9rem;
-  border:1px solid rgba(255,255,255,.1);background:rgba(18,18,26,.5);transition:all .3s;color:#ddd;
-  backdrop-filter:blur(12px);
+  padding:.5rem 1.25rem;border-radius:var(--radius-sm);font-weight:500;font-size:.85rem;
+  box-shadow:rgba(255,255,255,0.06) 0 0 0 1px;background:var(--surface);transition:all .2s;color:var(--text-secondary);
 }
 .contact-links .si{top:0}
-.contact-links a:hover{border-color:var(--accent2);background:rgba(18,18,26,.7);color:var(--accent2)}
+.contact-links a:hover{box-shadow:rgba(94,106,210,0.3) 0 0 0 1px;color:var(--accent-hover);background:var(--surface-hover)}
 
 /* ─── RESUME BUTTON ─── */
 .btn-resume{
-  display:inline-flex;align-items:center;padding:.7rem 2rem;border-radius:12px;font-weight:700;font-size:.95rem;
-  background:var(--grad1);color:#fff;transition:all .3s;margin-top:1.5rem;
-  box-shadow:0 4px 20px rgba(108,99,255,.3);text-shadow:none;
+  display:inline-flex;align-items:center;padding:.6rem 1.75rem;border-radius:var(--radius-sm);font-weight:600;font-size:.9rem;
+  background:var(--accent);color:#fff;transition:all .2s;margin-top:1.5rem;
+  box-shadow:rgba(94,106,210,0.3) 0 4px 16px;letter-spacing:-.01em;
 }
 .btn-resume .si{top:0}
-.btn-resume:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(108,99,255,.5);color:#fff}
+.btn-resume:hover{background:var(--accent-hover);transform:translateY(-1px);box-shadow:rgba(94,106,210,0.4) 0 8px 24px;color:#fff}
 
 /* ─── YOUTUBE SECTION ─── */
-.yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem}
 .yt-card{
-  background:rgba(18,18,26,.6);border:1px solid rgba(255,255,255,.08);border-radius:14px;
-  overflow:hidden;transition:all .4s;backdrop-filter:blur(12px);
+  background:var(--surface);border-radius:var(--radius);
+  overflow:hidden;transition:all .2s;
+  box-shadow:rgba(0,0,0,0.2) 0 0 0 1px;
 }
-.yt-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 15px 40px rgba(108,99,255,.15)}
+.yt-card:hover{box-shadow:rgba(0,0,0,0.2) 0 0 0 1px, rgba(94,106,210,0.12) 0 8px 30px;transform:translateY(-2px)}
 .yt-card iframe{width:100%;height:200px;border:none;display:block}
-.yt-card .yt-info{padding:1rem 1.2rem}
-.yt-card .yt-info h4{color:#fff;font-size:.95rem;margin-bottom:.3rem;text-shadow:0 0 10px rgba(0,0,0,.5)}
-.yt-card .yt-info p{color:#aaa;font-size:.8rem}
+.yt-card .yt-info{padding:.85rem 1.1rem}
+.yt-card .yt-info h4{color:var(--text);font-size:.9rem;font-weight:500;letter-spacing:-.01em}
+.yt-card .yt-info p{color:var(--text-tertiary);font-size:.8rem}
 
 /* ─── ROLE FILTER ─── */
-.role-filters{display:flex;gap:.6rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
+.role-filters{display:flex;gap:.5rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
 .role-filter-btn{
-  padding:.45rem 1.2rem;border-radius:99px;font-size:.8rem;font-weight:600;cursor:pointer;
-  border:1px solid rgba(255,255,255,.12);background:rgba(18,18,26,.5);color:#bbb;
-  transition:all .3s;backdrop-filter:blur(8px);
+  padding:.4rem 1rem;border-radius:var(--radius-pill);font-size:.8rem;font-weight:500;cursor:pointer;
+  border:none;box-shadow:rgba(255,255,255,0.06) 0 0 0 1px;background:transparent;color:var(--text-tertiary);
+  transition:all .2s;font-family:inherit;
 }
 .role-filter-btn:hover,.role-filter-btn.active{
-  border-color:var(--accent2);color:#fff;background:rgba(0,212,255,.1);
+  box-shadow:rgba(94,106,210,0.4) 0 0 0 1px;color:var(--text);background:rgba(94,106,210,.08);
 }
 
 /* ─── FOOTER ─── */
 footer{
-  position:relative;z-index:1;text-align:center;padding:3rem 2rem;
-  border-top:1px solid rgba(255,255,255,.06);color:#aaa;font-size:.8rem;
-  background:rgba(10,10,15,.4);backdrop-filter:blur(12px);
+  position:relative;z-index:1;text-align:center;padding:2.5rem 2rem;
+  box-shadow:rgba(255,255,255,0.04) 0 -1px 0;color:var(--text-tertiary);font-size:.8rem;
+  background:rgba(8,9,10,.6);
 }
 
 /* ─── SCROLL REVEAL ─── */
-.reveal{opacity:0;transform:translateY(30px);transition:all .6s ease}
+.reveal{opacity:0;transform:translateY(20px);transition:all .4s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 /* ─── RESPONSIVE ─── */
@@ -375,7 +281,7 @@ footer{
   .project-card .card-top svg{width:100%;height:auto}
   .hero-stats{gap:1.5rem}
   .timeline{padding-left:2.5rem}
-  nav{padding:.6rem 1rem}
+  nav{padding:0 1rem}
   .nav-links{gap:.8rem}
   .nav-links a{font-size:.7rem}
 }
@@ -386,35 +292,6 @@ footer{
 </style>
 </head>
 <body>
-
-<!-- PARTICLES -->
-<canvas id="particles"></canvas>
-
-<!-- FLOATING GRADIENT ORBS -->
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
-<div class="orb orb-4"></div>
-<div class="orb orb-5"></div>
-
-<!-- AURORA BANDS -->
-<div class="aurora">
-  <div class="aurora-band"></div>
-  <div class="aurora-band"></div>
-  <div class="aurora-band"></div>
-</div>
-
-<!-- SHOOTING STARS -->
-<div class="shooting-stars">
-  <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-  <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-</div>
-
-<!-- MESH GRADIENT PULSE -->
-<div class="mesh-bg"></div>
-
-<!-- TWINKLING STARS -->
-<div class="twinkle-field" id="twinkleField"></div>
 
 <!-- NAV -->
 <nav>
@@ -454,10 +331,10 @@ footer{
 <!-- SUMMARY -->
 <section>
   <div class="section-header reveal">
-    <h2><span class="si si-lg si-float si-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="1.8"><rect class="draw" x="4" y="2" width="16" height="20" rx="2"/><line class="draw-d1" x1="8" y1="8" x2="16" y2="8"/><line class="draw-d2" x1="8" y1="12" x2="14" y2="12"/><line class="draw-d3" x1="8" y1="16" x2="12" y2="16"/></svg></span> Professional Summary</h2>
+    <h2><span class="si si-lg si-float si-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="1.8"><rect class="draw" x="4" y="2" width="16" height="20" rx="2"/><line class="draw-d1" x1="8" y1="8" x2="16" y2="8"/><line class="draw-d2" x1="8" y1="12" x2="14" y2="12"/><line class="draw-d3" x1="8" y1="16" x2="12" y2="16"/></svg></span> Professional Summary</h2>
   </div>
   <div class="glow-card reveal" style="max-width:900px;margin:0 auto">
-    <div class="glow-card-inner" style="font-size:.95rem;line-height:1.7;color:var(--text)">
+    <div class="glow-card-inner" style="font-size:.9rem;line-height:1.7;color:var(--text-secondary)">
       Versatile engineer with 5+ years of experience spanning RF/semiconductor applications engineering, wireless research (THz/5G/6G), and full-stack AI product development. Proven track record launching 100+ hardware products at Mini-Circuits, shipping 2nm/3nm metrology systems at KLA, and driving AR/VR platform development at Meta. Simultaneously built a portfolio of 12+ AI-powered software products — from autonomous trading bots to data center management platforms — demonstrating rare breadth across hardware and software. Published 10 research papers; founded two startups.
     </div>
   </div>
@@ -466,17 +343,17 @@ footer{
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-header reveal">
-    <h2><span class="si si-lg si-float si-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="1.8"><rect class="draw" x="2" y="7" width="20" height="14" rx="2"/><path class="draw-d1" d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line class="draw-d2" x1="12" y1="11" x2="12" y2="15"/></svg></span> Work Experience</h2>
+    <h2><span class="si si-lg si-float si-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="1.8"><rect class="draw" x="2" y="7" width="20" height="14" rx="2"/><path class="draw-d1" d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line class="draw-d2" x1="12" y1="11" x2="12" y2="15"/></svg></span> Work Experience</h2>
     <p>7 roles across hardware, research, and startups</p>
   </div>
   <div class="timeline">
 
     <div class="timeline-item">
-      <div class="timeline-dot"><span class="si si-md"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path class="draw" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span></div>
+      <div class="timeline-dot"><span class="si si-md"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path class="draw" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span></div>
       <div class="timeline-content">
         <h3>Mini-Circuits</h3>
         <div class="role">Applications Engineer II</div>
-        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> New York, NY · Jan 2024 – Present</div>
+        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> New York, NY · Jan 2024 – Present</div>
         <ul>
           <li>Launched 100+ products in 24 months spanning AI, DOCSIS 4.0, CATV, Core &amp; Wire, and 5G technology verticals</li>
           <li>Managed product line of 10,000+ products; sole contributor to RF Core &amp; Wire product category for customers</li>
@@ -491,7 +368,7 @@ footer{
       <div class="timeline-content">
         <h3>Tap to Party</h3>
         <div class="role">Founder &amp; Product Lead</div>
-        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> California · Nov 2023 – Present</div>
+        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> California · Nov 2023 – Present</div>
         <ul>
           <li>Built full-stack event discovery app (Flutter, React JS, Firebase) from concept to App Store; managed cross-functional teams across front-end, back-end, SKU, and finance</li>
           <li>Drove product strategy through A/B testing, customer interviews, and market analysis; converted insights into actionable user stories</li>
@@ -505,7 +382,7 @@ footer{
       <div class="timeline-content">
         <h3>Ramsoft</h3>
         <div class="role">Applications Engineer</div>
-        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> Texas · Aug 2023 – Jan 2024</div>
+        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> Texas · Aug 2023 – Jan 2024</div>
         <ul>
           <li>Delivered entire product project in six months from design to execution, covering characterization, alpha testing, and pilot tooling</li>
           <li>Performed RF and semiconductor device testing including transceiver systems; documented BKMs and training materials for field teams</li>
@@ -518,7 +395,7 @@ footer{
       <div class="timeline-content">
         <h3>KLA Corporation</h3>
         <div class="role">Applications Engineer</div>
-        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> Milpitas, CA · Sep 2022 – Jul 2023</div>
+        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> Milpitas, CA · Sep 2022 – Jul 2023</div>
         <ul>
           <li>Launched first 2nm and 3nm defect metrology systems utilizing broadband plasma technology for leading-edge wafer processing</li>
           <li>Collaborated with 10+ developers, system engineers, and algorithm teams to deliver customer demos to Intel, SK Hynix, TSMC, and Samsung</li>
@@ -532,7 +409,7 @@ footer{
       <div class="timeline-content">
         <h3>Meta – Reality Labs</h3>
         <div class="role">Wireless Platform Developer (Contract)</div>
-        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> Sunnyvale, CA · Apr 2022 – Sep 2022</div>
+        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> Sunnyvale, CA · Apr 2022 – Sep 2022</div>
         <ul>
           <li>Led projects for Quest Pro, Ray-Ban Stories, and VR Quest 3; optimized wireless latency from 140ms to &lt;30ms through end-to-end communication and protocol stack improvements</li>
           <li>Impacted $200M+ in product sales (2022–2023); demonstrated results at Meta Tech Fair to key stakeholders and vendors</li>
@@ -542,11 +419,11 @@ footer{
     </div>
 
     <div class="timeline-item">
-      <div class="timeline-dot"><span class="si si-md"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path class="draw" d="M5 12.55a11 11 0 0 1 14.08 0"/><path class="draw-d1" d="M1.42 9a16 16 0 0 1 21.16 0"/><path class="draw-d2" d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle class="draw-d3" cx="12" cy="20" r="1" fill="#6c63ff"/></svg></span></div>
+      <div class="timeline-dot"><span class="si si-md"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path class="draw" d="M5 12.55a11 11 0 0 1 14.08 0"/><path class="draw-d1" d="M1.42 9a16 16 0 0 1 21.16 0"/><path class="draw-d2" d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle class="draw-d3" cx="12" cy="20" r="1" fill="#5e6ad2"/></svg></span></div>
       <div class="timeline-content">
         <h3>WiDeS Lab, USC</h3>
         <div class="role">Research Associate</div>
-        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> Los Angeles, CA · Aug 2020 – Apr 2022</div>
+        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> Los Angeles, CA · Aug 2020 – Apr 2022</div>
         <ul>
           <li>Proved THz viability for LOS, NLOS, and WiFi use cases, directly contributing to $1M increase in research funding</li>
           <li>Led team of 10 RF engineers across testing, algorithms, and design; authored 7 research papers in THz and wireless communications</li>
@@ -560,7 +437,7 @@ footer{
       <div class="timeline-content">
         <h3>Levenson-Falk Lab, USC</h3>
         <div class="role">Research Associate</div>
-        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> Los Angeles, CA · May 2021 – Aug 2021</div>
+        <div class="meta"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" class="draw"/><circle cx="12" cy="10" r="3" class="draw-d1"/></svg></span> Los Angeles, CA · May 2021 – Aug 2021</div>
         <ul>
           <li>Joined as first engineer in the lab; drove superconducting qubit project from concept to execution in under 2 months</li>
           <li>Improved T1 coherence times by 8x for a superconducting qubit in cavity; achieved first APS conference presentation in 1.5 months</li>
@@ -582,7 +459,7 @@ footer{
     <button class="role-filter-btn active" data-filter="all">All Projects</button>
     <button class="role-filter-btn" data-filter="ai"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3" class="draw"/><circle cx="9" cy="10" r="1.5" class="draw-d1"/><circle cx="15" cy="10" r="1.5" class="draw-d1"/><path d="M9 15h6" class="draw-d2"/><path d="M8 2v2M16 2v2" class="draw-d3"/></svg></span> AI / ML</button>
     <button class="role-filter-btn" data-filter="rf"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd93d" stroke-width="2"><path d="M12 20v-6" class="draw"/><path d="M12 14l-4 -4" class="draw-d1"/><path d="M12 14l4 -4" class="draw-d1"/><path d="M8 6a8 8 0 0 1 8 0" class="draw-d2"/><path d="M5 3a12 12 0 0 1 14 0" class="draw-d3"/></svg></span> RF / Hardware</button>
-    <button class="role-filter-btn" data-filter="fullstack"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><polyline points="16 18 22 12 16 6" class="draw"/><polyline points="8 6 2 12 8 18" class="draw-d1"/><line x1="14" y1="4" x2="10" y2="20" class="draw-d2"/></svg></span> Full-Stack</button>
+    <button class="role-filter-btn" data-filter="fullstack"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><polyline points="16 18 22 12 16 6" class="draw"/><polyline points="8 6 2 12 8 18" class="draw-d1"/><line x1="14" y1="4" x2="10" y2="20" class="draw-d2"/></svg></span> Full-Stack</button>
     <button class="role-filter-btn" data-filter="quantum"><span class="si si-sm si-spin"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="1.5"><circle cx="12" cy="12" r="2" class="draw"/><ellipse cx="12" cy="12" rx="10" ry="4" class="draw-d1"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" class="draw-d2"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" class="draw-d3"/></svg></span> Quantum</button>
     <button class="role-filter-btn" data-filter="fintech"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><rect x="3" y="12" width="4" height="8" rx="1" class="draw"/><rect x="10" y="8" width="4" height="12" rx="1" class="draw-d1"/><rect x="17" y="4" width="4" height="16" rx="1" class="draw-d2"/></svg></span> Fintech</button>
   </div>
@@ -592,17 +469,17 @@ footer{
     <div class="project-card" data-roles="ai,fintech">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c63ff" stop-opacity=".15"/><stop offset="100%" stop-color="#00d4ff" stop-opacity=".08"/></linearGradient></defs>
+          <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#5e6ad2" stop-opacity=".12"/><stop offset="100%" stop-color="#00d4ff" stop-opacity=".06"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#g1)"/>
-          <text x="200" y="40" text-anchor="middle" fill="#6c63ff" font-size="11" font-family="monospace">┌─ Grok ─┐ ┌─ Claude ─┐ ┌─ GPT-4o ─┐ ┌─ Gemini ─┐</text>
-          <text x="200" y="60" text-anchor="middle" fill="#555" font-size="10" font-family="monospace">│ Analyze │ │ Analyze  │ │ Analyze  │ │ Analyze  │</text>
-          <text x="200" y="80" text-anchor="middle" fill="#555" font-size="10" font-family="monospace">└────┬────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘</text>
+          <text x="200" y="40" text-anchor="middle" fill="#5e6ad2" font-size="11" font-family="monospace">┌─ Grok ─┐ ┌─ Claude ─┐ ┌─ GPT-4o ─┐ ┌─ Gemini ─┐</text>
+          <text x="200" y="60" text-anchor="middle" fill="#8a8f98" font-size="10" font-family="monospace">│ Analyze │ │ Analyze  │ │ Analyze  │ │ Analyze  │</text>
+          <text x="200" y="80" text-anchor="middle" fill="#8a8f98" font-size="10" font-family="monospace">└────┬────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘</text>
           <line x1="100" y1="88" x2="300" y2="88" stroke="#00d4ff" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="2s" repeatCount="indefinite"/></line>
-          <rect x="130" y="95" width="140" height="28" rx="6" fill="rgba(108,99,255,.15)" stroke="#6c63ff" stroke-width="1"/>
-          <text x="200" y="113" text-anchor="middle" fill="#6c63ff" font-size="11" font-weight="bold" font-family="monospace">Weighted Consensus</text>
+          <rect x="130" y="95" width="140" height="28" rx="6" fill="rgba(94,106,210,.12)" stroke="#5e6ad2" stroke-width="1"/>
+          <text x="200" y="113" text-anchor="middle" fill="#5e6ad2" font-size="11" font-weight="bold" font-family="monospace">Weighted Consensus</text>
           <line x1="200" y1="123" x2="200" y2="140" stroke="#00d4ff" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="2s" repeatCount="indefinite"/></line>
-          <rect x="120" y="142" width="160" height="26" rx="6" fill="rgba(0,212,255,.1)" stroke="#00d4ff" stroke-width="1"/>
-          <text x="200" y="159" text-anchor="middle" fill="#00d4ff" font-size="10" font-family="monospace">⟨⟩ Kalshi Trade Engine</text>
+          <rect x="120" y="142" width="160" height="26" rx="6" fill="rgba(0,212,255,.08)" stroke="#00d4ff" stroke-width="1"/>
+          <text x="200" y="159" text-anchor="middle" fill="#00d4ff" font-size="10" font-family="monospace">Kalshi Trade Engine</text>
         </svg>
       </div>
       <div class="card-body">
@@ -623,23 +500,23 @@ footer{
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".12"/><stop offset="100%" stop-color="#6c63ff" stop-opacity=".08"/></linearGradient></defs>
+          <defs><linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".1"/><stop offset="100%" stop-color="#5e6ad2" stop-opacity=".06"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#g2)"/>
-          <rect x="30" y="20" width="80" height="50" rx="6" fill="rgba(0,212,255,.1)" stroke="#00d4ff" stroke-width="1"/>
+          <rect x="30" y="20" width="80" height="50" rx="6" fill="rgba(0,212,255,.08)" stroke="#00d4ff" stroke-width="1"/>
           <text x="70" y="40" text-anchor="middle" fill="#00d4ff" font-size="9" font-family="monospace">GPU Cluster</text>
-          <text x="70" y="55" text-anchor="middle" fill="#555" font-size="8" font-family="monospace">▣ Telemetry</text>
-          <rect x="160" y="20" width="80" height="50" rx="6" fill="rgba(108,99,255,.1)" stroke="#6c63ff" stroke-width="1"/>
-          <text x="200" y="40" text-anchor="middle" fill="#6c63ff" font-size="9" font-family="monospace">ML Engine</text>
-          <text x="200" y="55" text-anchor="middle" fill="#555" font-size="8" font-family="monospace">◉ R²=0.95+</text>
-          <rect x="290" y="20" width="80" height="50" rx="6" fill="rgba(255,107,107,.1)" stroke="#ff6b6b" stroke-width="1"/>
+          <text x="70" y="55" text-anchor="middle" fill="#8a8f98" font-size="8" font-family="monospace">Telemetry</text>
+          <rect x="160" y="20" width="80" height="50" rx="6" fill="rgba(94,106,210,.08)" stroke="#5e6ad2" stroke-width="1"/>
+          <text x="200" y="40" text-anchor="middle" fill="#5e6ad2" font-size="9" font-family="monospace">ML Engine</text>
+          <text x="200" y="55" text-anchor="middle" fill="#8a8f98" font-size="8" font-family="monospace">R²=0.95+</text>
+          <rect x="290" y="20" width="80" height="50" rx="6" fill="rgba(255,107,107,.08)" stroke="#ff6b6b" stroke-width="1"/>
           <text x="330" y="40" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="monospace">Dashboard</text>
-          <text x="330" y="55" text-anchor="middle" fill="#555" font-size="8" font-family="monospace">▥ Real-time</text>
+          <text x="330" y="55" text-anchor="middle" fill="#8a8f98" font-size="8" font-family="monospace">Real-time</text>
           <line x1="110" y1="45" x2="160" y2="45" stroke="#00d4ff" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="2s" repeatCount="indefinite"/></line>
-          <line x1="240" y1="45" x2="290" y2="45" stroke="#6c63ff" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="2s" repeatCount="indefinite"/></line>
-          <text x="200" y="100" text-anchor="middle" fill="#555" font-size="9" font-family="monospace">Protocols: Redfish | SNMP | Modbus TCP | NVIDIA DCGM</text>
-          <rect x="80" y="115" width="240" height="28" rx="8" fill="rgba(108,99,255,.08)" stroke="#6c63ff" stroke-width="1"/>
-          <text x="200" y="133" text-anchor="middle" fill="#6c63ff" font-size="10" font-family="monospace">◈ 10 GPU Architectures × 8 Workloads</text>
-          <text x="200" y="165" text-anchor="middle" fill="#555" font-size="9" font-family="monospace">AES-256-GCM • RBAC • Docker • TLS</text>
+          <line x1="240" y1="45" x2="290" y2="45" stroke="#5e6ad2" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="2s" repeatCount="indefinite"/></line>
+          <text x="200" y="100" text-anchor="middle" fill="#8a8f98" font-size="9" font-family="monospace">Protocols: Redfish | SNMP | Modbus TCP | NVIDIA DCGM</text>
+          <rect x="80" y="115" width="240" height="28" rx="8" fill="rgba(94,106,210,.06)" stroke="#5e6ad2" stroke-width="1"/>
+          <text x="200" y="133" text-anchor="middle" fill="#5e6ad2" font-size="10" font-family="monospace">10 GPU Architectures × 8 Workloads</text>
+          <text x="200" y="165" text-anchor="middle" fill="#8a8f98" font-size="9" font-family="monospace">AES-256-GCM · RBAC · Docker · TLS</text>
         </svg>
       </div>
       <div class="card-body">
@@ -660,20 +537,17 @@ footer{
     <div class="project-card" data-roles="rf">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffd93d" stop-opacity=".1"/><stop offset="100%" stop-color="#00d4ff" stop-opacity=".08"/></linearGradient></defs>
+          <defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffd93d" stop-opacity=".08"/><stop offset="100%" stop-color="#00d4ff" stop-opacity=".06"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#g3)"/>
-          <text x="200" y="30" text-anchor="middle" fill="#ffd93d" font-size="22">◈</text>
           <text x="200" y="50" text-anchor="middle" fill="#ffd93d" font-size="9" font-family="monospace">MEO Constellation</text>
-          <line x1="120" y1="58" x2="200" y2="58" stroke="#ffd93d" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="3s" repeatCount="indefinite"/></line>
-          <line x1="200" y1="58" x2="280" y2="58" stroke="#ffd93d" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="3s" repeatCount="indefinite"/></line>
-          <ellipse cx="200" cy="58" rx="100" ry="15" fill="none" stroke="rgba(255,217,61,.2)" stroke-width="1" stroke-dasharray="4,4"/>
+          <ellipse cx="200" cy="58" rx="100" ry="15" fill="none" stroke="rgba(255,217,61,.15)" stroke-width="1" stroke-dasharray="4,4"/>
           <line x1="130" y1="65" x2="80" y2="130" stroke="#00d4ff" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="2s" repeatCount="indefinite"/></line>
           <line x1="270" y1="65" x2="320" y2="130" stroke="#00d4ff" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="2s" repeatCount="indefinite"/></line>
-          <rect x="40" y="130" width="90" height="28" rx="6" fill="rgba(0,212,255,.1)" stroke="#00d4ff" stroke-width="1"/>
-          <text x="85" y="148" text-anchor="middle" fill="#00d4ff" font-size="9" font-family="monospace">▽ Ground Stn</text>
-          <rect x="270" y="130" width="90" height="28" rx="6" fill="rgba(0,212,255,.1)" stroke="#00d4ff" stroke-width="1"/>
-          <text x="315" y="148" text-anchor="middle" fill="#00d4ff" font-size="9" font-family="monospace">▷ User Term</text>
-          <text x="200" y="105" text-anchor="middle" fill="#555" font-size="9" font-family="monospace">11 bands · 75–300 GHz · 14 analysis plots</text>
+          <rect x="40" y="130" width="90" height="28" rx="6" fill="rgba(0,212,255,.08)" stroke="#00d4ff" stroke-width="1"/>
+          <text x="85" y="148" text-anchor="middle" fill="#00d4ff" font-size="9" font-family="monospace">Ground Stn</text>
+          <rect x="270" y="130" width="90" height="28" rx="6" fill="rgba(0,212,255,.08)" stroke="#00d4ff" stroke-width="1"/>
+          <text x="315" y="148" text-anchor="middle" fill="#00d4ff" font-size="9" font-family="monospace">User Term</text>
+          <text x="200" y="105" text-anchor="middle" fill="#8a8f98" font-size="9" font-family="monospace">11 bands · 75–300 GHz · 14 analysis plots</text>
         </svg>
       </div>
       <div class="card-body">
@@ -694,23 +568,23 @@ footer{
     <div class="project-card" data-roles="quantum,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".1"/><stop offset="100%" stop-color="#6c63ff" stop-opacity=".08"/></linearGradient></defs>
+          <defs><linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".08"/><stop offset="100%" stop-color="#5e6ad2" stop-opacity=".06"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#g4)"/>
-          <rect x="40" y="25" width="90" height="40" rx="6" fill="rgba(255,107,107,.1)" stroke="#ff6b6b" stroke-width="1"/>
-          <text x="85" y="42" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="monospace">◇ QKD</text>
-          <text x="85" y="56" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Key Distribution</text>
-          <rect x="155" y="25" width="90" height="40" rx="6" fill="rgba(108,99,255,.1)" stroke="#6c63ff" stroke-width="1"/>
-          <text x="200" y="42" text-anchor="middle" fill="#6c63ff" font-size="9" font-family="monospace">◆ PQC</text>
-          <text x="200" y="56" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Post-Quantum</text>
-          <rect x="270" y="25" width="90" height="40" rx="6" fill="rgba(0,212,255,.1)" stroke="#00d4ff" stroke-width="1"/>
-          <text x="315" y="42" text-anchor="middle" fill="#00d4ff" font-size="9" font-family="monospace">◇ QRNG</text>
-          <text x="315" y="56" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Random Gen</text>
+          <rect x="40" y="25" width="90" height="40" rx="6" fill="rgba(255,107,107,.08)" stroke="#ff6b6b" stroke-width="1"/>
+          <text x="85" y="42" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="monospace">QKD</text>
+          <text x="85" y="56" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Key Distribution</text>
+          <rect x="155" y="25" width="90" height="40" rx="6" fill="rgba(94,106,210,.08)" stroke="#5e6ad2" stroke-width="1"/>
+          <text x="200" y="42" text-anchor="middle" fill="#5e6ad2" font-size="9" font-family="monospace">PQC</text>
+          <text x="200" y="56" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Post-Quantum</text>
+          <rect x="270" y="25" width="90" height="40" rx="6" fill="rgba(0,212,255,.08)" stroke="#00d4ff" stroke-width="1"/>
+          <text x="315" y="42" text-anchor="middle" fill="#00d4ff" font-size="9" font-family="monospace">QRNG</text>
+          <text x="315" y="56" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Random Gen</text>
           <line x1="85" y1="65" x2="85" y2="90" stroke="#ff6b6b" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2s" repeatCount="indefinite"/></line>
-          <line x1="200" y1="65" x2="200" y2="90" stroke="#6c63ff" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2s" repeatCount="indefinite"/></line>
+          <line x1="200" y1="65" x2="200" y2="90" stroke="#5e6ad2" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2s" repeatCount="indefinite"/></line>
           <line x1="315" y1="65" x2="315" y2="90" stroke="#00d4ff" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2s" repeatCount="indefinite"/></line>
-          <rect x="60" y="92" width="280" height="35" rx="8" fill="rgba(108,99,255,.08)" stroke="#6c63ff" stroke-width="1"/>
-          <text x="200" y="113" text-anchor="middle" fill="#6c63ff" font-size="11" font-weight="bold" font-family="monospace">◎ Orchestrator Layer</text>
-          <text x="200" y="155" text-anchor="middle" fill="#555" font-size="9" font-family="monospace">Python · FastAPI · Vendor Abstraction · Enterprise API</text>
+          <rect x="60" y="92" width="280" height="35" rx="8" fill="rgba(94,106,210,.06)" stroke="#5e6ad2" stroke-width="1"/>
+          <text x="200" y="113" text-anchor="middle" fill="#5e6ad2" font-size="11" font-weight="bold" font-family="monospace">Orchestrator Layer</text>
+          <text x="200" y="155" text-anchor="middle" fill="#8a8f98" font-size="9" font-family="monospace">Python · FastAPI · Vendor Abstraction · Enterprise API</text>
         </svg>
       </div>
       <div class="card-body">
@@ -731,29 +605,28 @@ footer{
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c63ff" stop-opacity=".1"/><stop offset="100%" stop-color="#ffd93d" stop-opacity=".08"/></linearGradient></defs>
+          <defs><linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#5e6ad2" stop-opacity=".08"/><stop offset="100%" stop-color="#ffd93d" stop-opacity=".06"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#g5)"/>
-          <rect x="30" y="20" width="160" height="100" rx="8" fill="rgba(255,255,255,.03)" stroke="#555" stroke-width="1"/>
-          <text x="110" y="40" text-anchor="middle" fill="#555" font-size="8" font-family="monospace">── Job Application Form ──</text>
-          <rect x="50" y="50" width="120" height="12" rx="3" fill="rgba(108,99,255,.08)" stroke="#6c63ff" stroke-width=".5"/>
-          <rect x="50" y="68" width="120" height="12" rx="3" fill="rgba(108,99,255,.08)" stroke="#6c63ff" stroke-width=".5"/>
-          <rect x="50" y="86" width="80" height="12" rx="3" fill="rgba(108,99,255,.08)" stroke="#6c63ff" stroke-width=".5"/>
-          <text x="60" y="59" fill="#6c63ff" font-size="7" font-family="monospace">Name: ▊▊▊▊▊▊▊</text>
-          <text x="60" y="77" fill="#6c63ff" font-size="7" font-family="monospace">Email: ▊▊▊▊▊▊▊</text>
-          <text x="60" y="95" fill="#6c63ff" font-size="7" font-family="monospace">Exp: ▊▊▊</text>
+          <rect x="30" y="20" width="160" height="100" rx="8" fill="rgba(255,255,255,.02)" stroke="#8a8f98" stroke-width="1"/>
+          <text x="110" y="40" text-anchor="middle" fill="#8a8f98" font-size="8" font-family="monospace">── Job Application Form ──</text>
+          <rect x="50" y="50" width="120" height="12" rx="3" fill="rgba(94,106,210,.06)" stroke="#5e6ad2" stroke-width=".5"/>
+          <rect x="50" y="68" width="120" height="12" rx="3" fill="rgba(94,106,210,.06)" stroke="#5e6ad2" stroke-width=".5"/>
+          <rect x="50" y="86" width="80" height="12" rx="3" fill="rgba(94,106,210,.06)" stroke="#5e6ad2" stroke-width=".5"/>
+          <text x="60" y="59" fill="#5e6ad2" font-size="7" font-family="monospace">Name: ........</text>
+          <text x="60" y="77" fill="#5e6ad2" font-size="7" font-family="monospace">Email: ........</text>
+          <text x="60" y="95" fill="#5e6ad2" font-size="7" font-family="monospace">Exp: ....</text>
           <line x1="195" y1="70" x2="230" y2="70" stroke="#00d4ff" stroke-width="1.5" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1.5s" repeatCount="indefinite"/></line>
-          <text x="212" y="65" text-anchor="middle" fill="#00d4ff" font-size="16">◈</text>
-          <rect x="235" y="25" width="140" height="90" rx="8" fill="rgba(0,212,255,.05)" stroke="#00d4ff" stroke-width="1"/>
+          <rect x="235" y="25" width="140" height="90" rx="8" fill="rgba(0,212,255,.04)" stroke="#00d4ff" stroke-width="1"/>
           <text x="305" y="45" text-anchor="middle" fill="#00d4ff" font-size="9" font-weight="bold" font-family="monospace">JobFill.ai Engine</text>
-          <text x="305" y="62" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">▤ ProfileVault</text>
-          <text x="305" y="76" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">▸ Cover Letter AI</text>
-          <text x="305" y="90" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">◉ Field Matching</text>
-          <text x="305" y="104" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">▥ App Tracker</text>
-          <text x="200" y="150" text-anchor="middle" fill="#555" font-size="9" font-family="monospace">React • Chrome Extension MV3 • AI API</text>
+          <text x="305" y="62" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">ProfileVault</text>
+          <text x="305" y="76" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Cover Letter AI</text>
+          <text x="305" y="90" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Field Matching</text>
+          <text x="305" y="104" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">App Tracker</text>
+          <text x="200" y="150" text-anchor="middle" fill="#8a8f98" font-size="9" font-family="monospace">React · Chrome Extension MV3 · AI API</text>
         </svg>
       </div>
       <div class="card-body">
-        <h3><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" class="draw"/><polyline points="14 2 14 8 20 8" class="draw-d1"/><line x1="9" y1="13" x2="15" y2="13" class="draw-d2"/><line x1="9" y1="17" x2="13" y2="17" class="draw-d3"/></svg></span> JobFill.ai</h3>
+        <h3><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" class="draw"/><polyline points="14 2 14 8 20 8" class="draw-d1"/><line x1="9" y1="13" x2="15" y2="13" class="draw-d2"/><line x1="9" y1="17" x2="13" y2="17" class="draw-d3"/></svg></span> JobFill.ai</h3>
         <div class="tagline">AI-Powered Job Application Chrome Extension</div>
         <ul>
           <li>Chrome extension with React popup/sidepanel, content scripts for form detection and auto-fill, and AI backend for answer generation</li>
@@ -770,28 +643,26 @@ footer{
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".1"/><stop offset="100%" stop-color="#ff6b6b" stop-opacity=".08"/></linearGradient></defs>
+          <defs><linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".08"/><stop offset="100%" stop-color="#ff6b6b" stop-opacity=".06"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#g6)"/>
-          <rect x="30" y="30" width="100" height="50" rx="8" fill="rgba(0,212,255,.1)" stroke="#00d4ff" stroke-width="1"/>
-          <text x="80" y="52" text-anchor="middle" fill="#00d4ff" font-size="9" font-family="monospace">◉ Record</text>
-          <text x="80" y="68" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">DOM Recorder</text>
+          <rect x="30" y="30" width="100" height="50" rx="8" fill="rgba(0,212,255,.08)" stroke="#00d4ff" stroke-width="1"/>
+          <text x="80" y="52" text-anchor="middle" fill="#00d4ff" font-size="9" font-family="monospace">Record</text>
+          <text x="80" y="68" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">DOM Recorder</text>
           <line x1="130" y1="55" x2="155" y2="55" stroke="#00d4ff" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2s" repeatCount="indefinite"/></line>
-          <text x="142" y="52" text-anchor="middle" fill="#00d4ff" font-size="12">→</text>
-          <rect x="155" y="30" width="100" height="50" rx="8" fill="rgba(108,99,255,.1)" stroke="#6c63ff" stroke-width="1"/>
-          <text x="205" y="52" text-anchor="middle" fill="#6c63ff" font-size="9" font-family="monospace">◈ Learn</text>
-          <text x="205" y="68" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Skill Builder</text>
-          <line x1="255" y1="55" x2="280" y2="55" stroke="#6c63ff" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2s" repeatCount="indefinite"/></line>
-          <text x="267" y="52" text-anchor="middle" fill="#6c63ff" font-size="12">→</text>
-          <rect x="280" y="30" width="100" height="50" rx="8" fill="rgba(255,107,107,.1)" stroke="#ff6b6b" stroke-width="1"/>
-          <text x="330" y="52" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="monospace">▸ Replay</text>
-          <text x="330" y="68" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Execute Steps</text>
-          <rect x="100" y="110" width="200" height="35" rx="8" fill="rgba(108,99,255,.06)" stroke="#6c63ff" stroke-width="1"/>
-          <text x="200" y="130" text-anchor="middle" fill="#6c63ff" font-size="9" font-family="monospace">◇ AI Chat Agent · NL Commands</text>
-          <text x="200" y="165" text-anchor="middle" fill="#555" font-size="8" font-family="monospace">Node/Fastify · React · Chrome MV3 · SwiftUI</text>
+          <rect x="155" y="30" width="100" height="50" rx="8" fill="rgba(94,106,210,.08)" stroke="#5e6ad2" stroke-width="1"/>
+          <text x="205" y="52" text-anchor="middle" fill="#5e6ad2" font-size="9" font-family="monospace">Learn</text>
+          <text x="205" y="68" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Skill Builder</text>
+          <line x1="255" y1="55" x2="280" y2="55" stroke="#5e6ad2" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2s" repeatCount="indefinite"/></line>
+          <rect x="280" y="30" width="100" height="50" rx="8" fill="rgba(255,107,107,.08)" stroke="#ff6b6b" stroke-width="1"/>
+          <text x="330" y="52" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="monospace">Replay</text>
+          <text x="330" y="68" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Execute Steps</text>
+          <rect x="100" y="110" width="200" height="35" rx="8" fill="rgba(94,106,210,.05)" stroke="#5e6ad2" stroke-width="1"/>
+          <text x="200" y="130" text-anchor="middle" fill="#5e6ad2" font-size="9" font-family="monospace">AI Chat Agent · NL Commands</text>
+          <text x="200" y="165" text-anchor="middle" fill="#8a8f98" font-size="8" font-family="monospace">Node/Fastify · React · Chrome MV3 · SwiftUI</text>
         </svg>
       </div>
       <div class="card-body">
-        <h3><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M17 1l4 4-4 4" class="draw"/><path d="M3 11V9a4 4 0 0 1 4-4h14" class="draw-d1"/><path d="M7 23l-4-4 4-4" class="draw-d2"/><path d="M21 13v2a4 4 0 0 1-4 4H3" class="draw-d3"/></svg></span> Teach &amp; Repeat</h3>
+        <h3><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M17 1l4 4-4 4" class="draw"/><path d="M3 11V9a4 4 0 0 1 4-4h14" class="draw-d1"/><path d="M7 23l-4-4 4-4" class="draw-d2"/><path d="M21 13v2a4 4 0 0 1-4 4H3" class="draw-d3"/></svg></span> Teach &amp; Repeat</h3>
         <div class="tagline">Cross-Platform Workflow Automation App</div>
         <ul>
           <li>RPA-style automation tool where users teach workflows once and replay them; analogous to modern AI agent products</li>
@@ -808,20 +679,20 @@ footer{
     <div class="project-card" data-roles="ai,fintech,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".1"/><stop offset="100%" stop-color="#ffd93d" stop-opacity=".08"/></linearGradient></defs>
+          <defs><linearGradient id="g7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d4ff" stop-opacity=".08"/><stop offset="100%" stop-color="#ffd93d" stop-opacity=".06"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#g7)"/>
           <polyline points="30,130 70,110 110,120 150,80 190,90 230,60 270,50 310,70 350,40 380,35" fill="none" stroke="#00d4ff" stroke-width="2"/>
-          <polyline points="30,140 70,135 110,130 150,115 190,120 230,100 270,90 310,95 350,80 380,75" fill="none" stroke="#6c63ff" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <text x="200" y="25" text-anchor="middle" fill="#ffd93d" font-size="10" font-weight="bold" font-family="monospace">△ MarketPulse Dashboard</text>
-          <text x="50" y="50" fill="#555" font-size="8" font-family="monospace">SMA</text>
-          <text x="100" y="50" fill="#555" font-size="8" font-family="monospace">EMA</text>
-          <text x="150" y="50" fill="#555" font-size="8" font-family="monospace">Bollinger</text>
-          <text x="230" y="50" fill="#555" font-size="8" font-family="monospace">◇ AI Sentiment</text>
-          <rect x="280" y="100" width="100" height="55" rx="6" fill="rgba(0,212,255,.05)" stroke="#00d4ff" stroke-width=".5"/>
+          <polyline points="30,140 70,135 110,130 150,115 190,120 230,100 270,90 310,95 350,80 380,75" fill="none" stroke="#5e6ad2" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <text x="200" y="25" text-anchor="middle" fill="#ffd93d" font-size="10" font-weight="bold" font-family="monospace">MarketPulse Dashboard</text>
+          <text x="50" y="50" fill="#8a8f98" font-size="8" font-family="monospace">SMA</text>
+          <text x="100" y="50" fill="#8a8f98" font-size="8" font-family="monospace">EMA</text>
+          <text x="150" y="50" fill="#8a8f98" font-size="8" font-family="monospace">Bollinger</text>
+          <text x="230" y="50" fill="#8a8f98" font-size="8" font-family="monospace">AI Sentiment</text>
+          <rect x="280" y="100" width="100" height="55" rx="6" fill="rgba(0,212,255,.04)" stroke="#00d4ff" stroke-width=".5"/>
           <text x="330" y="115" text-anchor="middle" fill="#00d4ff" font-size="7" font-family="monospace">Stock Screener</text>
-          <text x="330" y="128" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Price Alerts</text>
-          <text x="330" y="141" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Supply Chain</text>
-          <text x="200" y="170" text-anchor="middle" fill="#555" font-size="8" font-family="monospace">React · FastAPI · TradingView · AI Sentiment</text>
+          <text x="330" y="128" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Price Alerts</text>
+          <text x="330" y="141" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Supply Chain</text>
+          <text x="200" y="170" text-anchor="middle" fill="#8a8f98" font-size="8" font-family="monospace">React · FastAPI · TradingView · AI Sentiment</text>
         </svg>
       </div>
       <div class="card-body">
@@ -842,25 +713,25 @@ footer{
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".1"/><stop offset="100%" stop-color="#ffd93d" stop-opacity=".08"/></linearGradient></defs>
+          <defs><linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".08"/><stop offset="100%" stop-color="#ffd93d" stop-opacity=".06"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#g8)"/>
-          <circle cx="200" cy="75" r="35" fill="rgba(108,99,255,.08)" stroke="#6c63ff" stroke-width="1"/>
-          <text x="200" y="80" text-anchor="middle" fill="#6c63ff" font-size="11" font-weight="bold" font-family="monospace">◈ Genie AI</text>
-          <text x="70" y="35" text-anchor="middle" fill="#ff6b6b" font-size="16">▣</text><text x="70" y="50" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Facebook</text>
-          <text x="140" y="25" text-anchor="middle" fill="#ff6b6b" font-size="16">◉</text><text x="140" y="40" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Instagram</text>
-          <text x="260" y="25" text-anchor="middle" fill="#00d4ff" font-size="16">◇</text><text x="260" y="40" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Twitter</text>
-          <text x="330" y="35" text-anchor="middle" fill="#00d4ff" font-size="16">▤</text><text x="330" y="50" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">LinkedIn</text>
-          <text x="100" y="128" text-anchor="middle" fill="#ff6b6b" font-size="16">▸</text><text x="100" y="143" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">YouTube</text>
-          <text x="200" y="135" text-anchor="middle" fill="#ffd93d" font-size="16">♪</text><text x="200" y="150" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">TikTok</text>
-          <text x="300" y="128" text-anchor="middle" fill="#6c63ff" font-size="16">◈</text><text x="300" y="143" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Twitch</text>
-          <line x1="100" y1="55" x2="170" y2="60" stroke="#555" stroke-width=".5" stroke-dasharray="3,3"/>
-          <line x1="160" y1="38" x2="175" y2="50" stroke="#555" stroke-width=".5" stroke-dasharray="3,3"/>
-          <line x1="240" y1="38" x2="225" y2="50" stroke="#555" stroke-width=".5" stroke-dasharray="3,3"/>
-          <line x1="300" y1="55" x2="230" y2="60" stroke="#555" stroke-width=".5" stroke-dasharray="3,3"/>
-          <line x1="120" y1="115" x2="175" y2="95" stroke="#555" stroke-width=".5" stroke-dasharray="3,3"/>
-          <line x1="200" y1="122" x2="200" y2="108" stroke="#555" stroke-width=".5" stroke-dasharray="3,3"/>
-          <line x1="280" y1="115" x2="225" y2="95" stroke="#555" stroke-width=".5" stroke-dasharray="3,3"/>
-          <text x="200" y="172" text-anchor="middle" fill="#555" font-size="8" font-family="monospace">Next.js 14 · TypeScript · Prisma/PostgreSQL · OpenAI</text>
+          <circle cx="200" cy="75" r="35" fill="rgba(94,106,210,.06)" stroke="#5e6ad2" stroke-width="1"/>
+          <text x="200" y="80" text-anchor="middle" fill="#5e6ad2" font-size="11" font-weight="bold" font-family="monospace">Genie AI</text>
+          <text x="70" y="50" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Facebook</text>
+          <text x="140" y="40" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Instagram</text>
+          <text x="260" y="40" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Twitter</text>
+          <text x="330" y="50" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">LinkedIn</text>
+          <text x="100" y="143" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">YouTube</text>
+          <text x="200" y="150" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">TikTok</text>
+          <text x="300" y="143" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Twitch</text>
+          <line x1="100" y1="55" x2="170" y2="60" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>
+          <line x1="160" y1="45" x2="175" y2="50" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>
+          <line x1="240" y1="45" x2="225" y2="50" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>
+          <line x1="300" y1="55" x2="230" y2="60" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>
+          <line x1="120" y1="130" x2="175" y2="95" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>
+          <line x1="200" y1="137" x2="200" y2="108" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>
+          <line x1="280" y1="130" x2="225" y2="95" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>
+          <text x="200" y="172" text-anchor="middle" fill="#8a8f98" font-size="8" font-family="monospace">Next.js 14 · TypeScript · Prisma/PostgreSQL · OpenAI</text>
         </svg>
       </div>
       <div class="card-body">
@@ -881,25 +752,25 @@ footer{
     <div class="project-card" data-roles="fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g9" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".12"/><stop offset="100%" stop-color="#6c63ff" stop-opacity=".08"/></linearGradient></defs>
+          <defs><linearGradient id="g9" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".1"/><stop offset="100%" stop-color="#5e6ad2" stop-opacity=".06"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#g9)"/>
-          <rect x="130" y="15" width="140" height="45" rx="8" fill="rgba(255,107,107,.1)" stroke="#ff6b6b" stroke-width="1"/>
-          <text x="200" y="35" text-anchor="middle" fill="#ff6b6b" font-size="10" font-weight="bold" font-family="monospace">◈ Molt Bot Core</text>
-          <text x="200" y="50" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Zero-Cloud · Zero-Telemetry</text>
-          <rect x="20" y="85" width="80" height="35" rx="6" fill="rgba(0,212,255,.08)" stroke="#00d4ff" stroke-width=".5"/>
+          <rect x="130" y="15" width="140" height="45" rx="8" fill="rgba(255,107,107,.08)" stroke="#ff6b6b" stroke-width="1"/>
+          <text x="200" y="35" text-anchor="middle" fill="#ff6b6b" font-size="10" font-weight="bold" font-family="monospace">Molt Bot Core</text>
+          <text x="200" y="50" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Zero-Cloud · Zero-Telemetry</text>
+          <rect x="20" y="85" width="80" height="35" rx="6" fill="rgba(0,212,255,.06)" stroke="#00d4ff" stroke-width=".5"/>
           <text x="60" y="106" text-anchor="middle" fill="#00d4ff" font-size="8" font-family="monospace">Discord</text>
-          <rect x="115" y="85" width="80" height="35" rx="6" fill="rgba(108,99,255,.08)" stroke="#6c63ff" stroke-width=".5"/>
-          <text x="155" y="106" text-anchor="middle" fill="#6c63ff" font-size="8" font-family="monospace">Slack</text>
-          <rect x="210" y="85" width="80" height="35" rx="6" fill="rgba(0,212,255,.08)" stroke="#00d4ff" stroke-width=".5"/>
+          <rect x="115" y="85" width="80" height="35" rx="6" fill="rgba(94,106,210,.06)" stroke="#5e6ad2" stroke-width=".5"/>
+          <text x="155" y="106" text-anchor="middle" fill="#5e6ad2" font-size="8" font-family="monospace">Slack</text>
+          <rect x="210" y="85" width="80" height="35" rx="6" fill="rgba(0,212,255,.06)" stroke="#00d4ff" stroke-width=".5"/>
           <text x="250" y="106" text-anchor="middle" fill="#00d4ff" font-size="8" font-family="monospace">Telegram</text>
-          <rect x="305" y="85" width="80" height="35" rx="6" fill="rgba(108,99,255,.08)" stroke="#6c63ff" stroke-width=".5"/>
-          <text x="345" y="106" text-anchor="middle" fill="#6c63ff" font-size="8" font-family="monospace">WhatsApp</text>
-          <line x1="200" y1="60" x2="60" y2="85" stroke="#555" stroke-width=".5" stroke-dasharray="3,3"/>
-          <line x1="200" y1="60" x2="155" y2="85" stroke="#555" stroke-width=".5" stroke-dasharray="3,3"/>
-          <line x1="200" y1="60" x2="250" y2="85" stroke="#555" stroke-width=".5" stroke-dasharray="3,3"/>
-          <line x1="200" y1="60" x2="345" y2="85" stroke="#555" stroke-width=".5" stroke-dasharray="3,3"/>
-          <text x="200" y="145" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="monospace">◆ Fernet AES-128-CBC + HMAC-SHA256</text>
-          <text x="200" y="162" text-anchor="middle" fill="#555" font-size="8" font-family="monospace">llama-cpp on-device LLM · PBKDF2 · SQLite</text>
+          <rect x="305" y="85" width="80" height="35" rx="6" fill="rgba(94,106,210,.06)" stroke="#5e6ad2" stroke-width=".5"/>
+          <text x="345" y="106" text-anchor="middle" fill="#5e6ad2" font-size="8" font-family="monospace">WhatsApp</text>
+          <line x1="200" y1="60" x2="60" y2="85" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>
+          <line x1="200" y1="60" x2="155" y2="85" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>
+          <line x1="200" y1="60" x2="250" y2="85" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>
+          <line x1="200" y1="60" x2="345" y2="85" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>
+          <text x="200" y="145" text-anchor="middle" fill="#ff6b6b" font-size="9" font-family="monospace">Fernet AES-128-CBC + HMAC-SHA256</text>
+          <text x="200" y="162" text-anchor="middle" fill="#8a8f98" font-size="8" font-family="monospace">llama-cpp on-device LLM · PBKDF2 · SQLite</text>
         </svg>
       </div>
       <div class="card-body">
@@ -920,20 +791,20 @@ footer{
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g10" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffd93d" stop-opacity=".1"/><stop offset="100%" stop-color="#ff6b6b" stop-opacity=".08"/></linearGradient></defs>
+          <defs><linearGradient id="g10" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffd93d" stop-opacity=".08"/><stop offset="100%" stop-color="#ff6b6b" stop-opacity=".06"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#g10)"/>
-          <rect x="40" y="25" width="120" height="60" rx="8" fill="rgba(255,217,61,.08)" stroke="#ffd93d" stroke-width="1"/>
-          <text x="100" y="48" text-anchor="middle" fill="#ffd93d" font-size="9" font-weight="bold" font-family="monospace">◇ Persona Engine</text>
-          <text x="100" y="65" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Telugu · English</text>
-          <text x="100" y="78" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Negotiation Logic</text>
-          <rect x="240" y="25" width="120" height="60" rx="8" fill="rgba(0,212,255,.08)" stroke="#00d4ff" stroke-width="1"/>
-          <text x="300" y="48" text-anchor="middle" fill="#00d4ff" font-size="9" font-weight="bold" font-family="monospace">◈ Sarvam AI</text>
-          <text x="300" y="65" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Multilingual NLP</text>
-          <text x="300" y="78" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">Knowledge Base</text>
+          <rect x="40" y="25" width="120" height="60" rx="8" fill="rgba(255,217,61,.06)" stroke="#ffd93d" stroke-width="1"/>
+          <text x="100" y="48" text-anchor="middle" fill="#ffd93d" font-size="9" font-weight="bold" font-family="monospace">Persona Engine</text>
+          <text x="100" y="65" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Telugu · English</text>
+          <text x="100" y="78" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Negotiation Logic</text>
+          <rect x="240" y="25" width="120" height="60" rx="8" fill="rgba(0,212,255,.06)" stroke="#00d4ff" stroke-width="1"/>
+          <text x="300" y="48" text-anchor="middle" fill="#00d4ff" font-size="9" font-weight="bold" font-family="monospace">Sarvam AI</text>
+          <text x="300" y="65" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Multilingual NLP</text>
+          <text x="300" y="78" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">Knowledge Base</text>
           <line x1="160" y1="55" x2="240" y2="55" stroke="#ffd93d" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="2s" repeatCount="indefinite"/></line>
-          <rect x="100" y="110" width="200" height="35" rx="8" fill="rgba(108,99,255,.06)" stroke="#6c63ff" stroke-width="1"/>
-          <text x="200" y="130" text-anchor="middle" fill="#6c63ff" font-size="9" font-family="monospace">◉ n8n Workflow · FastAPI · Templates</text>
-          <text x="200" y="165" text-anchor="middle" fill="#555" font-size="8" font-family="monospace">Conversational AI · Cross-Cultural Design</text>
+          <rect x="100" y="110" width="200" height="35" rx="8" fill="rgba(94,106,210,.05)" stroke="#5e6ad2" stroke-width="1"/>
+          <text x="200" y="130" text-anchor="middle" fill="#5e6ad2" font-size="9" font-family="monospace">n8n Workflow · FastAPI · Templates</text>
+          <text x="200" y="165" text-anchor="middle" fill="#8a8f98" font-size="8" font-family="monospace">Conversational AI · Cross-Cultural Design</text>
         </svg>
       </div>
       <div class="card-body">
@@ -954,22 +825,20 @@ footer{
     <div class="project-card" data-roles="quantum,rf">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g11" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6c63ff" stop-opacity=".12"/><stop offset="100%" stop-color="#00d4ff" stop-opacity=".08"/></linearGradient></defs>
+          <defs><linearGradient id="g11" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#5e6ad2" stop-opacity=".1"/><stop offset="100%" stop-color="#00d4ff" stop-opacity=".06"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#g11)"/>
-          <rect x="30" y="40" width="100" height="70" rx="8" fill="rgba(108,99,255,.08)" stroke="#6c63ff" stroke-width="1"/>
-          <text x="80" y="65" text-anchor="middle" fill="#6c63ff" font-size="18">▣</text>
-          <text x="80" y="82" text-anchor="middle" fill="#6c63ff" font-size="8" font-family="monospace">Caller A</text>
-          <text x="80" y="98" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">WebRTC Client</text>
-          <rect x="270" y="40" width="100" height="70" rx="8" fill="rgba(0,212,255,.08)" stroke="#00d4ff" stroke-width="1"/>
-          <text x="320" y="65" text-anchor="middle" fill="#00d4ff" font-size="18">▣</text>
+          <rect x="30" y="40" width="100" height="70" rx="8" fill="rgba(94,106,210,.06)" stroke="#5e6ad2" stroke-width="1"/>
+          <text x="80" y="82" text-anchor="middle" fill="#5e6ad2" font-size="8" font-family="monospace">Caller A</text>
+          <text x="80" y="98" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">WebRTC Client</text>
+          <rect x="270" y="40" width="100" height="70" rx="8" fill="rgba(0,212,255,.06)" stroke="#00d4ff" stroke-width="1"/>
           <text x="320" y="82" text-anchor="middle" fill="#00d4ff" font-size="8" font-family="monospace">Caller B</text>
-          <text x="320" y="98" text-anchor="middle" fill="#555" font-size="7" font-family="monospace">WebRTC Client</text>
-          <line x1="130" y1="65" x2="270" y2="65" stroke="#6c63ff" stroke-width="1.5" stroke-dasharray="6,4"><animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2s" repeatCount="indefinite"/></line>
-          <text x="200" y="55" text-anchor="middle" fill="#6c63ff" font-size="8" font-weight="bold" font-family="monospace">◆ QKD Encrypted Channel</text>
+          <text x="320" y="98" text-anchor="middle" fill="#8a8f98" font-size="7" font-family="monospace">WebRTC Client</text>
+          <line x1="130" y1="65" x2="270" y2="65" stroke="#5e6ad2" stroke-width="1.5" stroke-dasharray="6,4"><animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2s" repeatCount="indefinite"/></line>
+          <text x="200" y="55" text-anchor="middle" fill="#5e6ad2" font-size="8" font-weight="bold" font-family="monospace">QKD Encrypted Channel</text>
           <line x1="130" y1="85" x2="270" y2="85" stroke="#00d4ff" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="14" dur="2s" repeatCount="indefinite"/></line>
           <text x="200" y="78" text-anchor="middle" fill="#00d4ff" font-size="7" font-family="monospace">Voice + Video Stream</text>
-          <text x="200" y="145" text-anchor="middle" fill="#555" font-size="9" font-family="monospace">Quantum-Grade E2E Encryption</text>
-          <text x="200" y="162" text-anchor="middle" fill="#555" font-size="8" font-family="monospace">QKD Protocols + WebRTC</text>
+          <text x="200" y="145" text-anchor="middle" fill="#8a8f98" font-size="9" font-family="monospace">Quantum-Grade E2E Encryption</text>
+          <text x="200" y="162" text-anchor="middle" fill="#8a8f98" font-size="8" font-family="monospace">QKD Protocols + WebRTC</text>
         </svg>
       </div>
       <div class="card-body">
@@ -989,14 +858,13 @@ footer{
     <div class="project-card" data-roles="fullstack">
       <div class="card-top">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="g12" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".1"/><stop offset="100%" stop-color="#ffd93d" stop-opacity=".08"/></linearGradient></defs>
+          <defs><linearGradient id="g12" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".08"/><stop offset="100%" stop-color="#ffd93d" stop-opacity=".06"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#g12)"/>
-          <rect x="120" y="25" width="160" height="90" rx="10" fill="rgba(255,107,107,.06)" stroke="#ff6b6b" stroke-width="1"/>
-          <text x="200" y="55" text-anchor="middle" fill="#ff6b6b" font-size="30">▸</text>
+          <rect x="120" y="25" width="160" height="90" rx="10" fill="rgba(255,107,107,.05)" stroke="#ff6b6b" stroke-width="1"/>
           <text x="200" y="80" text-anchor="middle" fill="#ff6b6b" font-size="10" font-weight="bold" font-family="monospace">Founders Decoded</text>
-          <text x="200" y="98" text-anchor="middle" fill="#555" font-size="8" font-family="monospace">YouTube · Podcast</text>
-          <text x="200" y="140" text-anchor="middle" fill="#555" font-size="9" font-family="monospace">◉ Founder Interviews · Startup Strategy</text>
-          <text x="200" y="160" text-anchor="middle" fill="#555" font-size="8" font-family="monospace">Thought Leadership · Entrepreneurship</text>
+          <text x="200" y="98" text-anchor="middle" fill="#8a8f98" font-size="8" font-family="monospace">YouTube · Podcast</text>
+          <text x="200" y="140" text-anchor="middle" fill="#8a8f98" font-size="9" font-family="monospace">Founder Interviews · Startup Strategy</text>
+          <text x="200" y="160" text-anchor="middle" fill="#8a8f98" font-size="8" font-family="monospace">Thought Leadership · Entrepreneurship</text>
         </svg>
       </div>
       <div class="card-body">
@@ -1016,11 +884,11 @@ footer{
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-header reveal">
-    <h2><span class="si si-lg si-float si-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="1.8"><circle class="draw" cx="12" cy="12" r="3"/><path class="draw-d1" d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> Technical Skills</h2>
+    <h2><span class="si si-lg si-float si-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="1.8"><circle class="draw" cx="12" cy="12" r="3"/><path class="draw-d1" d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> Technical Skills</h2>
   </div>
   <div class="skills-grid">
     <div class="skill-cat reveal">
-      <h4><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><polyline points="16 18 22 12 16 6" class="draw"/><polyline points="8 6 2 12 8 18" class="draw-d1"/></svg></span> Languages &amp; Frameworks</h4>
+      <h4><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><polyline points="16 18 22 12 16 6" class="draw"/><polyline points="8 6 2 12 8 18" class="draw-d1"/></svg></span> Languages &amp; Frameworks</h4>
       <span class="skill-tag">Python</span><span class="skill-tag">JavaScript</span><span class="skill-tag">TypeScript</span>
       <span class="skill-tag">React</span><span class="skill-tag">Next.js</span><span class="skill-tag">Node.js</span>
       <span class="skill-tag">FastAPI</span><span class="skill-tag">Flutter</span><span class="skill-tag">Julia</span>
@@ -1058,7 +926,7 @@ footer{
       <span class="skill-tag">Optical Alignment</span><span class="skill-tag">FDTD Simulation</span>
     </div>
     <div class="skill-cat reveal">
-      <h4><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M9 3h6v6l4 8a2 2 0 0 1-1.8 3H6.8A2 2 0 0 1 5 17l4-8V3z" class="draw"/><path d="M7 3h10" class="draw-d1"/><path d="M8 15h8" class="draw-d2"/></svg></span> Test &amp; Measurement</h4>
+      <h4><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M9 3h6v6l4 8a2 2 0 0 1-1.8 3H6.8A2 2 0 0 1 5 17l4-8V3z" class="draw"/><path d="M7 3h10" class="draw-d1"/><path d="M8 15h8" class="draw-d2"/></svg></span> Test &amp; Measurement</h4>
       <span class="skill-tag">Qiskit Metal</span><span class="skill-tag">Oscilloscopes</span>
       <span class="skill-tag">Signal Generators</span><span class="skill-tag">Power Meters</span>
       <span class="skill-tag">MATLAB/Simulink</span><span class="skill-tag">LabVIEW</span>
@@ -1121,11 +989,11 @@ footer{
 <!-- ADDITIONAL -->
 <section>
   <div class="section-header reveal">
-    <h2><span class="si si-lg si-float si-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="1.8"><polygon class="draw" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span> Additional</h2>
+    <h2><span class="si si-lg si-float si-pulse"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="1.8"><polygon class="draw" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span> Additional</h2>
   </div>
-  <div style="max-width:700px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+  <div style="max-width:700px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
     <div class="edu-card reveal"><strong><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd93d" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" class="draw"/><path d="M9 13l2 2 4-4" class="draw-d1"/></svg></span> Certifications:</strong> Certified Scrum Master</div>
-    <div class="edu-card reveal"><strong><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1" class="draw"/><rect x="4" y="3" width="16" height="18" rx="1" class="draw-d1"/></svg></span> Memberships:</strong> IEEE Member</div>
+    <div class="edu-card reveal"><strong><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1" class="draw"/><rect x="4" y="3" width="16" height="18" rx="1" class="draw-d1"/></svg></span> Memberships:</strong> IEEE Member</div>
     <div class="edu-card reveal"><strong><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" class="draw"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" class="draw-d1"/></svg></span> Author:</strong> Beauty and the Curse (2024)</div>
     <div class="edu-card reveal"><strong><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2"><circle cx="12" cy="12" r="10" class="draw"/><path d="M12 6v6l4 2" class="draw-d1"/></svg></span> Judging:</strong> SoLA Robotics Competition Judge</div>
   </div>
@@ -1160,7 +1028,7 @@ footer{
     </div>
   </div>
   <div style="text-align:center;margin-top:1.5rem">
-    <a href="https://www.youtube.com/@FoundersDecoded1" target="_blank" class="btn-resume" style="background:linear-gradient(135deg,#ff0000,#cc0000)"><span class="si si-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="4" class="draw"/><polygon points="10 8 16 12 10 16" class="draw-d1"/></svg></span> Subscribe on YouTube</a>
+    <a href="https://www.youtube.com/@FoundersDecoded1" target="_blank" class="btn-resume" style="background:linear-gradient(135deg,#ff0000,#cc0000);box-shadow:rgba(255,0,0,0.2) 0 4px 16px"><span class="si si-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="4" class="draw"/><polygon points="10 8 16 12 10 16" class="draw-d1"/></svg></span> Subscribe on YouTube</a>
   </div>
 </section>
 
@@ -1171,144 +1039,19 @@ footer{
   </div>
   <div class="contact-links">
     <a href="mailto:k.revanth456@gmail.com"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" class="draw"/><polyline points="22 6 12 13 2 6" class="draw-d1"/></svg></span> k.revanth456@gmail.com</a>
-    <a href="tel:+13232037521"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" class="draw"/></svg></span> (323) 203-7521</a>
+    <a href="tel:+13232037521"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" class="draw"/></svg></span> (323) 203-7521</a>
     <a href="https://www.linkedin.com/in/revanthkondaveti" target="_blank"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" class="draw"/><rect x="2" y="9" width="4" height="12" class="draw-d1"/><circle cx="4" cy="4" r="2" class="draw-d2"/></svg></span> LinkedIn</a>
-    <a href="https://github.com/revanthvne" target="_blank"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#6c63ff" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" class="draw"/></svg></span> GitHub</a>
+    <a href="https://github.com/revanthvne" target="_blank"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#5e6ad2" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" class="draw"/></svg></span> GitHub</a>
     <a href="https://www.youtube.com/@FoundersDecoded1" target="_blank"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="4" class="draw"/><polygon points="10 8 16 12 10 16" class="draw-d1"/></svg></span> YouTube</a>
     <a href="https://www.revanthk.com" target="_blank"><span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd93d" stroke-width="2"><circle cx="12" cy="12" r="10" class="draw"/><path d="M2 12h20" class="draw-d1"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" class="draw-d2"/></svg></span> revanthk.com</a>
   </div>
 </section>
 
 <footer>
-  <p>&copy; 2025 Revanth Kondaveti. All rights reserved. Built with passion <span class="si si-sm"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2"><path d="M12 2L4 7v5c0 7 8 12 8 12s8-5 8-12V7l-8-5z" class="draw"/></svg></span></p>
+  <p>&copy; 2025 Revanth Kondaveti. All rights reserved.</p>
 </footer>
 
 <script>
-// ─── PARTICLE BACKGROUND (Mouse-Interactive) ───
-(function(){
-  const c=document.getElementById('particles'),ctx=c.getContext('2d');
-  let w,h,particles=[],mouse={x:null,y:null,radius:150};
-  function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}
-  window.addEventListener('resize',resize);resize();
-  window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
-  window.addEventListener('mouseout',()=>{mouse.x=null;mouse.y=null});
-
-  const colors=['108,99,255','0,212,255','255,107,107','255,217,61'];
-  for(let i=0;i<80;i++){
-    const col=colors[Math.floor(Math.random()*colors.length)];
-    particles.push({
-      x:Math.random()*w,y:Math.random()*h,
-      r:Math.random()*2+.5,
-      baseX:0,baseY:0,
-      dx:(Math.random()-.5)*.4,dy:(Math.random()-.5)*.4,
-      o:Math.random()*.35+.1,
-      col:col,
-      pulse:Math.random()*Math.PI*2,
-      pulseSpeed:.01+Math.random()*.02
-    });
-    particles[i].baseX=particles[i].x;
-    particles[i].baseY=particles[i].y;
-  }
-
-  function draw(){
-    ctx.clearRect(0,0,w,h);
-    particles.forEach(p=>{
-      // Pulse opacity
-      p.pulse+=p.pulseSpeed;
-      const pulseO=p.o+Math.sin(p.pulse)*.08;
-
-      p.x+=p.dx;p.y+=p.dy;
-      if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;
-
-      // Mouse repulsion
-      let drawR=p.r;
-      if(mouse.x!==null){
-        const mx=p.x-mouse.x,my=p.y-mouse.y,md=Math.sqrt(mx*mx+my*my);
-        if(md<mouse.radius){
-          const force=(mouse.radius-md)/mouse.radius;
-          p.x+=mx/md*force*3;
-          p.y+=my/md*force*3;
-          drawR=p.r+force*2;
-        }
-      }
-
-      // Glow
-      const grad=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,drawR*3);
-      grad.addColorStop(0,`rgba(${p.col},${pulseO})`);
-      grad.addColorStop(1,`rgba(${p.col},0)`);
-      ctx.beginPath();ctx.arc(p.x,p.y,drawR*3,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();
-
-      ctx.beginPath();ctx.arc(p.x,p.y,drawR,0,Math.PI*2);
-      ctx.fillStyle=`rgba(${p.col},${pulseO})`;ctx.fill();
-    });
-
-    // Connection lines
-    for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
-      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<130){
-        ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);
-        ctx.strokeStyle=`rgba(108,99,255,${.06*(1-d/130)})`;ctx.lineWidth=.5;ctx.stroke();
-      }
-    }
-
-    // Mouse attraction lines
-    if(mouse.x!==null){
-      particles.forEach(p=>{
-        const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
-        if(d<200){
-          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);
-          ctx.strokeStyle=`rgba(0,212,255,${.04*(1-d/200)})`;ctx.lineWidth=.3;ctx.stroke();
-        }
-      });
-    }
-
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-
-// ─── TWINKLING STARS ───
-(function(){
-  const field=document.getElementById('twinkleField');
-  for(let i=0;i<50;i++){
-    const star=document.createElement('div');
-    star.className='twinkle';
-    star.style.left=Math.random()*100+'%';
-    star.style.top=Math.random()*100+'%';
-    star.style.width=star.style.height=(Math.random()*2+1)+'px';
-    star.style.animationDuration=(2+Math.random()*4)+'s';
-    star.style.animationDelay=(Math.random()*5)+'s';
-    field.appendChild(star);
-  }
-})();
-
-// ─── PARALLAX ORBS ON SCROLL ───
-(function(){
-  const orbs=document.querySelectorAll('.orb');
-  const speeds=[0.03,0.02,0.04,0.025,0.015];
-  window.addEventListener('scroll',()=>{
-    const sy=window.scrollY;
-    orbs.forEach((orb,i)=>{
-      const speed=speeds[i]||0.02;
-      orb.style.transform=`translateY(${sy*speed*-60}px)`;
-    });
-  },{passive:true});
-})();
-
-// ─── MOUSE PARALLAX FOR ORBS ───
-(function(){
-  const orbs=document.querySelectorAll('.orb');
-  document.addEventListener('mousemove',e=>{
-    const cx=e.clientX/window.innerWidth-.5;
-    const cy=e.clientY/window.innerHeight-.5;
-    orbs.forEach((orb,i)=>{
-      const depth=(i+1)*8;
-      orb.style.marginLeft=cx*depth+'px';
-      orb.style.marginTop=cy*depth+'px';
-    });
-  },{passive:true});
-})();
-
 // ─── SCROLL REVEAL ───
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});
 document.querySelectorAll('.reveal,.timeline-item,.project-card').forEach(el=>obs.observe(el));
