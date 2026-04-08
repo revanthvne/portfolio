@@ -60,7 +60,9 @@ nav{
 .nav-links{display:flex;gap:1.2rem;list-style:none;align-items:center}
 .nav-links a{color:var(--text-tertiary);font-size:.82rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
-/* Mobile hamburger */
+/* Mobile hamburger & right group */
+.nav-right-mobile{display:none;align-items:center;gap:8px}
+.theme-toggle-mobile{display:none}
 .nav-hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:6px;background:none;border:none;z-index:101}
 .nav-hamburger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
 .nav-hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
@@ -71,8 +73,9 @@ nav{
 .hero{
   min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:8rem 2rem 5rem;
-  background:linear-gradient(180deg,var(--hero-grad-start) 0%,var(--hero-grad-end) 100%);
+  background:transparent;
   position:relative;overflow:hidden;transition:background .4s;
+  z-index:1;
 }
 .hero h1{
   font-family:'Playfair Display',Georgia,serif;
@@ -108,7 +111,7 @@ nav{
 .btn-resume:hover{background:var(--accent-hover);transform:translateY(-1px);box-shadow:var(--shadow-lg);color:#fff}
 
 /* SECTIONS */
-section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
+section{padding:5rem 2rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
 .section-header{text-align:center;margin-bottom:3rem}
 .section-header h2{
   font-family:'Playfair Display',Georgia,serif;
@@ -274,7 +277,7 @@ section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
 /* ADDITIONAL */
 .additional-grid{max-width:700px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
 
-footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid var(--border);color:var(--text-tertiary);font-size:.8rem;background:var(--footer-bg);transition:background .4s}
+footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid var(--border);color:var(--text-tertiary);font-size:.8rem;background:var(--footer-bg);transition:background .4s;position:relative;z-index:1}
 
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(15px);transition:all .4s ease}
@@ -285,7 +288,10 @@ footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid var(--border);
   .hero-stats{gap:2rem}
   .timeline{padding-left:2.5rem}
   nav{padding:0 1rem}
+  .nav-right-mobile{display:flex}
   .nav-hamburger{display:flex}
+  .theme-toggle-mobile{display:flex}
+  .nav-theme-desktop{display:none}
   .nav-links{
     display:none;flex-direction:column;position:absolute;top:56px;left:0;right:0;
     background:var(--nav-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
@@ -295,7 +301,7 @@ footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid var(--border);
   .nav-links.open{display:flex}
   .nav-links li{width:100%}
   .nav-links a{font-size:.9rem;display:block;padding:.5rem 0}
-  .theme-toggle{width:34px;height:34px;margin-left:0;margin-top:.3rem}
+  .theme-toggle{width:34px;height:34px;margin-left:0}
   .theme-toggle svg{width:16px;height:16px}
   .additional-grid{grid-template-columns:1fr}
   .card-top{height:160px}
@@ -321,10 +327,10 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
 
 /* BACKGROUND ANIMATION SYSTEM — matrix rain + floating icons */
 .matrix-canvas{
-  position:fixed;inset:0;z-index:-2;pointer-events:none;
+  position:fixed;inset:0;z-index:0;pointer-events:none;
 }
 .float-canvas{
-  position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
 }
 .float-icon{
   position:absolute;will-change:transform,opacity;
@@ -390,7 +396,6 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
 
 <nav>
   <div class="nav-logo">Revanth Kondaveti</div>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -398,12 +403,20 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <li><a href="#skills">Skills</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><button class="theme-toggle" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+    <li class="nav-theme-desktop"><button class="theme-toggle" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
       <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
       </svg>
     </button></li>
   </ul>
+  <div class="nav-right-mobile">
+    <button class="theme-toggle theme-toggle-mobile" id="themeToggleMobile" title="Toggle dark mode" aria-label="Toggle dark mode">
+      <svg class="themeIconMobile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -1678,10 +1691,12 @@ document.querySelectorAll('.card-view-tabs').forEach(tabs=>{
   scheduleNext();
 })();
 
-// ─── Theme Toggle (always visible in nav) ───
+// ─── Theme Toggle (desktop + mobile synced) ───
 (function(){
   const btn=document.getElementById('themeToggle');
+  const btnMobile=document.getElementById('themeToggleMobile');
   const icon=document.getElementById('themeIcon');
+  const iconMobile=document.querySelector('.themeIconMobile');
   const sunSVG='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
   const moonSVG='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
 
@@ -1701,33 +1716,37 @@ document.querySelectorAll('.card-view-tabs').forEach(tabs=>{
     }
   }
 
-  function updateIcon(isDark){
-    icon.innerHTML=isDark?moonSVG:sunSVG;
-    btn.classList.add('spin');
-    setTimeout(()=>btn.classList.remove('spin'),500);
+  function updateAllIcons(isDark){
+    const svg=isDark?moonSVG:sunSVG;
+    icon.innerHTML=svg;
+    if(iconMobile) iconMobile.innerHTML=svg;
+    [btn,btnMobile].forEach(function(b){if(b){b.classList.add('spin');setTimeout(function(){b.classList.remove('spin')},500)}});
   }
 
-  btn.addEventListener('click',function(){
-    const rect=btn.getBoundingClientRect();
+  function toggleTheme(triggerBtn){
+    const rect=triggerBtn.getBoundingClientRect();
     const isDark=document.documentElement.getAttribute('data-theme')==='dark';
     if(isDark){
       document.documentElement.removeAttribute('data-theme');
       localStorage.removeItem('theme');
-      updateIcon(false);
+      updateAllIcons(false);
       burst(rect.left+18,rect.top+18,false);
     }else{
       document.documentElement.setAttribute('data-theme','dark');
       localStorage.setItem('theme','dark');
-      updateIcon(true);
+      updateAllIcons(true);
       burst(rect.left+18,rect.top+18,true);
     }
-  });
+  }
+
+  btn.addEventListener('click',function(){toggleTheme(btn)});
+  if(btnMobile) btnMobile.addEventListener('click',function(){toggleTheme(btnMobile)});
 
   // Restore saved theme — light mode is always default
   const saved=localStorage.getItem('theme');
   if(saved==='dark'){
     document.documentElement.setAttribute('data-theme','dark');
-    updateIcon(true);
+    updateAllIcons(true);
   }
 })();
 </script>
