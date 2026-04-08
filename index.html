@@ -60,6 +60,12 @@ nav{
 .nav-links{display:flex;gap:1.2rem;list-style:none;align-items:center}
 .nav-links a{color:var(--text-tertiary);font-size:.82rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
+/* Mobile hamburger */
+.nav-hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:6px;background:none;border:none;z-index:101}
+.nav-hamburger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.nav-hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
 
 /* HERO */
 .hero{
@@ -279,10 +285,18 @@ footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid var(--border);
   .hero-stats{gap:2rem}
   .timeline{padding-left:2.5rem}
   nav{padding:0 1rem}
-  .nav-links{gap:.5rem}
-  .nav-links a{font-size:.7rem}
-  .theme-toggle{width:30px;height:30px}
-  .theme-toggle svg{width:14px;height:14px}
+  .nav-hamburger{display:flex}
+  .nav-links{
+    display:none;flex-direction:column;position:absolute;top:56px;left:0;right:0;
+    background:var(--nav-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);padding:1rem;gap:.6rem;
+    box-shadow:var(--shadow-lg);z-index:100;
+  }
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links a{font-size:.9rem;display:block;padding:.5rem 0}
+  .theme-toggle{width:34px;height:34px;margin-left:0;margin-top:.3rem}
+  .theme-toggle svg{width:16px;height:16px}
   .additional-grid{grid-template-columns:1fr}
   .card-top{height:160px}
   .card-top svg text{font-size:inherit}
@@ -376,7 +390,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
 
 <nav>
   <div class="nav-logo">Revanth Kondaveti</div>
-  <ul class="nav-links">
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -517,7 +532,7 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Kalshi AI Trading Bot -->
     <div class="project-card" data-roles="ai,fintech">
       <div class="card-top">
-        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Architecture</button><button class="card-view-tab" data-target="ui">UI/UX</button></div>
         <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gk" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3b5998" stop-opacity=".08"/><stop offset="100%" stop-color="#0a8967" stop-opacity=".04"/></linearGradient></defs>
@@ -586,7 +601,7 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- NeuralGrid AI -->
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
-        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Architecture</button><button class="card-view-tab" data-target="ui">UI/UX</button></div>
         <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gn" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0a8967" stop-opacity=".06"/><stop offset="100%" stop-color="#3b5998" stop-opacity=".04"/></linearGradient></defs>
@@ -665,7 +680,7 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Satellite Hybrid Internet -->
     <div class="project-card" data-roles="rf">
       <div class="card-top">
-        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Architecture</button><button class="card-view-tab" data-target="ui">UI/UX</button></div>
         <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gs" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d4a017" stop-opacity=".08"/><stop offset="100%" stop-color="#0a8967" stop-opacity=".04"/></linearGradient></defs>
@@ -737,7 +752,7 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- QuantumShield -->
     <div class="project-card" data-roles="quantum,fullstack">
       <div class="card-top">
-        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Architecture</button><button class="card-view-tab" data-target="ui">UI/UX</button></div>
         <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gq" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c0392b" stop-opacity=".06"/><stop offset="100%" stop-color="#3b5998" stop-opacity=".04"/></linearGradient></defs>
@@ -802,7 +817,7 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- JobFill.ai -->
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
-        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Architecture</button><button class="card-view-tab" data-target="ui">UI/UX</button></div>
         <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gj" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3b5998" stop-opacity=".06"/><stop offset="100%" stop-color="#0a8967" stop-opacity=".04"/></linearGradient></defs>
@@ -867,7 +882,7 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Teach & Repeat -->
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
-        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Architecture</button><button class="card-view-tab" data-target="ui">UI/UX</button></div>
         <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gt" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0a8967" stop-opacity=".06"/><stop offset="100%" stop-color="#d4a017" stop-opacity=".04"/></linearGradient></defs>
@@ -923,7 +938,7 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- MarketPulse -->
     <div class="project-card" data-roles="ai,fintech,fullstack">
       <div class="card-top">
-        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Architecture</button><button class="card-view-tab" data-target="ui">UI/UX</button></div>
         <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gm" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3b5998" stop-opacity=".06"/><stop offset="100%" stop-color="#d4a017" stop-opacity=".04"/></linearGradient></defs>
@@ -997,7 +1012,7 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- SocialSurgeGenie -->
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
-        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Architecture</button><button class="card-view-tab" data-target="ui">UI/UX</button></div>
         <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gsg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c0392b" stop-opacity=".06"/><stop offset="100%" stop-color="#d4a017" stop-opacity=".04"/></linearGradient></defs>
@@ -1077,7 +1092,7 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Molt Bot -->
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
-        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Architecture</button><button class="card-view-tab" data-target="ui">UI/UX</button></div>
         <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gmb" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0a8967" stop-opacity=".06"/><stop offset="100%" stop-color="#3b5998" stop-opacity=".04"/></linearGradient></defs>
@@ -1139,7 +1154,7 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Multilingual Salesman -->
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
-        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Architecture</button><button class="card-view-tab" data-target="ui">UI/UX</button></div>
         <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gts" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d4a017" stop-opacity=".06"/><stop offset="100%" stop-color="#c0392b" stop-opacity=".04"/></linearGradient></defs>
@@ -1205,7 +1220,7 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Quantum Encrypted Call -->
     <div class="project-card" data-roles="quantum">
       <div class="card-top">
-        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Architecture</button><button class="card-view-tab" data-target="ui">UI/UX</button></div>
         <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gqe" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c0392b" stop-opacity=".06"/><stop offset="100%" stop-color="#3b5998" stop-opacity=".04"/></linearGradient></defs>
@@ -1259,7 +1274,7 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Founders Decoded -->
     <div class="project-card" data-roles="">
       <div class="card-top">
-        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Architecture</button><button class="card-view-tab" data-target="ui">UI/UX</button></div>
         <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gfd" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c0392b" stop-opacity=".06"/><stop offset="100%" stop-color="#d4a017" stop-opacity=".04"/></linearGradient></defs>
@@ -1484,7 +1499,24 @@ document.querySelectorAll('.role-filter-btn').forEach(btn=>{
 });
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})})});
 
-// ─── Card View Tabs (Architecture ↔ UI Preview) ───
+// ─── Mobile Hamburger Nav ───
+(function(){
+  const btn=document.getElementById('navHamburger');
+  const links=document.getElementById('navLinks');
+  btn.addEventListener('click',()=>{
+    btn.classList.toggle('open');
+    links.classList.toggle('open');
+  });
+  // Close on link click
+  links.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click',()=>{
+      btn.classList.remove('open');
+      links.classList.remove('open');
+    });
+  });
+})();
+
+// ─── Card View Tabs (Architecture ↔ UI/UX) ───
 document.querySelectorAll('.card-view-tabs').forEach(tabs=>{
   const card=tabs.closest('.card-top');
   const views=card.querySelectorAll('.card-view');
