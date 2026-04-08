@@ -1102,17 +1102,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click'
     ctx.font='14px monospace';
 
     for(let i=0;i<cols;i++){
-      // Only render ~35% of columns each frame for sparse look
-      if(Math.random()>0.35)continue;
+      // Render ~45% of columns each frame
+      if(Math.random()>0.45)continue;
       const ch=chars[Math.random()*chars.length|0];
       const y=drops[i]*14;
-      // Vary opacity per character for depth
-      const alpha=0.03+Math.random()*0.08;
+      // Base opacity 10-15%
+      const alpha=0.10+Math.random()*0.05;
       ctx.fillStyle=`rgba(${col.r},${col.g},${col.b},${alpha})`;
       ctx.fillText(ch,i*14,y);
-      // Random brighter "head" character
-      if(Math.random()>0.97){
-        ctx.fillStyle=`rgba(${col.r},${col.g},${col.b},${alpha+0.15})`;
+      // Brighter head characters — ~12% chance, multiple per frame
+      if(Math.random()>0.88){
+        const headAlpha=0.25+Math.random()*0.15;
+        ctx.fillStyle=`rgba(${col.r},${col.g},${col.b},${headAlpha})`;
         ctx.fillText(ch,i*14,y);
       }
       if(y>h&&Math.random()>0.98) drops[i]=0;
