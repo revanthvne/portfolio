@@ -187,7 +187,7 @@ section{padding:5rem 2rem;max-width:1100px;margin:0 auto;position:relative;z-ind
   background:var(--card-top-bg);
   border-bottom:1px solid var(--border);
 }
-.card-top svg{width:100%;height:100%;display:block}
+.card-top svg{width:100%;height:100%;display:block;object-fit:contain}
 .card-view{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .4s,transform .4s}
 .card-view.hidden{opacity:0;pointer-events:none;transform:scale(.96)}
 .card-view-tabs{
@@ -306,11 +306,14 @@ footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid var(--border);
   .theme-toggle{width:34px;height:34px;margin-left:0}
   .theme-toggle svg{width:16px;height:16px}
   .additional-grid{grid-template-columns:1fr}
-  .card-top{height:160px}
+  .card-top{height:200px}
+  .card-top svg{padding:4px}
   .card-top svg text{font-size:inherit}
+  .card-view-tabs{top:4px;right:4px;gap:2px;padding:2px}
+  .card-view-tab{padding:4px 10px;font-size:.65rem}
 }
 @media(max-width:400px){
-  .card-top{height:140px}
+  .card-top{height:180px}
 }
 
 /* DARK MODE TRANSITIONS */
