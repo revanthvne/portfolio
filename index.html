@@ -20,10 +20,60 @@
   --shadow-lg:0 8px 30px rgba(0,0,0,0.08);
 }
 html{scroll-behavior:smooth;font-size:16px}
-body{background:var(--bg);color:var(--text-secondary);font-family:'Inter',system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text-secondary);font-family:'Inter',system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:var(--accent);text-decoration:none;transition:color .2s}
 a:hover{color:var(--accent-hover)}
 ::selection{background:var(--accent);color:#fff}
+
+/* BACKGROUND ANIMATIONS */
+.bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
+.bg-gradient-orb{
+  position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;
+  animation:orbFloat 20s ease-in-out infinite;
+}
+.bg-gradient-orb.orb-1{width:500px;height:500px;background:radial-gradient(circle,rgba(59,89,152,.3),transparent 70%);top:-10%;left:-5%;animation-delay:0s}
+.bg-gradient-orb.orb-2{width:400px;height:400px;background:radial-gradient(circle,rgba(10,137,103,.25),transparent 70%);bottom:10%;right:-5%;animation-delay:-7s}
+.bg-gradient-orb.orb-3{width:350px;height:350px;background:radial-gradient(circle,rgba(212,160,23,.2),transparent 70%);top:40%;left:50%;animation-delay:-14s}
+@keyframes orbFloat{
+  0%,100%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(30px,-40px) scale(1.05)}
+  50%{transform:translate(-20px,30px) scale(.95)}
+  75%{transform:translate(40px,20px) scale(1.08)}
+}
+
+.bg-grid{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(59,89,152,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(59,89,152,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  animation:gridShift 30s linear infinite;
+}
+@keyframes gridShift{0%{background-position:0 0}100%{background-position:60px 60px}}
+
+.bg-particle{
+  position:absolute;border-radius:50%;pointer-events:none;
+  background:var(--accent);opacity:0;
+  animation:particleRise linear infinite;
+}
+@keyframes particleRise{
+  0%{opacity:0;transform:translateY(0) scale(0)}
+  10%{opacity:.15}
+  90%{opacity:.1}
+  100%{opacity:0;transform:translateY(-100vh) scale(1)}
+}
+
+.bg-geo{
+  position:absolute;border:1px solid rgba(59,89,152,.06);pointer-events:none;
+  animation:geoSpin 40s linear infinite;
+}
+.bg-geo.geo-1{width:200px;height:200px;border-radius:50%;top:15%;right:8%;animation-duration:50s}
+.bg-geo.geo-2{width:120px;height:120px;top:60%;left:5%;transform:rotate(45deg);animation-duration:35s;animation-direction:reverse}
+.bg-geo.geo-3{width:80px;height:80px;border-radius:50%;bottom:20%;right:15%;border-color:rgba(10,137,103,.06);animation-duration:45s}
+@keyframes geoSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+/* All content sits above background */
+nav,section,.hero,footer{position:relative;z-index:1}
 
 /* NAV */
 nav{
@@ -149,12 +199,13 @@ section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
 
 /* PROJECT DIAGRAM TOP */
 .card-top{
-  height:180px;position:relative;overflow:hidden;
+  position:relative;overflow:hidden;padding:0;
   display:flex;align-items:center;justify-content:center;
   background:linear-gradient(135deg,#f8f7f4,#f0eff0);
   border-bottom:1px solid var(--border);
+  aspect-ratio:400/180;
 }
-.card-top svg{width:100%;height:100%}
+.card-top svg{width:100%;height:100%;display:block}
 @keyframes flowDash{to{stroke-dashoffset:-14}}
 @keyframes nodePulse{0%,100%{opacity:.7}50%{opacity:1}}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
@@ -238,15 +289,26 @@ footer{text-align:center;padding:2.5rem 2rem;border-top:1px solid var(--border);
   .nav-links{gap:.8rem}
   .nav-links a{font-size:.7rem}
   .additional-grid{grid-template-columns:1fr}
-  .card-top{height:160px}
-  .card-top svg text{font-size:inherit}
+  .bg-gradient-orb{filter:blur(60px);opacity:.1}
+  .bg-geo{display:none}
 }
 @media(max-width:400px){
-  .card-top{height:140px}
+  .bg-gradient-orb{opacity:.06}
 }
 </style>
 </head>
 <body>
+
+<!-- Background Animations -->
+<div class="bg-grid"></div>
+<div class="bg-canvas" id="bgCanvas">
+  <div class="bg-gradient-orb orb-1"></div>
+  <div class="bg-gradient-orb orb-2"></div>
+  <div class="bg-gradient-orb orb-3"></div>
+  <div class="bg-geo geo-1"></div>
+  <div class="bg-geo geo-2"></div>
+  <div class="bg-geo geo-3"></div>
+</div>
 
 <nav>
   <div class="nav-logo">Revanth Kondaveti</div>
@@ -953,6 +1015,26 @@ document.querySelectorAll('.role-filter-btn').forEach(btn=>{
   });
 });
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})})});
+
+// Background particles
+(function(){
+  const canvas=document.getElementById('bgCanvas');
+  if(!canvas)return;
+  const colors=['#3b5998','#0a8967','#d4a017','#c0392b'];
+  function spawnParticle(){
+    const p=document.createElement('div');
+    p.className='bg-particle';
+    const size=Math.random()*4+2;
+    const dur=Math.random()*12+10;
+    p.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;bottom:-10px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${dur}s;`;
+    canvas.appendChild(p);
+    setTimeout(()=>p.remove(),dur*1000);
+  }
+  // Spawn particles every 2 seconds, max 15 on screen
+  setInterval(()=>{if(canvas.querySelectorAll('.bg-particle').length<15)spawnParticle()},2000);
+  // Initial burst
+  for(let i=0;i<5;i++)setTimeout(spawnParticle,i*400);
+})();
 </script>
 </body>
 </html>
