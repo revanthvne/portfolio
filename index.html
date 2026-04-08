@@ -172,17 +172,36 @@ section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
 }
 .card-footer a:hover{background:var(--accent);color:#fff}
 
-/* PROJECT DIAGRAM TOP */
+/* PROJECT DIAGRAM TOP — with view toggle */
 .card-top{
   height:180px;position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
   background:var(--card-top-bg);
   border-bottom:1px solid var(--border);
 }
-.card-top svg{width:100%;height:100%}
+.card-top svg{width:100%;height:100%;display:block}
+.card-view{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:opacity .4s,transform .4s}
+.card-view.hidden{opacity:0;pointer-events:none;transform:scale(.96)}
+.card-view-tabs{
+  position:absolute;top:6px;right:6px;z-index:2;display:flex;gap:3px;
+  background:var(--bg2);border-radius:var(--radius-pill);padding:2px;
+  border:1px solid var(--border);box-shadow:var(--shadow-sm);
+}
+.card-view-tab{
+  padding:2px 8px;border-radius:var(--radius-pill);font-size:.6rem;font-weight:600;
+  cursor:pointer;border:none;background:transparent;color:var(--text-tertiary);
+  transition:all .2s;font-family:inherit;
+}
+.card-view-tab.active{background:var(--accent);color:#fff}
+.card-view-tab:hover:not(.active){color:var(--accent)}
 @keyframes flowDash{to{stroke-dashoffset:-14}}
 @keyframes nodePulse{0%,100%{opacity:.7}50%{opacity:1}}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+/* UI mockup specific */
+.ui-mockup-window{fill:var(--bg2);stroke:var(--border)}
+.ui-mockup-sidebar{fill:var(--bg3)}
+.ui-mockup-accent{fill:var(--accent)}
+.ui-mockup-green{fill:var(--accent2)}
+.ui-mockup-red{fill:var(--accent3)}
 
 /* ROLE FILTER */
 .role-filters{display:flex;gap:.5rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
@@ -498,6 +517,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Kalshi AI Trading Bot -->
     <div class="project-card" data-roles="ai,fintech">
       <div class="card-top">
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gk" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3b5998" stop-opacity=".08"/><stop offset="100%" stop-color="#0a8967" stop-opacity=".04"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#gk)"/>
@@ -516,6 +537,39 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
           <text x="200" y="149" text-anchor="middle" fill="#0a8967" font-size="10" font-weight="600" font-family="Inter,sans-serif">Kalshi Trade Engine</text>
           <text x="200" y="172" text-anchor="middle" fill="#aaa" font-size="7" font-family="Inter,sans-serif">Kelly Criterion · Dynamic Exit · Portfolio Optimization</text>
         </svg>
+        </div>
+        <div class="card-view hidden">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" rx="4" fill="var(--bg3)"/>
+          <!-- Sidebar -->
+          <rect x="0" y="0" width="70" height="180" fill="var(--bg2)" stroke="var(--border)" stroke-width="1"/>
+          <circle cx="35" cy="18" r="8" fill="var(--accent)" opacity=".2"/><text x="35" y="21" text-anchor="middle" fill="var(--accent)" font-size="8" font-weight="700" font-family="Inter,sans-serif">K</text>
+          <rect x="10" y="38" width="50" height="5" rx="2" fill="var(--accent)" opacity=".6"/><rect x="10" y="52" width="50" height="5" rx="2" fill="var(--border)"/><rect x="10" y="66" width="50" height="5" rx="2" fill="var(--border)"/><rect x="10" y="80" width="50" height="5" rx="2" fill="var(--border)"/>
+          <!-- Top stats bar -->
+          <rect x="80" y="8" width="75" height="28" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="88" y="19" fill="var(--text-tertiary)" font-size="5.5" font-family="Inter,sans-serif">Balance</text>
+          <text x="88" y="30" fill="var(--accent2)" font-size="8" font-weight="700" font-family="Inter,sans-serif">$2,847</text>
+          <rect x="162" y="8" width="75" height="28" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="170" y="19" fill="var(--text-tertiary)" font-size="5.5" font-family="Inter,sans-serif">Win Rate</text>
+          <text x="170" y="30" fill="var(--accent2)" font-size="8" font-weight="700" font-family="Inter,sans-serif">73.2%</text>
+          <rect x="244" y="8" width="75" height="28" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="252" y="19" fill="var(--text-tertiary)" font-size="5.5" font-family="Inter,sans-serif">Active</text>
+          <text x="252" y="30" fill="var(--accent)" font-size="8" font-weight="700" font-family="Inter,sans-serif">12 Trades</text>
+          <rect x="326" y="8" width="65" height="28" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="334" y="19" fill="var(--text-tertiary)" font-size="5.5" font-family="Inter,sans-serif">Sharpe</text>
+          <text x="334" y="30" fill="var(--accent4)" font-size="8" font-weight="700" font-family="Inter,sans-serif">1.84</text>
+          <!-- P&L Chart -->
+          <rect x="80" y="44" width="310" height="75" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="90" y="56" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">P&amp;L Performance</text>
+          <polyline points="90,100 120,95 150,88 180,92 210,78 240,72 260,80 290,65 320,60 350,55 380,50" fill="none" stroke="var(--accent2)" stroke-width="1.5" stroke-linecap="round"/>
+          <polyline points="90,100 120,95 150,88 180,92 210,78 240,72 260,80 290,65 320,60 350,55 380,50" fill="url(#gk)" opacity=".15" stroke="none"/>
+          <!-- Positions table -->
+          <rect x="80" y="125" width="310" height="48" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="90" y="137" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">Active Positions</text>
+          <text x="88" y="150" fill="var(--text-secondary)" font-size="5" font-family="Inter,sans-serif">Election 2024 Yes</text><rect x="185" y="145" width="25" height="9" rx="4" fill="var(--accent2)" opacity=".2"/><text x="197" y="152" text-anchor="middle" fill="var(--accent2)" font-size="5" font-weight="600" font-family="Inter,sans-serif">+18%</text>
+          <text x="88" y="162" fill="var(--text-secondary)" font-size="5" font-family="Inter,sans-serif">Fed Rate Cut No</text><rect x="185" y="157" width="25" height="9" rx="4" fill="var(--accent2)" opacity=".2"/><text x="197" y="164" text-anchor="middle" fill="var(--accent2)" font-size="5" font-weight="600" font-family="Inter,sans-serif">+7%</text>
+        </svg>
+        </div>
       </div>
       <div class="card-body">
         <h3>Kalshi AI Trading Bot</h3><div class="tagline">Autonomous Prediction Market Trading System</div>
@@ -532,6 +586,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- NeuralGrid AI -->
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gn" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0a8967" stop-opacity=".06"/><stop offset="100%" stop-color="#3b5998" stop-opacity=".04"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#gn)"/>
@@ -551,6 +607,48 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
           <text x="200" y="122" text-anchor="middle" fill="#3b5998" font-size="9" font-weight="600" font-family="Inter,sans-serif">10 GPU Architectures × 8 Workloads</text>
           <text x="200" y="152" text-anchor="middle" fill="#aaa" font-size="7" font-family="Inter,sans-serif">AES-256-GCM · RBAC · Docker · TLS</text>
         </svg>
+        </div>
+        <div class="card-view hidden">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="var(--bg3)"/>
+          <rect x="0" y="0" width="70" height="180" fill="var(--bg2)" stroke="var(--border)" stroke-width="1"/>
+          <text x="35" y="16" text-anchor="middle" fill="var(--accent2)" font-size="7" font-weight="700" font-family="Inter,sans-serif">GPUs</text>
+          <rect x="6" y="24" width="58" height="14" rx="3" fill="var(--accent2)" opacity=".15"/><text x="35" y="34" text-anchor="middle" fill="var(--accent2)" font-size="6" font-weight="600" font-family="Inter,sans-serif">A100 #1</text>
+          <rect x="6" y="42" width="58" height="14" rx="3" fill="var(--border)"/><text x="35" y="52" text-anchor="middle" fill="var(--text-tertiary)" font-size="6" font-family="Inter,sans-serif">A100 #2</text>
+          <rect x="6" y="60" width="58" height="14" rx="3" fill="var(--border)"/><text x="35" y="70" text-anchor="middle" fill="var(--text-tertiary)" font-size="6" font-family="Inter,sans-serif">H100 #1</text>
+          <rect x="6" y="78" width="58" height="14" rx="3" fill="var(--border)"/><text x="35" y="88" text-anchor="middle" fill="var(--text-tertiary)" font-size="6" font-family="Inter,sans-serif">V100 #1</text>
+          <circle cx="35" cy="115" r="18" fill="none" stroke="var(--accent2)" stroke-width="2.5" stroke-dasharray="85 28" stroke-linecap="round"/><text x="35" y="118" text-anchor="middle" fill="var(--accent2)" font-size="7" font-weight="700" font-family="Inter,sans-serif">72°</text>
+          <text x="35" y="142" text-anchor="middle" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Temp</text>
+          <!-- Main dashboard -->
+          <rect x="80" y="8" width="100" height="30" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="88" y="19" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Power Saved</text>
+          <text x="88" y="31" fill="var(--accent2)" font-size="10" font-weight="700" font-family="Inter,sans-serif">23.4%</text>
+          <rect x="188" y="8" width="100" height="30" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="196" y="19" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Total Power</text>
+          <text x="196" y="31" fill="var(--accent)" font-size="10" font-weight="700" font-family="Inter,sans-serif">4.2 kW</text>
+          <rect x="296" y="8" width="95" height="30" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="304" y="19" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">ML Accuracy</text>
+          <text x="304" y="31" fill="var(--accent4)" font-size="10" font-weight="700" font-family="Inter,sans-serif">R²=0.96</text>
+          <!-- Power chart -->
+          <rect x="80" y="44" width="200" height="65" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="90" y="56" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">Power Consumption</text>
+          <polygon points="90,100 115,92 140,88 165,95 190,82 215,78 240,85 265,75" fill="var(--accent2)" opacity=".1" stroke="none"/>
+          <polyline points="90,100 115,92 140,88 165,95 190,82 215,78 240,85 265,75" fill="none" stroke="var(--accent2)" stroke-width="1.5"/>
+          <!-- GPU Utilization bars -->
+          <rect x="290" y="44" width="101" height="65" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="300" y="56" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">GPU Util %</text>
+          <rect x="300" y="62" width="14" height="40" rx="2" fill="var(--border)"/><rect x="300" y="70" width="14" height="32" rx="2" fill="var(--accent2)" opacity=".7"/>
+          <rect x="320" y="62" width="14" height="40" rx="2" fill="var(--border)"/><rect x="320" y="66" width="14" height="36" rx="2" fill="var(--accent)" opacity=".7"/>
+          <rect x="340" y="62" width="14" height="40" rx="2" fill="var(--border)"/><rect x="340" y="78" width="14" height="24" rx="2" fill="var(--accent4)" opacity=".7"/>
+          <rect x="360" y="62" width="14" height="40" rx="2" fill="var(--border)"/><rect x="360" y="72" width="14" height="30" rx="2" fill="var(--accent2)" opacity=".7"/>
+          <!-- Alerts -->
+          <rect x="80" y="115" width="310" height="58" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="90" y="128" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">Recent Alerts</text>
+          <circle cx="90" cy="142" r="3" fill="var(--accent2)"/><text x="98" y="144" fill="var(--text-secondary)" font-size="5" font-family="Inter,sans-serif">A100 #1 optimized — saved 340W</text>
+          <circle cx="90" cy="155" r="3" fill="var(--accent4)"/><text x="98" y="157" fill="var(--text-secondary)" font-size="5" font-family="Inter,sans-serif">H100 #1 thermal warning — 78°C</text>
+          <circle cx="90" cy="168" r="3" fill="var(--accent)"/><text x="98" y="170" fill="var(--text-secondary)" font-size="5" font-family="Inter,sans-serif">Workload shift: training → inference</text>
+        </svg>
+        </div>
       </div>
       <div class="card-body">
         <h3>NeuralGrid AI</h3><div class="tagline">Data Center Energy Management Platform</div>
@@ -567,6 +665,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Satellite Hybrid Internet -->
     <div class="project-card" data-roles="rf">
       <div class="card-top">
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gs" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d4a017" stop-opacity=".08"/><stop offset="100%" stop-color="#0a8967" stop-opacity=".04"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#gs)"/>
@@ -586,6 +686,42 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
           <text x="320" y="129" text-anchor="middle" fill="#0a8967" font-size="9" font-weight="600" font-family="Inter,sans-serif">User Terminal</text>
           <text x="200" y="162" text-anchor="middle" fill="#aaa" font-size="7" font-family="Inter,sans-serif">11 Frequency Bands · 14 Analysis Plots · Python Simulation</text>
         </svg>
+        </div>
+        <div class="card-view hidden">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="180" fill="var(--bg3)"/>
+          <rect x="80" y="6" width="240" height="20" rx="4" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="120" y="19" text-anchor="middle" fill="var(--accent4)" font-size="6" font-weight="600" font-family="Inter,sans-serif">75 GHz</text>
+          <text x="170" y="19" text-anchor="middle" fill="var(--accent)" font-size="6" font-weight="700" font-family="Inter,sans-serif">150 GHz</text>
+          <text x="220" y="19" text-anchor="middle" fill="var(--text-tertiary)" font-size="6" font-family="Inter,sans-serif">220 GHz</text>
+          <text x="270" y="19" text-anchor="middle" fill="var(--text-tertiary)" font-size="6" font-family="Inter,sans-serif">300 GHz</text>
+          <rect x="8" y="32" width="230" height="90" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="18" y="45" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">Link Budget — Signal Strength vs Distance</text>
+          <rect x="20" y="55" width="18" height="55" rx="2" fill="var(--border)"/><rect x="20" y="58" width="18" height="52" rx="2" fill="var(--accent2)" opacity=".7"/>
+          <rect x="48" y="55" width="18" height="55" rx="2" fill="var(--border)"/><rect x="48" y="65" width="18" height="45" rx="2" fill="var(--accent2)" opacity=".6"/>
+          <rect x="76" y="55" width="18" height="55" rx="2" fill="var(--border)"/><rect x="76" y="72" width="18" height="38" rx="2" fill="var(--accent)" opacity=".6"/>
+          <rect x="104" y="55" width="18" height="55" rx="2" fill="var(--border)"/><rect x="104" y="80" width="18" height="30" rx="2" fill="var(--accent)" opacity=".5"/>
+          <rect x="132" y="55" width="18" height="55" rx="2" fill="var(--border)"/><rect x="132" y="88" width="18" height="22" rx="2" fill="var(--accent4)" opacity=".5"/>
+          <rect x="160" y="55" width="18" height="55" rx="2" fill="var(--border)"/><rect x="160" y="95" width="18" height="15" rx="2" fill="var(--accent3)" opacity=".4"/>
+          <text x="120" y="118" text-anchor="middle" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Distance (km) →</text>
+          <rect x="248" y="32" width="144" height="90" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="258" y="45" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">Coverage Map</text>
+          <ellipse cx="320" cy="82" rx="55" ry="30" fill="none" stroke="var(--border)" stroke-width=".8"/>
+          <ellipse cx="320" cy="82" rx="35" ry="18" fill="none" stroke="var(--accent4)" stroke-width="1" stroke-dasharray="4,3"/>
+          <circle cx="300" cy="72" r="4" fill="var(--accent4)" opacity=".7"><animate attributeName="opacity" values=".4;.9;.4" dur="3s" repeatCount="indefinite"/></circle>
+          <circle cx="325" cy="68" r="4" fill="var(--accent4)" opacity=".7"><animate attributeName="opacity" values=".9;.4;.9" dur="3s" repeatCount="indefinite"/></circle>
+          <circle cx="345" cy="75" r="4" fill="var(--accent4)" opacity=".7"><animate attributeName="opacity" values=".4;.9;.4" dur="2.5s" repeatCount="indefinite"/></circle>
+          <rect x="8" y="128" width="140" height="44" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="18" y="142" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">SNR Analysis</text>
+          <circle cx="45" cy="160" r="12" fill="none" stroke="var(--accent2)" stroke-width="3" stroke-dasharray="56 19" stroke-linecap="round"/><text x="45" y="163" text-anchor="middle" fill="var(--accent2)" font-size="7" font-weight="700" font-family="Inter,sans-serif">24</text><text x="45" y="170" text-anchor="middle" fill="var(--text-tertiary)" font-size="4" font-family="Inter,sans-serif">dB</text>
+          <text x="75" y="152" fill="var(--text-secondary)" font-size="5" font-family="Inter,sans-serif">Margin: +8.2 dB</text>
+          <text x="75" y="163" fill="var(--accent2)" font-size="5" font-weight="600" font-family="Inter,sans-serif">Link: Operational</text>
+          <rect x="156" y="128" width="236" height="44" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+          <text x="166" y="142" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">System Parameters</text>
+          <text x="166" y="155" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">EIRP: 62.4 dBW</text><text x="260" y="155" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">G/T: 18.3 dB/K</text>
+          <text x="166" y="167" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">BER: 1e-6</text><text x="260" y="167" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Throughput: 2.4 Gbps</text>
+        </svg>
+        </div>
       </div>
       <div class="card-body">
         <h3>Satellite Hybrid Internet</h3><div class="tagline">MEO Satellite Communication System Design</div>
@@ -601,6 +737,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- QuantumShield -->
     <div class="project-card" data-roles="quantum,fullstack">
       <div class="card-top">
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gq" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c0392b" stop-opacity=".06"/><stop offset="100%" stop-color="#3b5998" stop-opacity=".04"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#gq)"/>
@@ -624,6 +762,31 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
           <line x1="200" y1="130" x2="200" y2="150" stroke="#0a8967" stroke-width="1.2" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1.5s" repeatCount="indefinite"/></line>
           <text x="200" y="165" text-anchor="middle" fill="#888" font-size="8" font-family="Inter,sans-serif">FastAPI · Python · Hybrid Quantum-Classical Security</text>
         </svg>
+        </div>
+        <div class="card-view hidden">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="180" fill="var(--bg3)"/>
+<rect x="8" y="8" width="185" height="110" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<text x="18" y="22" fill="var(--text)" font-size="7" font-weight="700" font-family="Inter,sans-serif">Security Status</text>
+<circle cx="25" cy="40" r="5" fill="var(--accent2)"/><text x="36" y="43" fill="var(--accent2)" font-size="6" font-weight="600" font-family="Inter,sans-serif">QKD — Active</text><text x="150" y="43" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">BB84</text>
+<circle cx="25" cy="58" r="5" fill="var(--accent2)"/><text x="36" y="61" fill="var(--accent2)" font-size="6" font-weight="600" font-family="Inter,sans-serif">PQC — Active</text><text x="150" y="61" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">CRYSTALS</text>
+<circle cx="25" cy="76" r="5" fill="var(--accent2)"/><text x="36" y="79" fill="var(--accent2)" font-size="6" font-weight="600" font-family="Inter,sans-serif">QRNG — Active</text><text x="150" y="79" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Vacuum</text>
+<rect x="15" y="90" width="80" height="20" rx="10" fill="var(--accent2)" opacity=".15"/><text x="55" y="103" text-anchor="middle" fill="var(--accent2)" font-size="7" font-weight="700" font-family="Inter,sans-serif">SECURE</text>
+<text x="110" y="103" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Threat Level: None</text>
+<rect x="203" y="8" width="189" height="110" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<text x="213" y="22" fill="var(--text)" font-size="7" font-weight="700" font-family="Inter,sans-serif">Key Exchange Monitor</text>
+<text x="213" y="40" fill="var(--accent)" font-size="16" font-weight="700" font-family="Inter,sans-serif">1,247</text><text x="280" y="40" fill="var(--text-tertiary)" font-size="6" font-family="Inter,sans-serif">keys distributed</text>
+<line x1="213" y1="50" x2="380" y2="50" stroke="var(--border)" stroke-width=".5"/>
+<circle cx="220" cy="62" r="3" fill="var(--accent)"><animate attributeName="opacity" values=".3;1;.3" dur="2s" repeatCount="indefinite"/></circle><circle cx="250" cy="62" r="3" fill="var(--accent)" opacity=".6"><animate attributeName="opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></circle><circle cx="280" cy="62" r="3" fill="var(--accent)" opacity=".4"><animate attributeName="opacity" values=".3;1;.3" dur="1.5s" repeatCount="indefinite"/></circle><line x1="223" y1="62" x2="277" y2="62" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1s" repeatCount="indefinite"/></line>
+<text x="213" y="82" fill="var(--text-secondary)" font-size="5" font-family="Inter,sans-serif">Last rotation: 2.3s ago</text>
+<text x="213" y="95" fill="var(--text-secondary)" font-size="5" font-family="Inter,sans-serif">Key rate: 1.2 Mbps</text>
+<text x="213" y="108" fill="var(--text-secondary)" font-size="5" font-family="Inter,sans-serif">QBER: 2.1% (threshold 11%)</text>
+<rect x="8" y="124" width="384" height="48" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<text x="18" y="138" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">Recent Key Rotations</text>
+<text x="18" y="152" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">14:32:01</text><text x="60" y="152" fill="var(--text-secondary)" font-size="5" font-family="Inter,sans-serif">AES-256 key rotated — Channel A</text>
+<text x="18" y="164" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">14:31:58</text><text x="60" y="164" fill="var(--text-secondary)" font-size="5" font-family="Inter,sans-serif">QKD key exchanged — 256 bits</text>
+</svg>
+        </div>
       </div>
       <div class="card-body">
         <h3>QuantumShield</h3><div class="tagline">Hybrid Quantum-Classical Cryptography Platform</div>
@@ -639,6 +802,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- JobFill.ai -->
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gj" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3b5998" stop-opacity=".06"/><stop offset="100%" stop-color="#0a8967" stop-opacity=".04"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#gj)"/>
@@ -663,6 +828,30 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
           <rect x="110" y="135" width="180" height="28" rx="8" fill="#e8f5f0" stroke="#0a8967" stroke-width="1"/>
           <text x="200" y="153" text-anchor="middle" fill="#0a8967" font-size="9" font-weight="600" font-family="Inter,sans-serif">Application Tracker Dashboard</text>
         </svg>
+        </div>
+        <div class="card-view hidden">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="180" fill="var(--bg3)"/>
+<rect x="60" y="4" width="280" height="172" rx="6" fill="var(--bg2)" stroke="var(--border)" stroke-width="1.2"/>
+<rect x="60" y="4" width="280" height="20" rx="6" fill="var(--bg3)" stroke="var(--border)" stroke-width=".8"/>
+<rect x="60" y="18" width="280" height="6" fill="var(--bg3)"/>
+<circle cx="72" cy="14" r="4" fill="var(--accent3)" opacity=".5"/><circle cx="84" cy="14" r="4" fill="var(--accent4)" opacity=".5"/><circle cx="96" cy="14" r="4" fill="var(--accent2)" opacity=".5"/>
+<rect x="130" y="8" width="140" height="12" rx="6" fill="var(--bg2)" stroke="var(--border)" stroke-width=".5"/>
+<text x="200" y="17" text-anchor="middle" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">jobs.lever.co/company/apply</text>
+<rect x="305" y="7" width="28" height="14" rx="4" fill="var(--accent)" opacity=".9"/><text x="319" y="17" text-anchor="middle" fill="#fff" font-size="5" font-weight="600" font-family="Inter,sans-serif">JF</text>
+<text x="80" y="40" fill="var(--text)" font-size="8" font-weight="700" font-family="Inter,sans-serif">Auto-Filling Application...</text>
+<rect x="80" y="48" width="240" height="8" rx="4" fill="var(--border)"/><rect x="80" y="48" width="187" height="8" rx="4" fill="var(--accent)"><animate attributeName="width" values="150;200;187" dur="3s" repeatCount="indefinite"/></rect>
+<text x="285" y="55" fill="var(--accent)" font-size="6" font-weight="600" font-family="Inter,sans-serif">78%</text>
+<rect x="80" y="64" width="240" height="80" rx="4" fill="var(--bg3)" stroke="var(--border)" stroke-width=".5"/>
+<text x="90" y="78" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">Matched Fields</text>
+<text x="90" y="92" fill="var(--accent2)" font-size="6" font-family="Inter,sans-serif">✓ Full Name</text><text x="200" y="92" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Revanth Kondaveti</text>
+<text x="90" y="105" fill="var(--accent2)" font-size="6" font-family="Inter,sans-serif">✓ Email</text><text x="200" y="105" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">k.revanth123@gmail.com</text>
+<text x="90" y="118" fill="var(--accent2)" font-size="6" font-family="Inter,sans-serif">✓ Resume</text><text x="200" y="118" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Revanth_Resume.pdf</text>
+<text x="90" y="131" fill="var(--accent2)" font-size="6" font-family="Inter,sans-serif">✓ Experience</text><text x="200" y="131" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">5+ years matched</text>
+<rect x="80" y="150" width="115" height="20" rx="5" fill="var(--accent)"/><text x="137" y="163" text-anchor="middle" fill="#fff" font-size="6" font-weight="600" font-family="Inter,sans-serif">Generate Cover Letter</text>
+<rect x="205" y="150" width="115" height="20" rx="5" fill="var(--bg2)" stroke="var(--accent)" stroke-width="1"/><text x="262" y="163" text-anchor="middle" fill="var(--accent)" font-size="6" font-weight="600" font-family="Inter,sans-serif">Track Application</text>
+</svg>
+        </div>
       </div>
       <div class="card-body">
         <h3>JobFill.ai</h3><div class="tagline">AI-Powered Job Application Chrome Extension</div>
@@ -678,6 +867,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Teach & Repeat -->
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gt" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0a8967" stop-opacity=".06"/><stop offset="100%" stop-color="#d4a017" stop-opacity=".04"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#gt)"/>
@@ -695,6 +886,28 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
           <rect x="295" y="105" width="80" height="35" rx="6" fill="#fff" stroke="#c0392b" stroke-width="1"/><text x="335" y="121" text-anchor="middle" fill="#c0392b" font-size="8" font-weight="600" font-family="Inter,sans-serif">AI Chat</text><text x="335" y="133" text-anchor="middle" fill="#888" font-size="7" font-family="Inter,sans-serif">NL Commands</text>
           <text x="200" y="162" text-anchor="middle" fill="#aaa" font-size="7" font-family="Inter,sans-serif">Node/Fastify Backend · Skill Creation · Step-by-Step Preview</text>
         </svg>
+        </div>
+        <div class="card-view hidden">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="180" fill="var(--bg3)"/>
+<rect x="0" y="0" width="80" height="180" fill="var(--bg2)" stroke="var(--border)" stroke-width="1"/>
+<text x="40" y="16" text-anchor="middle" fill="var(--text)" font-size="6" font-weight="700" font-family="Inter,sans-serif">Steps</text>
+<rect x="6" y="24" width="68" height="18" rx="4" fill="var(--accent)" opacity=".15" stroke="var(--accent)" stroke-width=".5"/><text x="14" y="36" fill="var(--accent)" font-size="5.5" font-weight="600" font-family="Inter,sans-serif">1. Open URL</text>
+<rect x="6" y="46" width="68" height="18" rx="4" fill="var(--accent2)" opacity=".1" stroke="var(--accent2)" stroke-width=".5"/><text x="14" y="58" fill="var(--accent2)" font-size="5.5" font-weight="600" font-family="Inter,sans-serif">2. Click Login</text>
+<rect x="6" y="68" width="68" height="18" rx="4" fill="var(--accent4)" opacity=".1" stroke="var(--accent4)" stroke-width=".5"/><text x="14" y="80" fill="var(--accent4)" font-size="5.5" font-weight="600" font-family="Inter,sans-serif">3. Fill Form</text>
+<rect x="6" y="90" width="68" height="18" rx="4" fill="var(--border)"/><text x="14" y="102" fill="var(--text-tertiary)" font-size="5.5" font-family="Inter,sans-serif">4. Submit</text>
+<rect x="15" y="140" width="50" height="16" rx="4" fill="var(--accent3)" opacity=".15"/><text x="40" y="151" text-anchor="middle" fill="var(--accent3)" font-size="5.5" font-weight="600" font-family="Inter,sans-serif">● Record</text>
+<rect x="15" y="160" width="50" height="16" rx="4" fill="var(--accent2)" opacity=".15"/><text x="40" y="171" text-anchor="middle" fill="var(--accent2)" font-size="5.5" font-weight="600" font-family="Inter,sans-serif">▶ Play</text>
+<rect x="130" y="30" width="80" height="30" rx="6" fill="var(--bg2)" stroke="var(--accent)" stroke-width="1.2"/><text x="170" y="49" text-anchor="middle" fill="var(--accent)" font-size="7" font-weight="600" font-family="Inter,sans-serif">Open URL</text>
+<line x1="210" y1="45" x2="240" y2="75" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="2s" repeatCount="indefinite"/></line>
+<rect x="240" y="65" width="80" height="30" rx="6" fill="var(--bg2)" stroke="var(--accent2)" stroke-width="1.2"/><text x="280" y="84" text-anchor="middle" fill="var(--accent2)" font-size="7" font-weight="600" font-family="Inter,sans-serif">Click Login</text>
+<line x1="280" y1="95" x2="220" y2="115" stroke="var(--accent2)" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="2s" repeatCount="indefinite"/></line>
+<rect x="160" y="115" width="80" height="30" rx="6" fill="var(--bg2)" stroke="var(--accent4)" stroke-width="1.2"/><text x="200" y="134" text-anchor="middle" fill="var(--accent4)" font-size="7" font-weight="600" font-family="Inter,sans-serif">Fill Form</text>
+<line x1="240" y1="130" x2="290" y2="130" stroke="var(--accent4)" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="2s" repeatCount="indefinite"/></line>
+<rect x="290" y="118" width="70" height="26" rx="6" fill="var(--bg2)" stroke="var(--border)" stroke-width="1"/><text x="325" y="135" text-anchor="middle" fill="var(--text-tertiary)" font-size="6" font-family="Inter,sans-serif">Submit</text>
+<text x="240" y="170" text-anchor="middle" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Drag nodes to edit · AI suggests next steps</text>
+</svg>
+        </div>
       </div>
       <div class="card-body">
         <h3>Teach &amp; Repeat</h3><div class="tagline">Cross-Platform Workflow Automation App</div>
@@ -710,6 +923,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- MarketPulse -->
     <div class="project-card" data-roles="ai,fintech,fullstack">
       <div class="card-top">
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gm" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3b5998" stop-opacity=".06"/><stop offset="100%" stop-color="#d4a017" stop-opacity=".04"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#gm)"/>
@@ -731,6 +946,42 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
           <polyline points="60,145 100,135 140,150 180,128 220,140 260,125 300,132 340,120" fill="none" stroke="#0a8967" stroke-width="1.5" opacity=".5"><animate attributeName="opacity" values=".3;.7;.3" dur="3s" repeatCount="indefinite"/></polyline>
           <text x="200" y="170" text-anchor="middle" fill="#aaa" font-size="7" font-family="Inter,sans-serif">React · FastAPI · Competitor & Supply Chain Mapping</text>
         </svg>
+        </div>
+        <div class="card-view hidden">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="180" fill="var(--bg3)"/>
+<rect x="0" y="0" width="75" height="180" fill="var(--bg2)" stroke="var(--border)" stroke-width="1"/>
+<text x="38" y="15" text-anchor="middle" fill="var(--text)" font-size="6" font-weight="700" font-family="Inter,sans-serif">Screener</text>
+<rect x="5" y="22" width="65" height="12" rx="6" fill="var(--accent)" opacity=".15"/><text x="38" y="31" text-anchor="middle" fill="var(--accent)" font-size="5" font-weight="600" font-family="Inter,sans-serif">Tech</text>
+<rect x="5" y="38" width="65" height="12" rx="6" fill="var(--border)"/><text x="38" y="47" text-anchor="middle" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Healthcare</text>
+<rect x="5" y="54" width="65" height="12" rx="6" fill="var(--border)"/><text x="38" y="63" text-anchor="middle" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Energy</text>
+<text x="38" y="82" text-anchor="middle" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Indicators</text>
+<rect x="5" y="88" width="65" height="10" rx="3" fill="var(--accent2)" opacity=".1"/><text x="38" y="96" text-anchor="middle" fill="var(--accent2)" font-size="4.5" font-family="Inter,sans-serif">SMA 20 ✓</text>
+<rect x="5" y="102" width="65" height="10" rx="3" fill="var(--accent)" opacity=".1"/><text x="38" y="110" text-anchor="middle" fill="var(--accent)" font-size="4.5" font-family="Inter,sans-serif">EMA 50 ✓</text>
+<rect x="5" y="116" width="65" height="10" rx="3" fill="var(--accent4)" opacity=".1"/><text x="38" y="124" text-anchor="middle" fill="var(--accent4)" font-size="4.5" font-family="Inter,sans-serif">Bollinger</text>
+<rect x="85" y="6" width="120" height="20" rx="4" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<text x="95" y="19" fill="var(--text)" font-size="9" font-weight="700" font-family="Inter,sans-serif">AAPL</text><text x="138" y="19" fill="var(--accent2)" font-size="7" font-weight="600" font-family="Inter,sans-serif">$198.52 ▲2.3%</text>
+<rect x="215" y="6" width="80" height="20" rx="4" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<text x="225" y="19" fill="var(--text-tertiary)" font-size="7" font-family="Inter,sans-serif">NVDA</text><text x="260" y="19" fill="var(--accent2)" font-size="6" font-family="Inter,sans-serif">+4.1%</text>
+<rect x="305" y="6" width="86" height="20" rx="4" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<text x="315" y="19" fill="var(--text-tertiary)" font-size="7" font-family="Inter,sans-serif">TSLA</text><text x="355" y="19" fill="var(--accent3)" font-size="6" font-family="Inter,sans-serif">-1.2%</text>
+<rect x="85" y="32" width="306" height="100" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<rect x="110" y="65" width="6" height="30" fill="var(--accent2)" opacity=".4"/><line x1="113" y1="58" x2="113" y2="100" stroke="var(--accent2)" stroke-width=".8"/>
+<rect x="135" y="55" width="6" height="35" fill="var(--accent3)" opacity=".4"/><line x1="138" y1="48" x2="138" y2="95" stroke="var(--accent3)" stroke-width=".8"/>
+<rect x="160" y="60" width="6" height="25" fill="var(--accent2)" opacity=".4"/><line x1="163" y1="52" x2="163" y2="90" stroke="var(--accent2)" stroke-width=".8"/>
+<rect x="185" y="50" width="6" height="30" fill="var(--accent2)" opacity=".4"/><line x1="188" y1="44" x2="188" y2="85" stroke="var(--accent2)" stroke-width=".8"/>
+<rect x="210" y="58" width="6" height="22" fill="var(--accent3)" opacity=".4"/><line x1="213" y1="50" x2="213" y2="85" stroke="var(--accent3)" stroke-width=".8"/>
+<rect x="235" y="45" width="6" height="30" fill="var(--accent2)" opacity=".4"/><line x1="238" y1="38" x2="238" y2="80" stroke="var(--accent2)" stroke-width=".8"/>
+<rect x="260" y="42" width="6" height="25" fill="var(--accent2)" opacity=".4"/><line x1="263" y1="36" x2="263" y2="72" stroke="var(--accent2)" stroke-width=".8"/>
+<rect x="285" y="48" width="6" height="28" fill="var(--accent2)" opacity=".4"/><line x1="288" y1="40" x2="288" y2="82" stroke="var(--accent2)" stroke-width=".8"/>
+<polyline points="113,70 138,62 163,66 188,55 213,60 238,48 263,46 288,52" fill="none" stroke="var(--accent4)" stroke-width="1" opacity=".6"/>
+<rect x="100" y="108" width="20" height="15" fill="var(--accent)" opacity=".15"/><rect x="130" y="112" width="20" height="11" fill="var(--accent)" opacity=".1"/><rect x="160" y="106" width="20" height="17" fill="var(--accent)" opacity=".2"/><rect x="190" y="104" width="20" height="19" fill="var(--accent)" opacity=".25"/><rect x="220" y="110" width="20" height="13" fill="var(--accent)" opacity=".1"/><rect x="250" y="102" width="20" height="21" fill="var(--accent)" opacity=".3"/><rect x="280" y="108" width="20" height="15" fill="var(--accent)" opacity=".15"/>
+<rect x="85" y="138" width="306" height="34" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<text x="95" y="152" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">AI Sentiment</text>
+<rect x="170" y="143" width="40" height="14" rx="7" fill="var(--accent2)" opacity=".15"/><text x="190" y="153" text-anchor="middle" fill="var(--accent2)" font-size="6" font-weight="600" font-family="Inter,sans-serif">Bullish</text>
+<text x="95" y="166" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Sources: 12 news · 847 tweets · 3 earnings calls</text>
+</svg>
+        </div>
       </div>
       <div class="card-body">
         <h3>MarketPulse</h3><div class="tagline">Financial Markets Analytics Platform</div>
@@ -746,6 +997,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- SocialSurgeGenie -->
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gsg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c0392b" stop-opacity=".06"/><stop offset="100%" stop-color="#d4a017" stop-opacity=".04"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#gsg)"/>
@@ -767,6 +1020,48 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
           <text x="270" y="134" text-anchor="middle" fill="#0a8967" font-size="9" font-weight="600" font-family="Inter,sans-serif">Analytics</text>
           <text x="200" y="165" text-anchor="middle" fill="#aaa" font-size="7" font-family="Inter,sans-serif">Next.js 14 · TypeScript · Prisma · OpenAI</text>
         </svg>
+        </div>
+        <div class="card-view hidden">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="180" fill="var(--bg3)"/>
+<rect x="8" y="6" width="230" height="22" rx="4" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<circle cx="22" cy="17" r="6" fill="var(--accent)" opacity=".3"/><text x="22" y="20" text-anchor="middle" fill="var(--accent)" font-size="5" font-weight="700" font-family="Inter,sans-serif">FB</text>
+<circle cx="40" cy="17" r="6" fill="var(--accent3)" opacity=".3"/><text x="40" y="20" text-anchor="middle" fill="var(--accent3)" font-size="5" font-weight="700" font-family="Inter,sans-serif">IG</text>
+<circle cx="58" cy="17" r="6" fill="var(--text)" opacity=".2"/><text x="58" y="20" text-anchor="middle" fill="var(--text)" font-size="5" font-weight="700" font-family="Inter,sans-serif">X</text>
+<circle cx="76" cy="17" r="6" fill="var(--accent)" opacity=".3"/><text x="76" y="20" text-anchor="middle" fill="var(--accent)" font-size="4" font-weight="700" font-family="Inter,sans-serif">in</text>
+<circle cx="94" cy="17" r="6" fill="var(--accent3)" opacity=".3"/><text x="94" y="20" text-anchor="middle" fill="var(--accent3)" font-size="5" font-weight="700" font-family="Inter,sans-serif">YT</text>
+<text x="120" y="20" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">All platforms connected</text>
+<rect x="248" y="6" width="70" height="22" rx="4" fill="var(--accent)"/><text x="283" y="20" text-anchor="middle" fill="#fff" font-size="6" font-weight="600" font-family="Inter,sans-serif">+ New Post</text>
+<rect x="328" y="6" width="64" height="22" rx="4" fill="var(--bg2)" stroke="var(--accent)" stroke-width="1"/><text x="360" y="20" text-anchor="middle" fill="var(--accent)" font-size="6" font-weight="600" font-family="Inter,sans-serif">Schedule</text>
+<rect x="8" y="34" width="230" height="100" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<text x="18" y="48" fill="var(--text)" font-size="6" font-weight="700" font-family="Inter,sans-serif">Content Calendar — April</text>
+<rect x="15" y="55" width="28" height="20" rx="3" fill="var(--accent)" opacity=".12"/><text x="29" y="68" text-anchor="middle" fill="var(--accent)" font-size="5" font-family="Inter,sans-serif">Mon</text>
+<rect x="48" y="55" width="28" height="20" rx="3" fill="var(--accent2)" opacity=".12"/><text x="62" y="68" text-anchor="middle" fill="var(--accent2)" font-size="5" font-family="Inter,sans-serif">Tue</text>
+<rect x="81" y="55" width="28" height="20" rx="3" fill="var(--accent4)" opacity=".12"/><text x="95" y="68" text-anchor="middle" fill="var(--accent4)" font-size="5" font-family="Inter,sans-serif">Wed</text>
+<rect x="114" y="55" width="28" height="20" rx="3" fill="var(--border)"/><text x="128" y="68" text-anchor="middle" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Thu</text>
+<rect x="147" y="55" width="28" height="20" rx="3" fill="var(--accent3)" opacity=".12"/><text x="161" y="68" text-anchor="middle" fill="var(--accent3)" font-size="5" font-family="Inter,sans-serif">Fri</text>
+<rect x="180" y="55" width="28" height="20" rx="3" fill="var(--border)"/><text x="194" y="68" text-anchor="middle" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Sat</text>
+<rect x="213" y="55" width="18" height="20" rx="3" fill="var(--border)"/>
+<rect x="15" y="80" width="28" height="20" rx="3" fill="var(--accent)" opacity=".12"/>
+<rect x="48" y="80" width="28" height="20" rx="3" fill="var(--border)"/>
+<rect x="81" y="80" width="28" height="20" rx="3" fill="var(--accent2)" opacity=".12"/>
+<rect x="114" y="80" width="28" height="20" rx="3" fill="var(--accent4)" opacity=".12"/>
+<rect x="147" y="80" width="28" height="20" rx="3" fill="var(--border)"/>
+<rect x="180" y="80" width="28" height="20" rx="3" fill="var(--accent)" opacity=".12"/>
+<rect x="15" y="105" width="28" height="20" rx="3" fill="var(--accent3)" opacity=".12"/>
+<rect x="48" y="105" width="28" height="20" rx="3" fill="var(--accent)" opacity=".12"/>
+<rect x="81" y="105" width="28" height="20" rx="3" fill="var(--border)"/>
+<rect x="248" y="34" width="144" height="100" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<text x="258" y="48" fill="var(--text)" font-size="6" font-weight="700" font-family="Inter,sans-serif">Engagement</text>
+<text x="258" y="64" fill="var(--accent)" font-size="14" font-weight="700" font-family="Inter,sans-serif">12.4K</text><text x="305" y="64" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">likes</text>
+<text x="258" y="82" fill="var(--accent2)" font-size="14" font-weight="700" font-family="Inter,sans-serif">3.2K</text><text x="298" y="82" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">shares</text>
+<text x="258" y="100" fill="var(--accent4)" font-size="14" font-weight="700" font-family="Inter,sans-serif">891</text><text x="290" y="100" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">comments</text>
+<polyline points="258,115 270,112 282,118 294,108 306,110 318,105 330,108 342,100 354,102 366,96 378,98" fill="none" stroke="var(--accent2)" stroke-width="1.2"/><text x="258" y="128" fill="var(--text-tertiary)" font-size="4.5" font-family="Inter,sans-serif">Reach trending ▲ 18% this week</text>
+<rect x="8" y="140" width="384" height="32" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<text x="18" y="155" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">AI Caption:</text><text x="78" y="155" fill="var(--text-secondary)" font-size="5.5" font-family="Inter,sans-serif">"Exciting updates on our latest AI feature launch! 🚀 #AI #Innovation"</text>
+<text x="18" y="167" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Platforms: FB, IG, LinkedIn, X · Scheduled: Today 2:00 PM</text>
+</svg>
+        </div>
       </div>
       <div class="card-body">
         <h3>SocialSurgeGenie</h3><div class="tagline">AI Social Media Management Platform</div>
@@ -782,6 +1077,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Molt Bot -->
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gmb" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0a8967" stop-opacity=".06"/><stop offset="100%" stop-color="#3b5998" stop-opacity=".04"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#gmb)"/>
@@ -802,6 +1099,31 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
           <rect x="130" y="148" width="140" height="24" rx="6" fill="#e8f5f0" stroke="#0a8967" stroke-width="1"/>
           <text x="200" y="164" text-anchor="middle" fill="#0a8967" font-size="8" font-weight="600" font-family="Inter,sans-serif">On-Device LLM (llama-cpp)</text>
         </svg>
+        </div>
+        <div class="card-view hidden">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="180" fill="var(--bg3)"/>
+<rect x="0" y="0" width="80" height="180" fill="var(--bg2)" stroke="var(--border)" stroke-width="1"/>
+<text x="40" y="15" text-anchor="middle" fill="var(--text)" font-size="6" font-weight="700" font-family="Inter,sans-serif">Channels</text>
+<rect x="5" y="22" width="70" height="16" rx="4" fill="var(--accent)" opacity=".12" stroke="var(--accent)" stroke-width=".5"/><circle cx="16" cy="30" r="4" fill="#5865F2"/><text x="26" y="33" fill="var(--text)" font-size="5.5" font-family="Inter,sans-serif">Discord</text>
+<rect x="5" y="42" width="70" height="16" rx="4" fill="var(--border)"/><circle cx="16" cy="50" r="4" fill="var(--accent4)"/><text x="26" y="53" fill="var(--text-tertiary)" font-size="5.5" font-family="Inter,sans-serif">Slack</text>
+<rect x="5" y="62" width="70" height="16" rx="4" fill="var(--border)"/><circle cx="16" cy="70" r="4" fill="var(--accent)"/><text x="26" y="73" fill="var(--text-tertiary)" font-size="5.5" font-family="Inter,sans-serif">Telegram</text>
+<rect x="5" y="82" width="70" height="16" rx="4" fill="var(--border)"/><circle cx="16" cy="90" r="4" fill="var(--accent2)"/><text x="26" y="93" fill="var(--text-tertiary)" font-size="5.5" font-family="Inter,sans-serif">WhatsApp</text>
+<rect x="10" y="130" width="60" height="18" rx="4" fill="var(--accent2)" opacity=".1"/><text x="18" y="142" fill="var(--accent2)" font-size="5.5" font-family="Inter,sans-serif">🔒 E2E</text>
+<text x="40" y="165" text-anchor="middle" fill="var(--text-tertiary)" font-size="4.5" font-family="Inter,sans-serif">Zero-cloud</text>
+<rect x="90" y="8" width="300" height="20" rx="4" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<text x="100" y="21" fill="var(--text)" font-size="7" font-weight="700" font-family="Inter,sans-serif"># general</text><text x="260" y="21" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Encrypted · On-device LLM</text>
+<rect x="100" y="40" width="180" height="24" rx="8" fill="var(--border)" opacity=".4"/>
+<text x="110" y="55" fill="var(--text-secondary)" font-size="6" font-family="Inter,sans-serif">Hey Molt, summarize today's chat</text>
+<rect x="170" y="72" width="210" height="32" rx="8" fill="var(--accent)" opacity=".12"/>
+<text x="180" y="85" fill="var(--accent)" font-size="6" font-family="Inter,sans-serif">Here's your summary: 3 action items,</text>
+<text x="180" y="97" fill="var(--accent)" font-size="6" font-family="Inter,sans-serif">2 decisions made, 1 follow-up needed.</text>
+<rect x="100" y="112" width="150" height="24" rx="8" fill="var(--border)" opacity=".4"/>
+<text x="110" y="127" fill="var(--text-secondary)" font-size="6" font-family="Inter,sans-serif">/remind @team standup 9am</text>
+<rect x="170" y="142" width="210" height="22" rx="8" fill="var(--accent2)" opacity=".12"/>
+<text x="180" y="156" fill="var(--accent2)" font-size="6" font-family="Inter,sans-serif">✓ Reminder set for tomorrow 9:00 AM</text>
+</svg>
+        </div>
       </div>
       <div class="card-body">
         <h3>Molt Bot</h3><div class="tagline">Privacy-First Modular Bot Engine</div>
@@ -817,6 +1139,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Telugu Salesman -->
     <div class="project-card" data-roles="ai,fullstack">
       <div class="card-top">
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gts" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d4a017" stop-opacity=".06"/><stop offset="100%" stop-color="#c0392b" stop-opacity=".04"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#gts)"/>
@@ -838,6 +1162,34 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
           <rect x="120" y="140" width="160" height="25" rx="6" fill="#e8f5f0" stroke="#0a8967" stroke-width="1"/>
           <text x="200" y="157" text-anchor="middle" fill="#0a8967" font-size="8" font-weight="600" font-family="Inter,sans-serif">Conversational AI Sales</text>
         </svg>
+        </div>
+        <div class="card-view hidden">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="180" fill="var(--bg3)"/>
+<rect x="120" y="4" width="160" height="172" rx="16" fill="var(--bg2)" stroke="var(--border)" stroke-width="1.5"/>
+<rect x="120" y="4" width="160" height="22" rx="16" fill="var(--bg3)"/>
+<rect x="120" y="20" width="160" height="6" fill="var(--bg3)"/>
+<rect x="175" y="8" width="50" height="4" rx="2" fill="var(--border)"/>
+<circle cx="145" cy="18" r="10" fill="var(--accent4)" opacity=".2"/>
+<text x="145" y="21" text-anchor="middle" fill="var(--accent4)" font-size="6" font-weight="700" font-family="Inter,sans-serif">TS</text>
+<text x="162" y="18" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">Telugu Salesman</text>
+<text x="250" y="18" fill="var(--accent2)" font-size="5" font-family="Inter,sans-serif">Online</text>
+<rect x="130" y="35" width="115" height="22" rx="8" fill="var(--accent4)" opacity=".12"/>
+<text x="140" y="46" fill="var(--accent4)" font-size="5.5" font-family="Inter,sans-serif">నమస్కారం! ఏం కావాలి?</text>
+<text x="140" y="54" fill="var(--text-tertiary)" font-size="4" font-family="Inter,sans-serif">Hello! What do you need?</text>
+<rect x="175" y="62" width="95" height="16" rx="8" fill="var(--accent)" opacity=".1"/>
+<text x="185" y="73" fill="var(--accent)" font-size="5.5" font-family="Inter,sans-serif">Show me laptops</text>
+<rect x="130" y="84" width="140" height="45" rx="6" fill="var(--bg3)" stroke="var(--border)" stroke-width=".8"/>
+<rect x="134" y="88" width="35" height="35" rx="4" fill="var(--accent)" opacity=".08"/><text x="151" y="108" text-anchor="middle" fill="var(--accent)" font-size="8" font-family="Inter,sans-serif">💻</text>
+<text x="175" y="98" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">MacBook Air M3</text>
+<text x="175" y="110" fill="var(--accent2)" font-size="7" font-weight="700" font-family="Inter,sans-serif">₹1,14,900</text>
+<text x="175" y="122" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">In stock · Free delivery</text>
+<rect x="130" y="134" width="65" height="16" rx="4" fill="var(--accent2)"/><text x="162" y="145" text-anchor="middle" fill="#fff" font-size="5.5" font-weight="600" font-family="Inter,sans-serif">Add to Cart</text>
+<rect x="200" y="134" width="65" height="16" rx="4" fill="var(--accent4)" opacity=".2" stroke="var(--accent4)" stroke-width=".8"/><text x="232" y="145" text-anchor="middle" fill="var(--accent4)" font-size="5.5" font-weight="600" font-family="Inter,sans-serif">Negotiate</text>
+<rect x="130" y="156" width="140" height="14" rx="7" fill="var(--bg3)" stroke="var(--border)" stroke-width=".5"/>
+<text x="140" y="166" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Type in Telugu or English...</text>
+</svg>
+        </div>
       </div>
       <div class="card-body">
         <h3>Telugu Salesman</h3><div class="tagline">Multilingual AI Sales Agent</div>
@@ -853,6 +1205,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Quantum Encrypted Call -->
     <div class="project-card" data-roles="quantum">
       <div class="card-top">
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gqe" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c0392b" stop-opacity=".06"/><stop offset="100%" stop-color="#3b5998" stop-opacity=".04"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#gqe)"/>
@@ -870,6 +1224,29 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
           <text x="200" y="134" text-anchor="middle" fill="#888" font-size="7" font-family="Inter,sans-serif">End-to-End Encryption</text>
           <text x="200" y="162" text-anchor="middle" fill="#aaa" font-size="7" font-family="Inter,sans-serif">Quantum-Secured Voice & Video Calling</text>
         </svg>
+        </div>
+        <div class="card-view hidden">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="180" rx="4" fill="var(--bg3)"/>
+<rect x="20" y="10" width="170" height="115" rx="8" fill="#1a1a2e" stroke="var(--border)" stroke-width="1"/>
+<circle cx="105" cy="55" r="22" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/><circle cx="105" cy="55" r="8" fill="rgba(255,255,255,.1)"/><line x1="100" y1="50" x2="100" y2="42" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/><line x1="110" y1="50" x2="110" y2="42" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+<text x="105" y="95" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="7" font-family="Inter,sans-serif">Alice</text>
+<text x="105" y="108" text-anchor="middle" fill="rgba(255,255,255,.3)" font-size="5" font-family="Inter,sans-serif">San Francisco</text>
+<rect x="210" y="10" width="170" height="115" rx="8" fill="#1a1a2e" stroke="var(--border)" stroke-width="1"/>
+<circle cx="295" cy="55" r="22" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/><circle cx="295" cy="55" r="8" fill="rgba(255,255,255,.1)"/><line x1="290" y1="50" x2="290" y2="42" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/><line x1="300" y1="50" x2="300" y2="42" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+<text x="295" y="95" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="7" font-family="Inter,sans-serif">Bob</text>
+<text x="295" y="108" text-anchor="middle" fill="rgba(255,255,255,.3)" font-size="5" font-family="Inter,sans-serif">New York</text>
+<rect x="140" y="42" width="120" height="18" rx="9" fill="var(--accent2)" opacity=".15" stroke="var(--accent2)" stroke-width=".8"/>
+<text x="200" y="54" text-anchor="middle" fill="var(--accent2)" font-size="6" font-weight="600" font-family="Inter,sans-serif">🔒 Quantum Secured</text>
+<line x1="155" y1="65" x2="245" y2="65" stroke="var(--accent2)" stroke-width="1" stroke-dasharray="4,3"><animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1.5s" repeatCount="indefinite"/></line>
+<rect x="120" y="132" width="160" height="30" rx="15" fill="var(--bg2)" stroke="var(--border)" stroke-width="1"/>
+<circle cx="165" cy="147" r="11" fill="var(--accent2)" opacity=".2"/><text x="165" y="150" text-anchor="middle" fill="var(--accent2)" font-size="8" font-family="Inter,sans-serif">🎤</text>
+<circle cx="200" cy="147" r="11" fill="var(--accent3)" opacity=".2"/><text x="200" y="150" text-anchor="middle" fill="var(--accent3)" font-size="8" font-family="Inter,sans-serif">📞</text>
+<circle cx="235" cy="147" r="11" fill="var(--accent)" opacity=".2"/><text x="235" y="150" text-anchor="middle" fill="var(--accent)" font-size="8" font-family="Inter,sans-serif">📹</text>
+<text x="200" y="174" text-anchor="middle" fill="var(--text-tertiary)" font-size="6" font-weight="600" font-family="Inter,sans-serif">02:34</text>
+<text x="350" y="174" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">HD · E2E</text>
+</svg>
+        </div>
       </div>
       <div class="card-body">
         <h3>Quantum Encrypted Call</h3><div class="tagline">Quantum-Secured Real-Time Communication</div>
@@ -882,6 +1259,8 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
     <!-- Founders Decoded -->
     <div class="project-card" data-roles="">
       <div class="card-top">
+        <div class="card-view-tabs"><button class="card-view-tab active" data-target="arch">Arch</button><button class="card-view-tab" data-target="ui">UI Preview</button></div>
+        <div class="card-view">
         <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
           <defs><linearGradient id="gfd" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#c0392b" stop-opacity=".06"/><stop offset="100%" stop-color="#d4a017" stop-opacity=".04"/></linearGradient></defs>
           <rect width="400" height="180" fill="url(#gfd)"/>
@@ -896,6 +1275,41 @@ body,nav,.hero,.summary-card,.timeline-content,.project-card,.skill-cat,.edu-car
           <rect x="100" y="135" width="200" height="28" rx="8" fill="#f0f3fa" stroke="#3b5998" stroke-width="1"/>
           <text x="200" y="153" text-anchor="middle" fill="#3b5998" font-size="9" font-weight="600" font-family="Inter,sans-serif">Thought Leadership</text>
         </svg>
+        </div>
+        <div class="card-view hidden">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="180" fill="var(--bg3)"/>
+<rect x="8" y="6" width="384" height="40" rx="5" fill="var(--accent3)" opacity=".08"/>
+<text x="200" y="30" text-anchor="middle" fill="var(--accent3)" font-size="12" font-weight="700" font-family="Inter,sans-serif">FOUNDERS DECODED</text>
+<circle cx="25" cy="62" r="12" fill="var(--accent3)" opacity=".2"/><text x="25" y="65" text-anchor="middle" fill="var(--accent3)" font-size="8" font-weight="700" font-family="Inter,sans-serif">FD</text>
+<text x="45" y="58" fill="var(--text)" font-size="7" font-weight="700" font-family="Inter,sans-serif">Founders Decoded</text>
+<text x="45" y="68" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">12.4K subscribers · 48 videos</text>
+<rect x="300" y="52" width="70" height="18" rx="9" fill="var(--accent3)"/><text x="335" y="64" text-anchor="middle" fill="#fff" font-size="6" font-weight="600" font-family="Inter,sans-serif">Subscribe</text>
+<rect x="8" y="80" width="92" height="55" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<rect x="8" y="80" width="92" height="35" rx="5" fill="var(--accent)" opacity=".06"/>
+<polygon points="45,92 45,106 58,99" fill="var(--accent)" opacity=".4"/>
+<text x="16" y="124" fill="var(--text)" font-size="5" font-weight="600" font-family="Inter,sans-serif">How I Built a $1M</text>
+<text x="16" y="132" fill="var(--text-tertiary)" font-size="4" font-family="Inter,sans-serif">2.3K views · 3 days</text>
+<rect x="108" y="80" width="92" height="55" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<rect x="108" y="80" width="92" height="35" rx="5" fill="var(--accent2)" opacity=".06"/>
+<polygon points="145,92 145,106 158,99" fill="var(--accent2)" opacity=".4"/>
+<text x="116" y="124" fill="var(--text)" font-size="5" font-weight="600" font-family="Inter,sans-serif">Startup Funding 101</text>
+<text x="116" y="132" fill="var(--text-tertiary)" font-size="4" font-family="Inter,sans-serif">5.1K views · 1 week</text>
+<rect x="208" y="80" width="92" height="55" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<rect x="208" y="80" width="92" height="35" rx="5" fill="var(--accent4)" opacity=".06"/>
+<polygon points="245,92 245,106 258,99" fill="var(--accent4)" opacity=".4"/>
+<text x="216" y="124" fill="var(--text)" font-size="5" font-weight="600" font-family="Inter,sans-serif">AI Founder Interview</text>
+<text x="216" y="132" fill="var(--text-tertiary)" font-size="4" font-family="Inter,sans-serif">8.7K views · 2 weeks</text>
+<rect x="308" y="80" width="84" height="55" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<rect x="308" y="80" width="84" height="35" rx="5" fill="var(--accent3)" opacity=".06"/>
+<polygon points="342,92 342,106 355,99" fill="var(--accent3)" opacity=".4"/>
+<text x="316" y="124" fill="var(--text)" font-size="5" font-weight="600" font-family="Inter,sans-serif">Product Strategy</text>
+<text x="316" y="132" fill="var(--text-tertiary)" font-size="4" font-family="Inter,sans-serif">3.4K views · 3 weeks</text>
+<rect x="8" y="142" width="384" height="30" rx="5" fill="var(--bg2)" stroke="var(--border)" stroke-width=".8"/>
+<text x="18" y="157" fill="var(--text)" font-size="6" font-weight="600" font-family="Inter,sans-serif">Latest:</text><text x="55" y="157" fill="var(--text-secondary)" font-size="6" font-family="Inter,sans-serif">🎙 Ep. 48 — The Future of AI Startups with YC Founders</text>
+<text x="18" y="168" fill="var(--text-tertiary)" font-size="5" font-family="Inter,sans-serif">Published 2 hours ago · 47 min</text>
+</svg>
+        </div>
       </div>
       <div class="card-body">
         <h3>Founders Decoded</h3><div class="tagline">YouTube Channel &amp; Podcast</div>
@@ -1069,6 +1483,22 @@ document.querySelectorAll('.role-filter-btn').forEach(btn=>{
   });
 });
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})})});
+
+// ─── Card View Tabs (Architecture ↔ UI Preview) ───
+document.querySelectorAll('.card-view-tabs').forEach(tabs=>{
+  const card=tabs.closest('.card-top');
+  const views=card.querySelectorAll('.card-view');
+  const btns=tabs.querySelectorAll('.card-view-tab');
+  btns.forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      btns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      views.forEach((v,j)=>{
+        if(j===i){v.classList.remove('hidden')}else{v.classList.add('hidden')}
+      });
+    });
+  });
+});
 
 // ─── Matrix Rain Background (canvas-based) ───
 (function(){
